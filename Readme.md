@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Андрей Диканский](https://up.htmlacademy.ru/react/3/user/643755).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Карастелев](https://htmlacademy.ru/profile/bini1988).
 
 ---
 
