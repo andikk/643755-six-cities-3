@@ -6,7 +6,7 @@ const App = (props) => {
   const {offersCount} = props;
 
   return (
-     <Main offersCount={offersCount}/>
+    <Main offersCount={offersCount}/>
   );
 };
 
