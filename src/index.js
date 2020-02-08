@@ -9,6 +9,8 @@ const Settings = {
 const places = [`Place1`, `Place2`, `Place3`, `Place4`];
 
 ReactDOM.render(
-    <App offersCount={Settings.OFFERS_COUNT} places={places}/>,
+    <App offersCount={Settings.OFFERS_COUNT}
+      places={places}
+    />,
     document.getElementById(`root`)
 );
