@@ -17,11 +17,12 @@ it(`Should header link be pressed`, () => {
         onHeaderClickHandler={onHeaderClickHandler}
       />
   );
-
-  places.forEach((place, i) => {
-    let headerLink = main.find(`h2.place-card__name`).get(i + 1);
-    headerLink.props().onClick();
-    expect(onHeaderClickHandler.mock.calls.length).toBe(1);
+  const headers = main.find(`h2.place-card__name`);
+  headers.forEach((header, i) => {
+    header.props().onClick();
   });
+
+  expect(onHeaderClickHandler.mock.calls.length).toBe(places.length);
+
 
 });
