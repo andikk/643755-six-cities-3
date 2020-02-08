@@ -1,10 +1,10 @@
 import React from "react";
-import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
+import PlaceCard from "../place-card/place-card.jsx";
 
 const Main = (props) => {
 
-  const {offersCount, places} = props;
+  const {offersCount, places, onHeaderClickHandler} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -98,7 +98,7 @@ const Main = (props) => {
 
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((name, i) => <PlaceCard key={i} name={name} />)}
+                {places.map((name, i) => <PlaceCard key={i} name={name} onHeaderClickHandler={onHeaderClickHandler}/>)}
               </div>
             </section>
             <div className="cities__right-section">
@@ -113,7 +113,8 @@ const Main = (props) => {
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  places: PropTypes.array.isRequired
+  places: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onHeaderClickHandler: PropTypes.func.isRequired
 };
 
 export default Main;

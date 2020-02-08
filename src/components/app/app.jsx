@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const App = (props) => {
-
+  const onHeaderClickHandler = () => {};
   const {offersCount, places} = props;
 
   return (
-    <Main offersCount={offersCount} places={places}/>
+    <Main offersCount={offersCount}
+      places={places}
+      onHeaderClickHandler={onHeaderClickHandler}/>
   );
 };
 
