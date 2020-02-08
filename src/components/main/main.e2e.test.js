@@ -9,7 +9,7 @@ Enzyme.configure({
 
 it(`Should header link be pressed`, () => {
   const onHeaderClickHandler = jest.fn();
-  const places = [`Place1`, `Place2`, `Place3`, `Place4`]
+  const places = [`Place1`, `Place2`, `Place3`, `Place4`];
   const main = shallow(
       <Main
         offersCount={312}
