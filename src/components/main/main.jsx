@@ -126,7 +126,7 @@ const Main = (props) => {
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
-                      <h2 className="place-card__name" onClick={onHeaderClickHandler(i)}>
+                      <h2 className="place-card__name" onClick={onHeaderClickHandler}>
                         <a href="#">{name}</a>
                       </h2>
                       <p className="place-card__type">Apartment</p>
