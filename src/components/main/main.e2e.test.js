@@ -9,18 +9,19 @@ Enzyme.configure({
 
 it(`Should header link be pressed`, () => {
   const onHeaderClickHandler = jest.fn();
-
+  const places = [`Place1`, `Place2`, `Place3`, `Place4`]
   const main = shallow(
       <Main
         offersCount={312}
-        places={[`Place1`, `Place2`, `Place3`, `Place4`]}
+        places={places}
         onHeaderClickHandler={onHeaderClickHandler}
       />
   );
 
-  const headerLink = main.find(`h2.place-card__name`);
+  places.forEach((place, i) => {
+    let headerLink = main.find(`h2.place-card__name`).get(i + 1);
+    headerLink.props().onClick();
+    expect(onHeaderClickHandler.mock.calls.length).toBe(1);
+  });
 
-  headerLink.props().onClick();
-
-  expect(onHeaderClickHandler.mock.calls.length).toBe(1);
 });
