@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Place = (props) => {
+const PlaceCard = (props) => {
   const {name} = props;
 
-  return <React.Fragment>
-
+  return (
     <article className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
@@ -40,11 +39,11 @@ const Place = (props) => {
         <p className="place-card__type">Apartment</p>
       </div>
     </article>
-  </React.Fragment>;
+  );
 };
 
-Place.propTypes = {
+PlaceCard.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default Place;
+export default PlaceCard;

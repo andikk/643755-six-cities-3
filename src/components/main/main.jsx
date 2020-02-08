@@ -1,5 +1,5 @@
 import React from "react";
-import Place from "../place/place.jsx";
+import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 
 const Main = (props) => {
@@ -98,7 +98,7 @@ const Main = (props) => {
 
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((name, i) => <Place key={i} name={name} />)}
+                {places.map((name, i) => <PlaceCard key={i} name={name} />)}
               </div>
             </section>
             <div className="cities__right-section">
