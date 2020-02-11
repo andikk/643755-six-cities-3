@@ -19,8 +19,16 @@ export default [
     mark: `SuperPremium`,
     src: `img/apartment-01.jpg`,
     price: 420,
-    rating: 140,
+    rating: 80,
     name: `Name3`,
     type: `SuperNeApartment`
+  },
+  {
+    mark: `NeSuperPremium`,
+    src: `img/apartment-01.jpg`,
+    price: 320,
+    rating: 30,
+    name: `Name4`,
+    type: `NeSuperNeApartment`
   },
 ];
