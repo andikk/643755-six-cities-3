@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     mark: `Premium`,
     src: `img/apartment-01.jpg`,
     price: 120,
@@ -8,6 +9,7 @@ export default [
     type: `Apartment`
   },
   {
+    id: 2,
     mark: `NePremium`,
     src: `img/apartment-01.jpg`,
     price: 220,
@@ -16,6 +18,7 @@ export default [
     type: `NeApartment`
   },
   {
+    id: 3,
     mark: `SuperPremium`,
     src: `img/apartment-01.jpg`,
     price: 420,
@@ -24,6 +27,7 @@ export default [
     type: `SuperNeApartment`
   },
   {
+    id: 4,
     mark: `NeSuperPremium`,
     src: `img/apartment-01.jpg`,
     price: 320,

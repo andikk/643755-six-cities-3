@@ -3,12 +3,13 @@
 exports[`Should Main render correctly 1`] = `
 <article
   className="cities__place-card place-card"
+  onMouseEnter={[Function]}
 >
   <div
     className="place-card__mark"
   >
     <span>
-      Premium
+      mark
     </span>
   </div>
   <div
@@ -18,10 +19,10 @@ exports[`Should Main render correctly 1`] = `
       href="#"
     >
       <img
-        alt="Place image"
+        alt="offer.name"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="offer.src"
         width="260"
       />
     </a>
@@ -38,7 +39,8 @@ exports[`Should Main render correctly 1`] = `
         <b
           className="place-card__price-value"
         >
-          €120
+          €
+          152
         </b>
         <span
           className="place-card__price-text"
@@ -75,7 +77,7 @@ exports[`Should Main render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "80",
             }
           }
         />
@@ -93,13 +95,13 @@ exports[`Should Main render correctly 1`] = `
       <a
         href="#"
       >
-        Place
+        offer.name
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      offer.type
     </p>
   </div>
 </article>

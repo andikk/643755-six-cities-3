@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
-  const {mark, src, price, rating, name, type, onHeaderClickHandler, onCardHover} = props;
+  const {mark, src, price, rating, name, type, onHeaderClick, onCardHover} = props;
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={onCardHover}>
       <div className="place-card__mark">
         <span>{mark}</span>
       </div>
@@ -33,7 +33,7 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onHeaderClickHandler}>
+        <h2 className="place-card__name" onClick={onHeaderClick}>
           <a href="#">{name}</a>
         </h2>
         <p className="place-card__type">{type}</p>
@@ -45,12 +45,13 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   mark: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
-  onHeaderClickHandler: PropTypes.func.isRequired
+  onHeaderClick: PropTypes.func.isRequired
 };
 
 export default PlaceCard;
