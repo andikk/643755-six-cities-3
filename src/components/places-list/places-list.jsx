@@ -7,7 +7,7 @@ class PlacesList extends PureComponent {
     super(props);
 
     this.state = {
-      cardId: null,
+      activeCard: null,
     };
   }
 
@@ -16,16 +16,13 @@ class PlacesList extends PureComponent {
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <PlaceCard key={offer.id}
-          mark={offer.mark}
-          src={offer.src}
-          price={offer.price}
-          rating={offer.rating}
-          name={offer.name}
-          type={offer.type}
-          onCardHover={() => {
-            this.setState({cardId: offer.id});
-          }}
+        {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
+          onCardHover={
+            (card) => {
+              console.log(card);
+              //this.setState({activeCard: card});
+            }
+          }
           onHeaderClick={() => {}}/>)}
       </div>
     );

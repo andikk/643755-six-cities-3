@@ -2,10 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
-  const {mark, src, price, rating, name, type, onHeaderClick, onCardHover} = props;
+  const {card} = props;
+  const {mark, src, price, rating, name, type} = card;
+  const {onHeaderClick, onCardHover} = props;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={onCardHover}>
+    <article className="cities__place-card place-card" onMouseEnter={onCardHover(card)}>
       <div className="place-card__mark">
         <span>{mark}</span>
       </div>
@@ -29,7 +31,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}`}}></span>
+            <span style={{width: `${rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -42,16 +44,21 @@ const PlaceCard = (props) => {
   );
 };
 
-
 PlaceCard.propTypes = {
-  mark: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  card: PropTypes.shape({
+    name: PropTypes.string,
+    mark: PropTypes.string,
+    src: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    type: PropTypes.string,
+    onCardHover: PropTypes.func.isRequired,
+    onHeaderClick: PropTypes.func.isRequired
+  }),
+};
+
+PlaceCard.defaultProps = {
+  onHeaderClick: () => {}
 };
 
 export default PlaceCard;
