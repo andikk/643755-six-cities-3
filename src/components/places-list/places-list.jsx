@@ -19,8 +19,7 @@ class PlacesList extends PureComponent {
         {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
           onCardHover={
             (card) => {
-              console.log(card);
-              //this.setState({activeCard: card});
+              this.setState({activeCard: card});
             }
           }
           onHeaderClick={() => {}}/>)}

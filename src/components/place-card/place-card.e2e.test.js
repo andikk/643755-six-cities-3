@@ -7,25 +7,47 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should PlaceCard header link be pressed and mouse over card moved`, () => {
+it(`Should mouse over PlaceCardMoved`, () => {
   const onHeaderClickHandler = jest.fn();
   const onCardHoverHandler = jest.fn();
+  const card = {
+    mark: `mark`,
+    src: `offer.src`,
+    price: 152,
+    rating: 80,
+    name: `offer.name`,
+    type: `offer.type`,
+  };
+
 
   const placeCard = shallow(
-      <PlaceCard
-        mark={`mark`}
-        src={`offer.src`}
-        price={152}
-        rating={80}
-        name={`offer.name`}
-        type={`offer.type`}
-        onCardHover={onCardHoverHandler}
-        onHeaderClick={onHeaderClickHandler}
-      />
+      <PlaceCard card={card} onCardHover={onCardHoverHandler} onHeaderClick={onHeaderClickHandler}/>
+  );
+
+  placeCard.find(`.place-card`).simulate(`mouseleave`);
+  expect(onCardHoverHandler).toHaveBeenLastCalledWith(null);
+
+  placeCard.find(`.place-card`).simulate(`mouseenter`);
+  expect(onCardHoverHandler).toHaveBeenLastCalledWith(Object.getPrototypeOf(card));
+});
+
+it(`Should PlaceCard header link be pressed`, () => {
+  const onHeaderClickHandler = jest.fn();
+  const onCardHoverHandler = jest.fn();
+  const card = {
+    mark: `mark`,
+    src: `offer.src`,
+    price: 152,
+    rating: 80,
+    name: `offer.name`,
+    type: `offer.type`,
+  };
+
+  const placeCard = shallow(
+      <PlaceCard card={card} onCardHover={onCardHoverHandler} onHeaderClick={onHeaderClickHandler}/>
   );
 
   placeCard.find(`.place-card__name`).simulate(`click`);
   expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
 
-  placeCard.find(`.place-card`).simulate(`mouseover`);
 });

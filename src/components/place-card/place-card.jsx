@@ -7,7 +7,14 @@ const PlaceCard = (props) => {
   const {onHeaderClick, onCardHover} = props;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={onCardHover(card)}>
+    <article className="cities__place-card place-card"
+      onMouseEnter={() => {
+        onCardHover(card);
+      }}
+      onMouseLeave={() => {
+        onCardHover(null);
+      }}>
+
       <div className="place-card__mark">
         <span>{mark}</span>
       </div>
@@ -52,9 +59,10 @@ PlaceCard.propTypes = {
     price: PropTypes.number,
     rating: PropTypes.number,
     type: PropTypes.string,
-    onCardHover: PropTypes.func.isRequired,
-    onHeaderClick: PropTypes.func.isRequired
   }),
+
+  onCardHover: PropTypes.func.isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
 
 PlaceCard.defaultProps = {
