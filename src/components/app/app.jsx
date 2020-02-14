@@ -1,11 +1,16 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
+import Property from "../property/property.jsx";
 
 class App extends PureComponent {
   constructor(props) {
     super();
+  }
+
+  _renderApp() {
+    return (<Property/>);
   }
 
   render() {
