@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PlaceCard from "../place-card/place-card.jsx";
+import PlacesList from "../places-list/places-list.jsx";
 
 const Main = (props) => {
 
-  const {offersCount, places, onHeaderClickHandler} = props;
+  const {offersCount, offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -97,9 +97,7 @@ const Main = (props) => {
                 {/* </select>*/}
 
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {places.map((name, i) => <PlaceCard key={i} name={name} onHeaderClickHandler={onHeaderClickHandler}/>)}
-              </div>
+              <PlacesList offers={offers}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -113,8 +111,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  places: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onHeaderClickHandler: PropTypes.func.isRequired
+  offers: PropTypes.array.isRequired
 };
 
 export default Main;

@@ -3,19 +3,19 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const App = (props) => {
-  const onHeaderClickHandler = () => {};
-  const {offersCount, places} = props;
+
+  const {offersCount, offers} = props;
 
   return (
     <Main offersCount={offersCount}
-      places={places}
-      onHeaderClickHandler={onHeaderClickHandler}/>
+      offers={offers}
+    />
   );
 };
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  places: PropTypes.arrayOf(PropTypes.string).isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default App;
