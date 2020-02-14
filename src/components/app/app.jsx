@@ -1,17 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Main from "../main/main.jsx";
 
-const App = (props) => {
+class App extends PureComponent {
+  constructor(props) {
+    super();
+  }
 
-  const {offersCount, offers} = props;
+  render() {
+    const {offersCount, offers} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-component">
+            <Main offersCount={offersCount}
+              offers={offers}
+            />
+          </Route>
+        </Switch>
+      </BrowserRouter>
 
-  return (
-    <Main offersCount={offersCount}
-      offers={offers}
-    />
-  );
-};
+    );
+  }
+}
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
