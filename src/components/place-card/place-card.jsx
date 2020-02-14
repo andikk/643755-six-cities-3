@@ -59,10 +59,10 @@ PlaceCard.propTypes = {
     price: PropTypes.number,
     rating: PropTypes.number,
     type: PropTypes.string,
-  }),
+  }).isRequired,
 
   onCardHover: PropTypes.func.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  onHeaderClick: PropTypes.func
 };
 
 PlaceCard.defaultProps = {

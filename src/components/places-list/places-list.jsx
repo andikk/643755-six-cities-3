@@ -29,7 +29,7 @@ class PlacesList extends PureComponent {
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired
 };
 
 export default PlacesList;
