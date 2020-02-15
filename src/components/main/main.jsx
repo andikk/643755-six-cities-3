@@ -4,7 +4,8 @@ import PlacesList from "../places-list/places-list.jsx";
 
 const Main = (props) => {
 
-  const {offersCount, offers} = props;
+  const {offersCount, offers, onHeaderClick} = props;
+
 
   return (
     <div className="page page--gray page--main">
@@ -97,7 +98,7 @@ const Main = (props) => {
                 {/* </select>*/}
 
               </form>
-              <PlacesList offers={offers}/>
+              <PlacesList offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -111,7 +112,8 @@ const Main = (props) => {
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offers: PropTypes.array.isRequired
+  offers: PropTypes.array.isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
 
 export default Main;

@@ -12,9 +12,7 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span>
-        Premium
-      </span>
+      <span />
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -23,7 +21,7 @@ exports[`Should Places List render correctly 1`] = `
         href="#"
       >
         <img
-          alt="Name1"
+          alt="Name0"
           className="place-card__image"
           height="200"
           src="img/apartment-01.jpg"
@@ -81,7 +79,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "1%",
               }
             }
           />
@@ -94,12 +92,12 @@ exports[`Should Places List render correctly 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="#"
+          onClick={[Function]}
         >
-          Name1
+          Name0
         </a>
       </h2>
       <p
@@ -117,9 +115,7 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span>
-        NePremium
-      </span>
+      <span />
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -128,7 +124,7 @@ exports[`Should Places List render correctly 1`] = `
         href="#"
       >
         <img
-          alt="Name2"
+          alt="Name1"
           className="place-card__image"
           height="200"
           src="img/apartment-01.jpg"
@@ -186,7 +182,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "40%",
+                "width": "2%",
               }
             }
           />
@@ -199,12 +195,12 @@ exports[`Should Places List render correctly 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="#"
+          onClick={[Function]}
         >
-          Name2
+          Name1
         </a>
       </h2>
       <p
@@ -222,9 +218,7 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span>
-        SuperPremium
-      </span>
+      <span />
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -233,7 +227,7 @@ exports[`Should Places List render correctly 1`] = `
         href="#"
       >
         <img
-          alt="Name3"
+          alt="Name2"
           className="place-card__image"
           height="200"
           src="img/apartment-01.jpg"
@@ -291,7 +285,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "3%",
               }
             }
           />
@@ -304,12 +298,12 @@ exports[`Should Places List render correctly 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="#"
+          onClick={[Function]}
         >
-          Name3
+          Name2
         </a>
       </h2>
       <p
@@ -327,9 +321,7 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span>
-        NeSuperPremium
-      </span>
+      <span />
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -338,7 +330,7 @@ exports[`Should Places List render correctly 1`] = `
         href="#"
       >
         <img
-          alt="Name4"
+          alt="Name3"
           className="place-card__image"
           height="200"
           src="img/apartment-01.jpg"
@@ -396,7 +388,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "30%",
+                "width": "4%",
               }
             }
           />
@@ -409,12 +401,12 @@ exports[`Should Places List render correctly 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
           href="#"
+          onClick={[Function]}
         >
-          Name4
+          Name3
         </a>
       </h2>
       <p

@@ -9,9 +9,7 @@ exports[`Should PlaceCard render correctly 1`] = `
   <div
     className="place-card__mark"
   >
-    <span>
-      mark
-    </span>
+    <span />
   </div>
   <div
     className="cities__image-wrapper place-card__image-wrapper"
@@ -20,10 +18,10 @@ exports[`Should PlaceCard render correctly 1`] = `
       href="#"
     >
       <img
-        alt="offer.name"
+        alt="Name0"
         className="place-card__image"
         height="200"
-        src="offer.src"
+        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -41,7 +39,7 @@ exports[`Should PlaceCard render correctly 1`] = `
           className="place-card__price-value"
         >
           €
-          152
+          120
         </b>
         <span
           className="place-card__price-text"
@@ -78,7 +76,7 @@ exports[`Should PlaceCard render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "1%",
             }
           }
         />
@@ -91,18 +89,18 @@ exports[`Should PlaceCard render correctly 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
         href="#"
+        onClick={[Function]}
       >
-        offer.name
+        Name0
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      offer.type
+      Apartment
     </p>
   </div>
 </article>

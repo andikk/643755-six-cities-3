@@ -1,5 +1,4 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
@@ -44,7 +43,7 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{name}</Link>
+          <a href="#" onClick={() => onHeaderClick(id)}>{name}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

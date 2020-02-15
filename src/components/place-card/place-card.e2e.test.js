@@ -34,6 +34,6 @@ it(`Should PlaceCard header link be pressed`, () => {
       <PlaceCard card={card} onCardHover={onCardHoverHandler} onHeaderClick={onHeaderClickHandler}/>
   );
 
-  placeCard.find(`.place-card__name`).simulate(`click`);
+  placeCard.find(`.place-card__name a`).simulate(`click`);
   expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
 });

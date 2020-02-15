@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 
 const Property = (props) => {
   const {card} = props;
-  const {name} = card;
+  const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type} = card;
+
   return (
     <div className="page">
       <header className="header">
@@ -33,30 +34,20 @@ const Property = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
+
+              {photos.filter((photo, index) => index < 6)
+                .map((photo, index) => (
+                  <div className="property__image-wrapper" key={photo + index}>
+                    <img className="property__image" src={photo} alt={name}/>
+                  </div>
+                ))}
             </div>
+
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
               <div className="property__mark">
-                <span>Premium</span>
+                {premium ? <span>Premium</span> : ``}
               </div>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
@@ -71,80 +62,49 @@ const Property = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}}></span>
+                  <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}} />
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">4.8</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  Apartment
+                  {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {guests} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;120</b>
+                <b className="property__price-value">&euro;{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  {features.map((feature, index) => (
+                    <li className="property__inside-item" key={feature + index}>
+                      {feature}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74"
-                      alt="Host avatar"/>
+                  <div className={`property__avatar-wrapper ${owner.super ? ` property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={owner.src} width="74" height="74" alt={owner.name} />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {owner.name}
                   </span>
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                    building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where
-                    the bustle of the city comes to rest in this alley flowery and colorful.
+                    {description}
                   </p>
                 </div>
               </div>
@@ -344,6 +304,22 @@ const Property = (props) => {
     </div>
   );
 
+};
+
+Property.propTypes = {
+  card: PropTypes.shape({
+    photos: PropTypes.array,
+    description: PropTypes.string,
+    premium: PropTypes.bool,
+    bedrooms: PropTypes.number,
+    guests: PropTypes.number,
+    features: PropTypes.array,
+    owner: PropTypes.object,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    name: PropTypes.string,
+    type: PropTypes.string
+  }).isRequired
 };
 
 export default Property;
