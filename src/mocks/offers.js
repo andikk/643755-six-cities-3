@@ -1,6 +1,6 @@
 export default [
   {
-    id: 1,
+    id: 0,
     mark: `Premium`,
     src: `img/apartment-01.jpg`,
     photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
@@ -16,11 +16,11 @@ export default [
     },
     price: 120,
     rating: 80,
-    name: `Name1`,
+    name: `Name0`,
     type: `Apartment`
   },
   {
-    id: 2,
+    id: 1,
     mark: `NePremium`,
     src: `img/apartment-01.jpg`,
     photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
@@ -36,11 +36,11 @@ export default [
     },
     price: 220,
     rating: 40,
-    name: `Name2`,
+    name: `Name1`,
     type: `NeApartment`
   },
   {
-    id: 3,
+    id: 2,
     mark: `SuperPremium`,
     src: `img/apartment-01.jpg`,
     photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
@@ -56,11 +56,11 @@ export default [
     },
     price: 420,
     rating: 80,
-    name: `Name3`,
+    name: `Name2`,
     type: `SuperNeApartment`
   },
   {
-    id: 4,
+    id: 3,
     mark: `NeSuperPremium`,
     src: `img/apartment-01.jpg`,
     photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
@@ -76,7 +76,7 @@ export default [
     },
     price: 320,
     rating: 30,
-    name: `Name4`,
+    name: `Name3`,
     type: `NeSuperNeApartment`
   },
 ];

@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Property = (props) => {
-
+  const {card} = props;
+  const {name} = card;
   return (
     <div className="page">
       <header className="header">
@@ -59,7 +60,7 @@ const Property = (props) => {
               </div>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  {name}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">

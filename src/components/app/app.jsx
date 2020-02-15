@@ -9,10 +9,8 @@ class App extends PureComponent {
     super(props);
   }
 
-
   render() {
     const {offersCount, offers} = this.props;
-
 
     return (
       <BrowserRouter>
@@ -22,8 +20,11 @@ class App extends PureComponent {
               offers={offers}
             />
           </Route>
-          <Route path="/offer/:id">
-            {console.log(123)}
+          <Route path="/offer/:id"
+            children={({match}) => (
+              <Property card={offers[match.params.id]}/>
+            )}>
+
           </Route>
         </Switch>
       </BrowserRouter>

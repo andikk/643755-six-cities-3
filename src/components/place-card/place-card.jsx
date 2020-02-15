@@ -1,9 +1,10 @@
 import React from "react";
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
   const {card} = props;
-  const {mark, src, price, rating, name, type} = card;
+  const {mark, src, price, rating, name, type, id} = card;
   const {onHeaderClick, onCardHover} = props;
 
   return (
@@ -42,8 +43,8 @@ const PlaceCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onHeaderClick}>
-          <a href="#">{name}</a>
+        <h2 className="place-card__name">
+          <Link to={`/offer/${id}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -53,6 +54,7 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   card: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     mark: PropTypes.string,
     src: PropTypes.string,
