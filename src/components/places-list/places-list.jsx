@@ -12,7 +12,7 @@ class PlacesList extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onHeaderClick} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -22,14 +22,20 @@ class PlacesList extends PureComponent {
               this.setState({activeCard: card});
             }
           }
-          onHeaderClick={() => {}}/>)}
+          onHeaderClick={onHeaderClick}/>)}
       </div>
     );
   }
 }
 
 PlacesList.propTypes = {
-  offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired
+  offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired,
+  onHeaderClick: PropTypes.func.isRequired
 };
+
+PlacesList.defaultProps = {
+  onHeaderClick: () => {}
+};
+
 
 export default PlacesList;
