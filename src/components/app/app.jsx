@@ -6,29 +6,27 @@ import Property from "../property/property.jsx";
 
 class App extends PureComponent {
   constructor(props) {
-    super();
+    super(props);
   }
 
-  _renderApp() {
-    return (<Property/>);
-  }
 
   render() {
     const {offersCount, offers} = this.props;
+
+
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-component">
             <Main offersCount={offersCount}
               offers={offers}
             />
           </Route>
+          <Route path="/offer/:id">
+            {console.log(123)}
+          </Route>
         </Switch>
       </BrowserRouter>
-
     );
   }
 }
