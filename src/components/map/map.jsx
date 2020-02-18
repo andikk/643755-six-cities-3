@@ -1,13 +1,10 @@
-import React, {PureComponent, Fragment, createRef} from "react";
+import React, {PureComponent} from "react";
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
 
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._mapRef = createRef();
-
   }
 
   componentDidMount() {
@@ -20,7 +17,7 @@ class Map extends PureComponent {
     const zoom = 12;
     const map = leaflet.map(`map`, {
       center: city,
-      zoom: zoom,
+      zoom,
       zoomControl: false,
       marker: true
     });
@@ -28,24 +25,27 @@ class Map extends PureComponent {
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    leaflet
-      .marker(offerCords, {icon})
-      .addTo(map);
+    offers.map((offer) => {
+      leaflet
+        .marker(offer.coordinates, {icon})
+        .addTo(map);
+    });
   }
 
   render() {
     return (
-      <div id="map" style={{height: `180px;`}} ref={this._mapRef}></div>
+      <section id="map" className="cities__map map">
+      </section>
     );
-
   }
-
-
 }
+
+Map.propTypes = {
+  offers: PropTypes.array.isRequired,
+};
 
 export default Map;

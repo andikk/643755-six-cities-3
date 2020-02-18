@@ -4,9 +4,7 @@ import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
 
 const Main = (props) => {
-
   const {offersCount, offers, onHeaderClick} = props;
-
 
   return (
     <div className="page page--gray page--main">
@@ -102,9 +100,7 @@ const Main = (props) => {
               <PlacesList offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map1 map">
-                <Map/>
-              </section>
+              <Map offers={offers}/>
             </div>
           </div>
         </div>
@@ -118,5 +114,10 @@ Main.propTypes = {
   offers: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired
 };
+
+Main.defaultProps = {
+  onHeaderClick: () => {}
+};
+
 
 export default Main;
