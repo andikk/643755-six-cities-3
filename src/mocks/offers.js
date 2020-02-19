@@ -22,6 +22,10 @@ export default [
       {id: 0, text: `Review1 object1`, rating: 1, user: `Max`, date: `2017-01-26`},
       {id: 1, text: `Review2 object1`, rating: 1, user: `Max`, date: `2018-01-26`},
       {id: 2, text: `Review3 object1`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {id: 1, coordinates: [52.369553943508, 4.85309666406198]},
+      {id: 2, coordinates: [52.3909553943508, 4.929309666406198]},
     ]
   },
   {
@@ -47,6 +51,10 @@ export default [
       {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
       {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
       {id: 2, text: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {id: 0, coordinates: [52.3909553943508, 4.85309666406198]},
+      {id: 2, coordinates: [52.3909553943508, 4.929309666406198]},
     ]
   },
   {
@@ -72,6 +80,10 @@ export default [
       {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
       {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
       {id: 2, text: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {id: 3, coordinates: [52.3809553943508, 4.939309666406198]},
+      {id: 0, coordinates: [52.3909553943508, 4.85309666406198]},
     ]
   },
   {
@@ -97,6 +109,10 @@ export default [
       {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
       {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
       {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {id: 0, coordinates: [52.3909553943508, 4.85309666406198]},
+      {id: 2, coordinates: [52.3909553943508, 4.929309666406198]},
     ]
   },
 ];

@@ -12,7 +12,7 @@ class Map extends PureComponent {
   componentDidMount() {
     const _mapRef = this._mapRef.current;
     if (_mapRef) {
-      const {offers} = this.props;
+      const {coordinates} = this.props;
       const city = [52.38333, 4.9];
       const icon = leaflet.icon({
         iconUrl: `img/pin.svg`,
@@ -33,9 +33,9 @@ class Map extends PureComponent {
         })
         .addTo(map);
 
-      offers.map((offer) => {
+      coordinates.map((coordinate) => {
         leaflet
-          .marker(offer.coordinates, {icon})
+          .marker(coordinate, {icon})
           .addTo(map);
       });
     }
@@ -50,7 +50,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.array.isRequired,
+  coordinates: PropTypes.array.isRequired,
 };
 
 export default Map;

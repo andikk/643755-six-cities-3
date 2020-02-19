@@ -6,6 +6,8 @@ import Map from "../map/map.jsx";
 const Main = (props) => {
   const {offersCount, offers, onHeaderClick} = props;
 
+  const coordinates = offers.map((offer) => (offer.coordinates));
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -100,7 +102,7 @@ const Main = (props) => {
               <PlacesList offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers}/>
+              <Map coordinates={coordinates}/>
             </div>
           </div>
         </div>
