@@ -1,4 +1,4 @@
-import React, {PureComponent,  createRef} from "react";
+import React, {PureComponent, createRef} from "react";
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
 
