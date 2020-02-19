@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
-
+// карта
 class Map extends PureComponent {
   constructor(props) {
     super(props);

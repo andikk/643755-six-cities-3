@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import ReviewsItem from "../reviews-item/reviews-item.jsx";
-
+// список отзывов
 class ReviewsList extends PureComponent {
   constructor(props) {
     super(props);

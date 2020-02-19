@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+// отзыв
 const ReviewsItem = (props) => {
 
   const {text, rating, user, date} = props.review;

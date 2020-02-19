@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
-
+// главная страница
 const Main = (props) => {
   const {offersCount, offers, onHeaderClick} = props;
 

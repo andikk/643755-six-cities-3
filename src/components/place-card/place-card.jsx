@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+// карточка предложения
 const PlaceCard = (props) => {
   const {card} = props;
   const {premium, src, price, rating, name, type, id} = card;

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
-
+// страница предложения
 const Property = (props) => {
   const {card} = props;
   const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood} = card;
