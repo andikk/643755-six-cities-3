@@ -43,7 +43,7 @@ class Map extends PureComponent {
 
   render() {
     return (
-      <section ref={this._mapRef} className="cities__map map"/>
+      <section ref={this._mapRef} className={`${this.props.className} map`}/>
 
     );
   }
@@ -51,6 +51,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinates: PropTypes.array.isRequired,
+  className: PropTypes.string.isRequired
 };
 
 export default Map;

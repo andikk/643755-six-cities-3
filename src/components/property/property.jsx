@@ -173,9 +173,9 @@ const Property = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map">
-            <Map coordinates={coordinates}/>
-          </section>
+
+          <Map className={`property__map`} coordinates={coordinates}/>
+
         </section>
         <div className="container">
           <section className="near-places places">

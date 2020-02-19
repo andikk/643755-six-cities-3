@@ -102,7 +102,7 @@ const Main = (props) => {
               <PlacesList offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <Map coordinates={coordinates}/>
+              <Map className={`cities__map`} coordinates={coordinates}/>
             </div>
           </div>
         </div>
