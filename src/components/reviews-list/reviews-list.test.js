@@ -1,13 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import PlacesList from "./places-list.jsx";
+import ReviewsList from "./reviews-list.jsx";
 import offers from "../../mocks/offers.js";
 
-it(`Should Places List render correctly`, () => {
+it(`Should ReviewsList render correctly`, () => {
+  const reviews = offers[0].reviews;
+
   const tree = renderer
-    .create(<PlacesList
-      offers={offers}
-      className={`cities__map`}
+    .create(<ReviewsList
+      reviews={reviews}
     />)
     .toJSON();
 

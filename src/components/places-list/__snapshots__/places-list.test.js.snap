@@ -2,7 +2,7 @@
 
 exports[`Should Places List render correctly 1`] = `
 <div
-  className="cities__places-list places__list tabs__content"
+  className="cities__map places__list"
 >
   <article
     className="cities__place-card place-card"
@@ -12,7 +12,9 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span />
+      <span>
+        Premium
+      </span>
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -79,7 +81,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "1%",
+                "width": "20%",
               }
             }
           />
@@ -115,7 +117,9 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span />
+      <span>
+        Premium
+      </span>
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -182,7 +186,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "2%",
+                "width": "40%",
               }
             }
           />
@@ -218,7 +222,9 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span />
+      <span>
+        Premium
+      </span>
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -285,7 +291,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "3%",
+                "width": "60%",
               }
             }
           />
@@ -321,7 +327,9 @@ exports[`Should Places List render correctly 1`] = `
     <div
       className="place-card__mark"
     >
-      <span />
+      <span>
+        Premium
+      </span>
     </div>
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -388,7 +396,7 @@ exports[`Should Places List render correctly 1`] = `
           <span
             style={
               Object {
-                "width": "4%",
+                "width": "80%",
               }
             }
           />

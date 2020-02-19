@@ -33,7 +33,14 @@ const ReviewsItem = (props) => {
 };
 
 ReviewsItem.propTypes = {
-  review: PropTypes.array.isRequired
+  review: PropTypes.shape({
+    id: PropTypes.number,
+    text: PropTypes.string,
+    user: PropTypes.string,
+    rating: PropTypes.number,
+    date: PropTypes.string
+  })
 };
+
 
 export default ReviewsItem;

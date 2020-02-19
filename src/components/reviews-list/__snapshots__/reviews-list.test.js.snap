@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should ReviewsList render correctly 1`] = `
+<ul
+  className="reviews__list"
+>
+  <li
+    className="reviews__item"
+  >
+    <div
+      className="reviews__user user"
+    >
+      <div
+        className="reviews__avatar-wrapper user__avatar-wrapper"
+      >
+        <img
+          alt="Reviews avatar"
+          className="reviews__avatar user__avatar"
+          height="54"
+          src="img/avatar-max.jpg"
+          width="54"
+        />
+      </div>
+      <span
+        className="reviews__user-name"
+      >
+        Max
+      </span>
+    </div>
+    <div
+      className="reviews__info"
+    >
+      <div
+        className="reviews__rating rating"
+      >
+        <div
+          className="reviews__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "20%",
+              }
+            }
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <p
+        className="reviews__text"
+      >
+        Review1 object1
+      </p>
+      <time
+        className="reviews__time"
+        dateTime="2017-01-26"
+      >
+        2017-01-26
+      </time>
+    </div>
+  </li>
+  <li
+    className="reviews__item"
+  >
+    <div
+      className="reviews__user user"
+    >
+      <div
+        className="reviews__avatar-wrapper user__avatar-wrapper"
+      >
+        <img
+          alt="Reviews avatar"
+          className="reviews__avatar user__avatar"
+          height="54"
+          src="img/avatar-max.jpg"
+          width="54"
+        />
+      </div>
+      <span
+        className="reviews__user-name"
+      >
+        Max
+      </span>
+    </div>
+    <div
+      className="reviews__info"
+    >
+      <div
+        className="reviews__rating rating"
+      >
+        <div
+          className="reviews__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "20%",
+              }
+            }
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <p
+        className="reviews__text"
+      >
+        Review2 object1
+      </p>
+      <time
+        className="reviews__time"
+        dateTime="2018-01-26"
+      >
+        2018-01-26
+      </time>
+    </div>
+  </li>
+  <li
+    className="reviews__item"
+  >
+    <div
+      className="reviews__user user"
+    >
+      <div
+        className="reviews__avatar-wrapper user__avatar-wrapper"
+      >
+        <img
+          alt="Reviews avatar"
+          className="reviews__avatar user__avatar"
+          height="54"
+          src="img/avatar-max.jpg"
+          width="54"
+        />
+      </div>
+      <span
+        className="reviews__user-name"
+      >
+        Max
+      </span>
+    </div>
+    <div
+      className="reviews__info"
+    >
+      <div
+        className="reviews__rating rating"
+      >
+        <div
+          className="reviews__stars rating__stars"
+        >
+          <span
+            style={
+              Object {
+                "width": "20%",
+              }
+            }
+          />
+          <span
+            className="visually-hidden"
+          >
+            Rating
+          </span>
+        </div>
+      </div>
+      <p
+        className="reviews__text"
+      >
+        Review3 object1
+      </p>
+      <time
+        className="reviews__time"
+        dateTime="2019-01-26"
+      >
+        2019-01-26
+      </time>
+    </div>
+  </li>
+</ul>
+`;

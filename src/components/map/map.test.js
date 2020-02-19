@@ -6,7 +6,8 @@ import offers from "../../mocks/offers.js";
 it(`Should Map render correctly`, () => {
   const tree = renderer
     .create(<Map
-      offers={offers}
+      coordinates={offers[0].coordinates}
+      className={`cities__map`}
     />)
     .toJSON();
 
