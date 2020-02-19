@@ -51,9 +51,12 @@ const Property = (props) => {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                {premium ? <span>Premium</span> : ``}
-              </div>
+              {premium &&
+                <div className="property__mark">
+                  <span>Premium</span>
+                </div>
+              }
+
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {name}
@@ -182,7 +185,7 @@ const Property = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <PlacesList offers={} className={`near-places__list `}/>
+            {/* <PlacesList offers={} className={`near-places__list `}/>*/}
 
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
