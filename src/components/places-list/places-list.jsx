@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
-// список предложения
+// список предложений
 class PlacesList extends PureComponent {
   constructor(props) {
     super(props);
