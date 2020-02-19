@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
+import PlacesList from "../places-list/places-list.jsx";
 
 const Property = (props) => {
   const {card} = props;
@@ -180,6 +181,9 @@ const Property = (props) => {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
+
+            <PlacesList offers={} className={`near-places__list `}/>
+
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">

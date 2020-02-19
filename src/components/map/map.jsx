@@ -44,7 +44,6 @@ class Map extends PureComponent {
   render() {
     return (
       <section ref={this._mapRef} className={`${this.props.className} map`}/>
-
     );
   }
 }

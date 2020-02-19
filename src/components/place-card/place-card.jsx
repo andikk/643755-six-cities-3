@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const PlaceCard = (props) => {
   const {card} = props;
-  const {mark, src, price, rating, name, type, id} = card;
+  const {premium, src, price, rating, name, type, id} = card;
   const {onHeaderClick, onCardHover} = props;
 
   return (
@@ -15,9 +15,12 @@ const PlaceCard = (props) => {
         onCardHover(null);
       }}>
 
-      <div className="place-card__mark">
-        <span>{mark}</span>
-      </div>
+      {premium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={src} width="260" height="200" alt={name}/>
@@ -55,7 +58,7 @@ PlaceCard.propTypes = {
   card: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
-    mark: PropTypes.string,
+    premium: PropTypes.bool,
     src: PropTypes.string,
     price: PropTypes.number,
     rating: PropTypes.number,
