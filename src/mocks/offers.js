@@ -16,7 +16,8 @@ export default [
     price: 120,
     rating: 1,
     name: `Name0`,
-    type: `Apartment`
+    type: `Apartment`,
+    coordinates: [52.3909553943508, 4.85309666406198]
   },
   {
     id: 1,
@@ -35,7 +36,8 @@ export default [
     price: 220,
     rating: 2,
     name: `Name1`,
-    type: `NeApartment`
+    type: `NeApartment`,
+    coordinates: [52.369553943508, 4.85309666406198]
   },
   {
     id: 2,
@@ -54,7 +56,8 @@ export default [
     price: 420,
     rating: 3,
     name: `Name2`,
-    type: `SuperNeApartment`
+    type: `SuperNeApartment`,
+    coordinates: [52.3909553943508, 4.929309666406198]
   },
   {
     id: 3,
@@ -73,6 +76,7 @@ export default [
     price: 320,
     rating: 4,
     name: `Name3`,
-    type: `NeSuperNeApartment`
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198]
   },
 ];
