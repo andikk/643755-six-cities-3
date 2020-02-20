@@ -49,8 +49,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  coordinates: PropTypes.array.isRequired,
-  className: PropTypes.string.isRequired
+  coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  className: PropTypes.string
 };
 
 export default Map;

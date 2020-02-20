@@ -99,7 +99,7 @@ const Main = (props) => {
                 {/* </select>*/}
 
               </form>
-              <PlacesList className={`cities__places-list tabs__content`} offers={offers} onHeaderClick={onHeaderClick}/>
+              <PlacesList className="cities__places-list tabs__content" offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
               <Map className={`cities__map`} coordinates={coordinates}/>
