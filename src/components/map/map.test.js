@@ -4,9 +4,12 @@ import Map from "./map.jsx";
 import offers from "../../mocks/offers.js";
 
 it(`Should Map render correctly`, () => {
+
+  const coordinates = offers.map((offer) => (offer.coordinates));
+
   const tree = renderer
     .create(<Map
-      coordinates={offers[0].coordinates}
+      coordinates={coordinates}
       className={`cities__map`}
     />)
     .toJSON();
