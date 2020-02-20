@@ -9,7 +9,9 @@ exports[`Should PlaceCard render correctly 1`] = `
   <div
     className="place-card__mark"
   >
-    <span />
+    <span>
+      Premium
+    </span>
   </div>
   <div
     className="cities__image-wrapper place-card__image-wrapper"
@@ -76,7 +78,7 @@ exports[`Should PlaceCard render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "1%",
+              "width": "20%",
             }
           }
         />

@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
-
+// список предложений
 class PlacesList extends PureComponent {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class PlacesList extends PureComponent {
     const {offers, onHeaderClick} = this.props;
 
     return (
-      <div className="cities__places-list places__list tabs__content">
+      <div className={`${this.props.className} places__list`}>
         {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
           onCardHover={
             (card) => {
@@ -30,7 +30,8 @@ class PlacesList extends PureComponent {
 
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  onHeaderClick: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired
 };
 
 PlacesList.defaultProps = {

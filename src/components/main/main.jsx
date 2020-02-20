@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
-
+// главная страница
 const Main = (props) => {
   const {offersCount, offers, onHeaderClick} = props;
+
+  const coordinates = offers.map((offer) => (offer.coordinates));
 
   return (
     <div className="page page--gray page--main">
@@ -97,10 +99,10 @@ const Main = (props) => {
                 {/* </select>*/}
 
               </form>
-              <PlacesList offers={offers} onHeaderClick={onHeaderClick}/>
+              <PlacesList className="cities__places-list tabs__content" offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <Map offers={offers}/>
+              <Map className={`cities__map`} coordinates={coordinates}/>
             </div>
           </div>
         </div>

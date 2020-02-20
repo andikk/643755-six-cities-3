@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+// карточка предложения
 const PlaceCard = (props) => {
   const {card} = props;
-  const {mark, src, price, rating, name, type, id} = card;
+  const {premium, src, price, rating, name, type, id} = card;
   const {onHeaderClick, onCardHover} = props;
 
   return (
@@ -15,9 +15,12 @@ const PlaceCard = (props) => {
         onCardHover(null);
       }}>
 
-      <div className="place-card__mark">
-        <span>{mark}</span>
-      </div>
+      {premium &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={src} width="260" height="200" alt={name}/>
@@ -38,7 +41,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}></span>
+            <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -55,7 +58,7 @@ PlaceCard.propTypes = {
   card: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
-    mark: PropTypes.string,
+    premium: PropTypes.bool,
     src: PropTypes.string,
     price: PropTypes.number,
     rating: PropTypes.number,

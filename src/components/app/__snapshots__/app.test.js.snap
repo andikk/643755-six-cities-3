@@ -222,7 +222,7 @@ exports[`Render App 1`] = `
             </ul>
           </form>
           <div
-            className="cities__places-list places__list tabs__content"
+            className="cities__places-list tabs__content places__list"
           >
             <article
               className="cities__place-card place-card"
@@ -232,7 +232,9 @@ exports[`Render App 1`] = `
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -299,7 +301,7 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "1%",
+                          "width": "20%",
                         }
                       }
                     />
@@ -335,7 +337,9 @@ exports[`Render App 1`] = `
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -402,7 +406,7 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "2%",
+                          "width": "40%",
                         }
                       }
                     />
@@ -438,7 +442,9 @@ exports[`Render App 1`] = `
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -505,7 +511,7 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "3%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -541,7 +547,9 @@ exports[`Render App 1`] = `
               <div
                 className="place-card__mark"
               >
-                <span />
+                <span>
+                  Premium
+                </span>
               </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -608,7 +616,7 @@ exports[`Render App 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "4%",
+                          "width": "80%",
                         }
                       }
                     />
