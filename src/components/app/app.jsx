@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 
@@ -27,9 +29,10 @@ class App extends PureComponent {
 
     if (activeId < 0) {
       return (
-        <Main offersCount={offersCount}
-          offers={offers} onHeaderClick={this._onHeaderClickHandle}
-        />
+        // <Main offersCount={offersCount}
+        //   offers={offers} onHeaderClick={this._onHeaderClickHandle}
+        // />
+        <Main/>
       );
     }
 
@@ -64,4 +67,9 @@ App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

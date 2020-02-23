@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+
+
 // главная страница
 const Main = (props) => {
   const {offersCount, offers, onHeaderClick} = props;
@@ -122,4 +126,12 @@ Main.defaultProps = {
 };
 
 
-export default Main;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+  offersCount: state.offersCount
+});
+
+
+
+export {Main};
+export default connect(mapStateToProps)(Main);

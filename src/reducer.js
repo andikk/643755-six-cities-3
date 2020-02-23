@@ -1,6 +1,9 @@
+import offers from "./mocks/offers";
 const initialState = {
   city: null,
-  offers: null
+  offers: offers,
+  offersCount: 312,
+  onHeaderClick: () => {}
 };
 
 const ActionType = {
