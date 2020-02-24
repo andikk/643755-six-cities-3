@@ -5,8 +5,9 @@ import CitiesList from "./cities-list.jsx";
 it(`Should CitiesList render correctly`, () => {
   const tree = renderer
     .create(<CitiesList
-      citiesList={`Paris, Amsterdam`}
+      citiesList={[`Paris`, `Amsterdam`]}
       city={`Paris`}
+      onCityClick = {() => {}}
     />)
     .toJSON();
 

@@ -2,7 +2,6 @@ import offers from "./mocks/offers";
 const initialState = {
   city: `Amsterdam`,
   offers,
-  onHeaderClick: () => {}
 };
 
 const ActionType = {

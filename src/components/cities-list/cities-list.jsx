@@ -1,6 +1,4 @@
 import React, {PureComponent} from "react";
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer';
 import PropTypes from "prop-types";
 
 class CitiesList extends PureComponent {
@@ -38,18 +36,4 @@ CitiesList.propTypes = {
   onCityClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
-  citiesList: [...new Set(state.offers.map((offer) => offer.city))]
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onCityClick: (evt, city) => {
-    evt.preventDefault();
-    dispatch(ActionCreator.setCity(city));
-  }
-});
-
-export {CitiesList};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);
+export default CitiesList;

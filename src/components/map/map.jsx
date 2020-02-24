@@ -1,6 +1,5 @@
 import React, {PureComponent, createRef} from "react";
 import leaflet from 'leaflet';
-import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 // карта
 class Map extends PureComponent {
@@ -60,14 +59,4 @@ Map.propTypes = {
   className: PropTypes.string
 };
 
-const mapStateToProps = (state) => {
-  const selectedCityOffers = state.offers.filter((offer) => (offer.city === state.city));
-  const coordinates = selectedCityOffers.map((offer) => (offer.coordinates));
-  return {
-    coordinates
-  };
-};
-
-export {Map};
-
-export default connect(mapStateToProps)(Map);
+export default Map;

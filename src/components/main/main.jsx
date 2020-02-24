@@ -4,10 +4,11 @@ import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
+import {ActionCreator} from "../../reducer";
 
 // главная страница
 const Main = (props) => {
-  const {offers, onHeaderClick, city} = props;
+  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates} = props;
   const selectedCityOffers = offers.filter((offer) => (offer.city === city));
   const offersCount = selectedCityOffers.length;
 
@@ -38,7 +39,7 @@ const Main = (props) => {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <CitiesList/>
+        <CitiesList citiesList={citiesList} city={city} onCityClick={onCityClick}/>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -70,7 +71,7 @@ const Main = (props) => {
               <PlacesList className="cities__places-list tabs__content" offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <Map className={`cities__map`}/>
+              <Map className={`cities__map`} coordinates={coordinates}/>
             </div>
           </div>
         </div>
@@ -82,7 +83,10 @@ const Main = (props) => {
 Main.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
-  onHeaderClick: PropTypes.func.isRequired
+  citiesList: PropTypes.array.isRequired,
+  onHeaderClick: PropTypes.func.isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  coordinates: PropTypes.array.isRequired
 };
 
 Main.defaultProps = {
@@ -92,7 +96,16 @@ Main.defaultProps = {
 const mapStateToProps = (state) => ({
   offers: state.offers.filter((offer) => (offer.city === state.city)),
   city: state.city,
+  citiesList: [...new Set(state.offers.map((offer) => offer.city))],
+  coordinates: state.offers.filter((offer) => (offer.city === state.city)).map((offer) => (offer.coordinates))
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (evt, city) => {
+    evt.preventDefault();
+    dispatch(ActionCreator.setCity(city));
+  }
 });
 
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
