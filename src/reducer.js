@@ -1,8 +1,7 @@
 import offers from "./mocks/offers";
 const initialState = {
-  city: null,
-  offers: offers,
-  offersCount: 312,
+  city: `Amsterdam`,
+  offers,
   onHeaderClick: () => {}
 };
 

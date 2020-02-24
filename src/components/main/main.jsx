@@ -8,8 +8,8 @@ import {ActionCreator} from "../../reducer.js";
 
 // главная страница
 const Main = (props) => {
-  const {offersCount, offers, onHeaderClick} = props;
-
+  const {offers, onHeaderClick, city} = props;
+  const offersCount = offers.filter((offer) => (offer.city === city)).length;
   const coordinates = offers.map((offer) => (offer.coordinates));
 
   return (
@@ -79,7 +79,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersCount} places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -116,8 +116,8 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
   onHeaderClick: PropTypes.func.isRequired
 };
 
@@ -125,13 +125,10 @@ Main.defaultProps = {
   onHeaderClick: () => {}
 };
 
-
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  offersCount: state.offersCount
+  offers: state.offers.filter((offer) => (offer.city === state.city)),
+  city: state.city,
 });
-
-
 
 export {Main};
 export default connect(mapStateToProps)(Main);

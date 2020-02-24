@@ -24,7 +24,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {offersCount, offers} = this.props;
+    const {offers} = this.props;
     const {activeId} = this.state;
 
     if (activeId < 0) {
@@ -63,12 +63,13 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  city: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
+  city: state.city,
 });
 
 export {App};
