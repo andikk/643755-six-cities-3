@@ -6,8 +6,8 @@ import offers from "../../mocks/offers.js";
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      offersCount={312}
       offers={offers}
+      city={`Paris`}
     />)
     .toJSON();
 

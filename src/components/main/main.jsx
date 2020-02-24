@@ -4,14 +4,12 @@ import PlacesList from "../places-list/places-list.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {ActionCreator} from "../../reducer.js";
-
 
 // главная страница
 const Main = (props) => {
   const {offers, onHeaderClick, city} = props;
-  const offersCount = offers.filter((offer) => (offer.city === city)).length;
-  const coordinates = offers.map((offer) => (offer.coordinates));
+  const selectedCityOffers = offers.filter((offer) => (offer.city === city));
+  const offersCount = selectedCityOffers.length;
 
   return (
     <div className="page page--gray page--main">
@@ -72,7 +70,7 @@ const Main = (props) => {
               <PlacesList className="cities__places-list tabs__content" offers={offers} onHeaderClick={onHeaderClick}/>
             </section>
             <div className="cities__right-section">
-              <Map className={`cities__map`} coordinates={coordinates}/>
+              <Map className={`cities__map`}/>
             </div>
           </div>
         </div>

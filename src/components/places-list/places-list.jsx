@@ -38,5 +38,4 @@ PlacesList.defaultProps = {
   onHeaderClick: () => {}
 };
 
-
 export default PlacesList;

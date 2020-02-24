@@ -1,12 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-import offers from "../../mocks/offers.js";
+import CitiesList from "./cities-list.jsx";
 
-it(`Should Main render correctly`, () => {
+it(`Should CitiesList render correctly`, () => {
   const tree = renderer
-    .create(<Main
-      offers={offers}
+    .create(<CitiesList
+      citiesList={`Paris, Amsterdam`}
       city={`Paris`}
     />)
     .toJSON();
