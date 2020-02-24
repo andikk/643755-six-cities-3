@@ -412,5 +412,353 @@ export default [
       }
     ]
   },
+  {
+    id: 7,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
+  {
+    id: 8,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
+  {
+    id: 9,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
+  {
+    id: 10,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
+  {
+    id: 11,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
+  {
+    id: 12,
+    city: `Paris`,
+    src: `img/apartment-01.jpg`,
+    photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
+    description: `Super description`,
+    premium: true,
+    bedrooms: 3,
+    guests: 4,
+    features: [`Wifi`, `Cable TV`, `Kitchen`],
+    owner: {
+      name: `Jon`,
+      super: true,
+      src: `img/avatar-max.jpg`
+    },
+    price: 320,
+    rating: 4,
+    name: `Name3 Paris`,
+    type: `NeSuperNeApartment`,
+    coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
+      {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
+      {id: 2, ext: `Review3 object2`, rating: 1, user: `Max`, date: `2019-01-26`}
+    ],
+    neighborhood: [
+      {
+        id: 0,
+        coordinates: [52.3909553943508, 4.85309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 2,
+        coordinates: [52.3909553943508, 4.929309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      },
+      {
+        id: 1,
+        coordinates: [52.3909553943508, 4.729309666406198],
+        name: `Some name`,
+        premium: true,
+        src: `img/apartment-01.jpg`,
+        price: 100,
+        rating: 2.3,
+        type: `Appartment`
+      }
+    ]
+  },
 
 ];
