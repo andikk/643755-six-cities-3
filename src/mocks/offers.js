@@ -257,7 +257,7 @@ export default [
     rating: 4,
     name: `Name3 Paris`,
     type: `NeSuperNeApartment`,
-    coordinates: [52.3809553943508, 4.939309666406198],
+    coordinates: [52.1809553943508, 4.939309666406198],
     reviews: [
       {id: 0, text: `Review1 object2`, rating: 1, user: `Max`, date: `2017-01-26`},
       {id: 1, text: `Review2 object2`, rating: 1, user: `Max`, date: `2018-01-26`},
@@ -266,7 +266,7 @@ export default [
     neighborhood: [
       {
         id: 0,
-        coordinates: [52.3909553943508, 4.85309666406198],
+        coordinates: [52.3909553943508, 4.95309666406198],
         name: `Some name`,
         premium: true,
         src: `img/apartment-01.jpg`,

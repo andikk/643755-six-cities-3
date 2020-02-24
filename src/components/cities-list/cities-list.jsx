@@ -9,7 +9,7 @@ class CitiesList extends PureComponent {
   }
 
   render() {
-    const {citiesList, city} = this.props;
+    const {citiesList, city, onCityClick} = this.props;
 
     return (
       <div className="tabs">
@@ -18,7 +18,8 @@ class CitiesList extends PureComponent {
           <ul className="locations__list tabs__list">
             {citiesList.map((item, index) => (
               <li className="locations__item" key={`${item}-${index}`}>
-                <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#">
+                <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#"
+                  onClick={(evt) => (onCityClick(evt, item))}>
                   <span>{item}</span>
                 </a>
               </li>
@@ -34,6 +35,7 @@ class CitiesList extends PureComponent {
 CitiesList.propTypes = {
   citiesList: PropTypes.arrayOf(PropTypes.string).isRequired,
   city: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -41,6 +43,13 @@ const mapStateToProps = (state) => ({
   citiesList: [...new Set(state.offers.map((offer) => offer.city))]
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (evt, city) => {
+    evt.preventDefault();
+    dispatch(ActionCreator.setCity(city));
+  }
+});
+
 export {CitiesList};
 
-export default connect(mapStateToProps)(CitiesList);
+export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);
