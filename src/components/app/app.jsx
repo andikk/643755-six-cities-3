@@ -66,6 +66,7 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   offers: state.offers,
   city: state.city,
+  activeFilter: state.activeFilter
 });
 
 export {App};

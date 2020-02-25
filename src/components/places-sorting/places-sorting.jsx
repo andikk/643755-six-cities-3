@@ -8,7 +8,6 @@ class PlacesSorting extends PureComponent {
     this.state = {
       opened: false,
       filters: [`Popular`, `Price: low to high`, `Price: high to low`, `Top rated first`],
-      activeFilter: `Popular`,
     };
 
     this._onToggleClickHandle = this._onToggleClickHandle.bind(this);
@@ -22,11 +21,13 @@ class PlacesSorting extends PureComponent {
   }
 
   _onSelectCloseHandle(item) {
-    this.setState({opened: false, activeFilter: item});
+    this.setState({opened: false});
+    this.props.onFilterClick(item);
   }
 
   render() {
-    const {opened, filters, activeFilter} = this.state;
+    const {opened, filters} = this.state;
+    const {activeFilter} = this.props;
 
     return (
       <form className="places__sorting" action="#" method="get">
@@ -55,8 +56,11 @@ class PlacesSorting extends PureComponent {
     );
 
   }
-
-
 }
+
+PlacesSorting.propTypes = {
+  activeFilter: PropTypes.string.isRequired,
+  onFilterClick: PropTypes.func.isRequired
+};
 
 export default PlacesSorting;

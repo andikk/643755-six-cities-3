@@ -9,9 +9,10 @@ import {ActionCreator} from "../../reducer";
 
 // главная страница
 const Main = (props) => {
-  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates} = props;
+  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter} = props;
   const selectedCityOffers = offers.filter((offer) => (offer.city === city));
   const offersCount = selectedCityOffers.length;
+
 
   return (
     <div className="page page--gray page--main">
@@ -47,7 +48,9 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersCount} places to stay in {city}</b>
-                <PlacesSorting/>
+
+                <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/>
+
                 <PlacesList className="cities__places-list tabs__content" offers={selectedCityOffers}
                   onHeaderClick={onHeaderClick}/>
               </section>
@@ -81,24 +84,35 @@ Main.propTypes = {
   citiesList: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  coordinates: PropTypes.array.isRequired
+  coordinates: PropTypes.array.isRequired,
+  onFilterClick: PropTypes.func.isRequired,
+  activeFilter: PropTypes.string.isRequired
 };
 
 Main.defaultProps = {
   onHeaderClick: () => {}
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers.filter((offer) => (offer.city === state.city)),
-  city: state.city,
-  citiesList: [...new Set(state.offers.map((offer) => offer.city))],
-  coordinates: state.offers.filter((offer) => (offer.city === state.city)).map((offer) => (offer.coordinates))
-});
+const mapStateToProps = (state) => {
+  const offersInSelectedCity = state.offers.filter((offer) => (offer.city === state.city));
+
+  return {
+    offers: offersInSelectedCity,
+    city: state.city,
+    activeFilter: state.activeFilter,
+    citiesList: [...new Set(state.offers.map((offer) => offer.city))],
+    coordinates: state.offers.filter((offer) => (offer.city === state.city)).map((offer) => (offer.coordinates))
+  };
+
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick: (evt, city) => {
     evt.preventDefault();
     dispatch(ActionCreator.setCity(city));
+  },
+  onFilterClick: (activeFilter) => {
+    dispatch(ActionCreator.setFilter(activeFilter));
   }
 });
 
