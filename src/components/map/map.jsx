@@ -12,12 +12,7 @@ class Map extends PureComponent {
   componentDidMount() {
     const _mapRef = this._mapRef.current;
     if (_mapRef) {
-      const {coordinates} = this.props;
       const city = [52.38333, 4.9];
-      const icon = leaflet.icon({
-        iconUrl: `img/pin.svg`,
-        iconSize: [30, 30]
-      });
       const zoom = 12;
       const map = leaflet.map(_mapRef, {
         center: city,
@@ -32,13 +27,24 @@ class Map extends PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         })
         .addTo(map);
-
-      coordinates.map((coordinate) => {
-        leaflet
-          .marker(coordinate, {icon})
-          .addTo(map);
-      });
+      this.setState({map, layerGroup: leaflet.layerGroup().addTo(map)});
     }
+  }
+
+  componentDidUpdate() {
+    const {layerGroup} = this.state;
+    const {coordinates} = this.props;
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+
+    layerGroup.clearLayers();
+    coordinates.forEach((coordinate) => {
+      leaflet
+        .marker(coordinate, {icon})
+        .addTo(layerGroup);
+    });
   }
 
   render() {
