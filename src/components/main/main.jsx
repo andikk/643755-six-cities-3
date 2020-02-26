@@ -5,6 +5,7 @@ import PlacesSorting from "../places-sorting/places-sorting.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
+import {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 // главная страница
@@ -94,14 +95,12 @@ Main.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-  const offersInSelectedCity = state.offers.filter((offer) => (offer.city === state.city));
-
   return {
-    offers: offersInSelectedCity,
-    city: state.city,
+    offers: getOffersInCitySelector(state),
+    city: getCitySelector(state),
     activeFilter: state.activeFilter,
-    citiesList: [...new Set(state.offers.map((offer) => offer.city))],
-    coordinates: state.offers.filter((offer) => (offer.city === state.city)).map((offer) => (offer.coordinates))
+    citiesList: getCitiesListSelector(state),
+    coordinates: getCoordinatesInCitySelector(state)
   };
 
 };
