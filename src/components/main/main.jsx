@@ -102,7 +102,6 @@ const mapStateToProps = (state) => {
     citiesList: getCitiesListSelector(state),
     coordinates: getCoordinatesInCitySelector(state)
   };
-
 };
 
 const mapDispatchToProps = (dispatch) => ({

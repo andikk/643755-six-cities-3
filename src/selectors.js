@@ -1,15 +1,9 @@
 import {createSelector} from 'reselect';
-import {compare} from "./utils.js";
+import {sortOffers} from "./utils.js";
 
 const getActiveFilter = (state) => state.activeFilter;
 const getOffersSelector = (state) => state.offers;
 const getCitySelector = (state) => state.city;
-
-switch (getActiveFilter) {
-  case "Popular" :
-
-}
-
 
 const getCitiesListSelector = createSelector(
     getOffersSelector,
@@ -18,14 +12,13 @@ const getCitiesListSelector = createSelector(
 
 const getOffersInCitySelector = createSelector(
     getOffersSelector,
-    getCitySelector,
-    (offers, city) => offers.filter((offer) => offer.city === city)
+    getActiveFilter,
+    (offers, order) => sortOffers(offers, order)
 );
 
 const getCoordinatesInCitySelector = createSelector(
     getOffersInCitySelector,
     (offers) => offers.map((offer) => (offer.coordinates))
 );
-
 
 export {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector};
