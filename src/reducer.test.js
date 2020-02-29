@@ -34,7 +34,8 @@ it(`sets city correctly`, () => {
   };
   const mockResult = {
     city: mockCity,
-    offers: initialState.offers,
+    offers,
+    activeFilter: null
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);
