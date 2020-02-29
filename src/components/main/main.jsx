@@ -12,7 +12,8 @@ import {ActionCreator} from "../../reducer";
 const Main = (props) => {
   const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
   const offersCount = offers.length;
-  console.log(coordinates);
+
+  console.log(activeOffer);
 
   return (
     <div className="page page--gray page--main">
