@@ -5,15 +5,13 @@ import PlacesSorting from "../places-sorting/places-sorting.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector, getOffersInCitySelector} from "../../selectors.js";
+import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 // главная страница
 const Main = (props) => {
   const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
   const offersCount = offers.length;
-
-  console.log(activeOffer);
 
   return (
     <div className="page page--gray page--main">
@@ -56,7 +54,7 @@ const Main = (props) => {
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                <Map className={`cities__map`} coordinates={coordinates} activeMarker={activeOffer.coordinates}/>
+                <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
           }
@@ -93,7 +91,8 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  onHeaderClick: () => {}
+  onHeaderClick: () => {},
+  activeOffer: null
 };
 
 const mapStateToProps = (state) => {
