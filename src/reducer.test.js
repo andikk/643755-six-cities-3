@@ -60,7 +60,7 @@ describe(`setFilter action`, () => {
       payload: mockData,
     };
 
-    expect(ActionCreator.setOffers(mockData)).toEqual(mockResult);
+    expect(ActionCreator.setFilter(mockData)).toEqual(mockResult);
   });
 });
 
@@ -129,7 +129,7 @@ describe(`setActiveOffer action`, () => {
       payload: mockData,
     };
 
-    expect(ActionCreator.setOffers(mockData)).toEqual(mockResult);
+    expect(ActionCreator.setActiveOffer(mockData)).toEqual(mockResult);
   });
 });
 
