@@ -1,5 +1,11 @@
-import {reducer, ActionCreator} from './reducer';
+import {reducer, ActionCreator, ActionType} from './reducer';
 import offers from "./mocks/offers";
+
+const initialState = {
+  city: offers[0].city,
+  offers,
+  activeFilter: null
+};
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -18,6 +24,20 @@ describe(`setCity action`, () => {
 
     expect(ActionCreator.setCity(`Paris`)).toEqual(mockResult);
   });
+});
+
+it(`sets city correctly`, () => {
+  const mockCity = `Paris`;
+  const mockAction = {
+    type: ActionType.SET_CITY,
+    payload: mockCity,
+  };
+  const mockResult = {
+    city: mockCity,
+    offers: initialState.offers,
+  };
+
+  expect(reducer(initialState, mockAction)).toEqual(mockResult);
 });
 
 describe(`setOffersList action`, () => {
