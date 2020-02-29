@@ -59,8 +59,8 @@ class PlacesSorting extends PureComponent {
 }
 
 PlacesSorting.propTypes = {
-  activeFilter: PropTypes.string.isRequired,
-  onFilterClick: PropTypes.func.isRequired
+  activeFilter: PropTypes.string,
+  onFilterClick: PropTypes.func
 };
 
 export default PlacesSorting;
