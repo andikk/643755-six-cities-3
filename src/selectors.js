@@ -28,4 +28,8 @@ const getSortedOffersInCitySelector = createSelector(
 );
 
 
-export {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector, getSortedOffersInCitySelector};
+export {getCitiesListSelector,
+  getCitySelector,
+  getOffersInCitySelector,
+  getCoordinatesInCitySelector,
+  getSortedOffersInCitySelector};
