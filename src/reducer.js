@@ -8,7 +8,8 @@ const initialState = {
 const ActionType = {
   SET_CITY: `SET_CITY`,
   SET_OFFERS: `SET_OFFERS`,
-  SET_FILTER: `SET_FILTER`
+  SET_FILTER: `SET_FILTER`,
+  SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`
 };
 
 const ActionCreator = {
@@ -24,6 +25,11 @@ const ActionCreator = {
 
   setFilter: (payload) => ({
     type: ActionType.SET_FILTER,
+    payload,
+  }),
+
+  setActiveOffer: (payload) => ({
+    type: ActionType.SET_ACTIVE_OFFER,
     payload,
   })
 };
@@ -41,6 +47,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_FILTER:
       return Object.assign({}, state, {
         activeFilter: action.payload,
+      });
+    case ActionType.SET_ACTIVE_OFFER:
+      return Object.assign({}, state, {
+        activeOffer: action.payload,
       });
     default: return state;
   }

@@ -12,8 +12,8 @@ const getCitiesListSelector = createSelector(
 
 const getOffersInCitySelector = createSelector(
     getOffersSelector,
-    getActiveFilter,
-    (offers, order) => sortOffers(offers, order)
+    getCitySelector,
+    (offers, city) => offers.filter((offer) => (offer.city === city))
 );
 
 const getCoordinatesInCitySelector = createSelector(
@@ -21,4 +21,11 @@ const getCoordinatesInCitySelector = createSelector(
     (offers) => offers.map((offer) => (offer.coordinates))
 );
 
-export {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector};
+const getSortedOffersInCitySelector = createSelector(
+    getOffersInCitySelector,
+    getActiveFilter,
+    (offers, order) => sortOffers(offers, order)
+);
+
+
+export {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector, getSortedOffersInCitySelector};

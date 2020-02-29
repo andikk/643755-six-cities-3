@@ -33,16 +33,20 @@ class Map extends PureComponent {
 
   componentDidUpdate() {
     const {layerGroup} = this.state;
-    const {coordinates} = this.props;
+    const {coordinates, activeMarker} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
+    });
+    const activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [27, 39]
     });
 
     layerGroup.clearLayers();
     coordinates.forEach((coordinate) => {
       leaflet
-        .marker(coordinate, {icon})
+        .marker(coordinate, {icon: coordinate === activeMarker ? activeIcon : icon})
         .addTo(layerGroup);
     });
   }
@@ -56,7 +60,8 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  activeMarker: PropTypes.array
 };
 
 export default Map;

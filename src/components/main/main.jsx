@@ -5,15 +5,14 @@ import PlacesSorting from "../places-sorting/places-sorting.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {getCitiesListSelector, getCitySelector, getOffersInCitySelector, getCoordinatesInCitySelector} from "../../selectors.js";
+import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector, getOffersInCitySelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 // главная страница
 const Main = (props) => {
-  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter} = props;
-  const selectedCityOffers = offers.filter((offer) => (offer.city === city));
-  const offersCount = selectedCityOffers.length;
-
+  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
+  const offersCount = offers.length;
+  console.log(coordinates);
 
   return (
     <div className="page page--gray page--main">
@@ -52,11 +51,11 @@ const Main = (props) => {
 
                 <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
-                <PlacesList className="cities__places-list tabs__content" offers={selectedCityOffers}
-                  onHeaderClick={onHeaderClick}/>
+                <PlacesList className="cities__places-list tabs__content" offers={offers}
+                  onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                <Map className={`cities__map`} coordinates={coordinates}/>
+                <Map className={`cities__map`} coordinates={coordinates} activeMarker={activeOffer.coordinates}/>
               </div>
             </div>
           }
@@ -87,7 +86,9 @@ Main.propTypes = {
   onCityClick: PropTypes.func.isRequired,
   coordinates: PropTypes.array.isRequired,
   onFilterClick: PropTypes.func.isRequired,
-  activeFilter: PropTypes.string.isRequired
+  activeFilter: PropTypes.string.isRequired,
+  onCardHover: PropTypes.func,
+  activeOffer: PropTypes.object
 };
 
 Main.defaultProps = {
@@ -96,11 +97,12 @@ Main.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    offers: getOffersInCitySelector(state),
+    offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
     activeFilter: state.activeFilter,
     citiesList: getCitiesListSelector(state),
-    coordinates: getCoordinatesInCitySelector(state)
+    coordinates: getCoordinatesInCitySelector(state),
+    activeOffer: state.activeOffer
   };
 };
 
@@ -111,6 +113,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFilterClick: (activeFilter) => {
     dispatch(ActionCreator.setFilter(activeFilter));
+  },
+  onCardHover: (activeOffer) => {
+    dispatch(ActionCreator.setActiveOffer(activeOffer));
   }
 });
 
