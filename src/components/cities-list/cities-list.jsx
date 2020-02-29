@@ -1,34 +1,29 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-class CitiesList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const CitiesList = (props) => {
+  const {citiesList, city, onCityClick} = props;
 
-  render() {
-    const {citiesList, city, onCityClick} = this.props;
+  return (
+    <div className="tabs">
+      <section className="locations container">
 
-    return (
-      <div className="tabs">
-        <section className="locations container">
+        <ul className="locations__list tabs__list">
+          {citiesList.map((item, index) => (
+            <li className="locations__item" key={`${item}-${index}`}>
+              <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#"
+                onClick={(evt) => (onCityClick(evt, item))}>
+                <span>{item}</span>
+              </a>
+            </li>
+          ))}
 
-          <ul className="locations__list tabs__list">
-            {citiesList.map((item, index) => (
-              <li className="locations__item" key={`${item}-${index}`}>
-                <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#"
-                  onClick={(evt) => (onCityClick(evt, item))}>
-                  <span>{item}</span>
-                </a>
-              </li>
-            ))}
+        </ul>
+      </section>
+    </div>
+  );
 
-          </ul>
-        </section>
-      </div>
-    );
-  }
-}
+};
 
 CitiesList.propTypes = {
   citiesList: PropTypes.arrayOf(PropTypes.string).isRequired,

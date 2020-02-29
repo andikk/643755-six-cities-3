@@ -2,27 +2,18 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
 // список предложений
-class PlacesList extends PureComponent {
-  constructor(props) {
-    super(props);
+const PlacesList = (props) => {
+  const {offers, onHeaderClick, onCardHover, className} = props;
 
-    this.state = {
-      activeCard: null,
-    };
-  }
+  return (
+    <div className={`${className} places__list`}>
+      {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
+        onCardHover={onCardHover}
+        onHeaderClick={onHeaderClick}/>)}
+    </div>
+  );
 
-  render() {
-    const {offers, onHeaderClick, onCardHover, className} = this.props;
-
-    return (
-      <div className={`${className} places__list`}>
-        {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
-          onCardHover={onCardHover}
-          onHeaderClick={onHeaderClick}/>)}
-      </div>
-    );
-  }
-}
+};
 
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired,
