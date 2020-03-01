@@ -92,7 +92,8 @@ Main.propTypes = {
 
 Main.defaultProps = {
   onHeaderClick: () => {},
-  activeOffer: null
+  activeOffer: null,
+  activeFilter: {label: `Popular`, value: `ALL`}
 };
 
 const mapStateToProps = (state) => {

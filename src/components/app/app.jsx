@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {getOffersSelector, getCitySelector} from "../../selectors.js";
+import {getCitySelector} from "../../selectors.js";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
@@ -64,6 +64,7 @@ App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   city: PropTypes.string.isRequired,
 };
+
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffersInCitySelector(state),

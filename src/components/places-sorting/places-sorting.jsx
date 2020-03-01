@@ -36,4 +36,8 @@ PlacesSorting.propTypes = {
   onSelectCloseHandle: PropTypes.func
 };
 
+PlacesSorting.defaultProps = {
+  activeFilter: {label: `Popular`, value: `ALL`}
+};
+
 export default withSelectedFilter(PlacesSorting);

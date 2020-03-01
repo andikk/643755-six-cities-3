@@ -3,6 +3,7 @@ export const initialState = {
   city: offers[0].city,
   offers,
   activeFilter: {label: `Popular`, value: `ALL`},
+  activeOffer: null
 };
 
 const ActionType = {
