@@ -4,6 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import configureStore from "redux-mock-store";
 import PlacesSorting from "./places-sorting.jsx";
 import {Provider} from "react-redux";
+import {Main} from "../main/main";
 
 const mockStore = configureStore([]);
 const activeFilter = {label: `Popular`, value: `ALL`};
@@ -19,13 +20,10 @@ it(`Should City in sore be changed`, () => {
   const onFilterClick = jest.fn();
 
   const placesSorting = shallow(
-      <Provider store={store}> <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/> </Provider>
-  );
+    <Provider store={store}> <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/> </Provider>
+  )
 
-  placesSorting.find(`.places__option`).first().simulate(`click`);
-
-  expect(placesSorting.mock.calls.length).toBe(1);
-  expect(placesSorting).toHaveBeenCalledWith(activeFilter);
-
+  placesSorting.props().onFilterClick();
+  expect(onFilterClick).toHaveBeenCalledWith(activeFilter);
 });
 
