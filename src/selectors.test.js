@@ -4,7 +4,7 @@ import {
   getOffersInCitySelector,
   getCoordinatesInCitySelector,
   getSortedOffersInCitySelector} from './selectors';
-
+import {initialState} from "./reducer";
 import offers from "./mocks/offers";
 const citiesListMock = [`Amsterdam`, `Paris`];
 const cityMock = `Paris`;
@@ -127,35 +127,40 @@ const offersInCityMock = [
     ]
   },
 ];
-const coordinatesInCityMock = [[52.3909553943508, 4.85309666406198], [52.3909553943508, 4.85309666406198]];
+const coordinatesInCityMock = [[52.3909553943508, 4.85309666406198], [52.369553943508, 4.85309666406198]];
 
 
 describe(`getCitiesListSelector`, () => {
   it(`should return CitiesListSelector`, () => {
-    expect(getCitiesListSelector(offers)).toEqual(citiesListMock);
+    const state = Object.assign({}, initialState, {offers});
+    expect(getCitiesListSelector(state)).toEqual(citiesListMock);
   });
 });
 
 describe(`getCitySelector`, () => {
   it(`should return city`, () => {
-    expect(getCitySelector(offers)).toEqual(cityMock);
+    const state = Object.assign({}, initialState, {city: cityMock});
+    expect(getCitySelector(state)).toEqual(cityMock);
   });
 });
 
 describe(`getOffersInCitySelector`, () => {
   it(`should return offers in city`, () => {
-    expect(getOffersInCitySelector(offers)).toEqual(offersInCityMock);
+    const state = Object.assign({}, initialState, {offers: offersInCityMock});
+    expect(getOffersInCitySelector(state)).toEqual(offersInCityMock);
   });
 });
 
 describe(`getSortedOffersInCitySelector`, () => {
   it(`should return sorted offers in city`, () => {
-    expect(getSortedOffersInCitySelector(offers)).toEqual(offersInCityMock);
+    const state = Object.assign({}, initialState, {offers: offersInCityMock});
+    expect(getSortedOffersInCitySelector(state)).toEqual(offersInCityMock);
   });
 });
 
 describe(`getCoordinatesInCitySelector`, () => {
   it(`should return coordinates in city`, () => {
-    expect(getCoordinatesInCitySelector(offers)).toEqual(coordinatesInCityMock);
+    const state = Object.assign({}, initialState, {offers: offersInCityMock});
+    expect(getCoordinatesInCitySelector(state)).toEqual(coordinatesInCityMock);
   });
 });

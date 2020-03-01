@@ -36,7 +36,7 @@ class Map extends PureComponent {
     const {coordinates, activeMarker} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
     const activeIcon = leaflet.icon({
       iconUrl: `/img/pin-active.svg`,

@@ -1,5 +1,5 @@
 import offers from "./mocks/offers";
-const initialState = {
+export const initialState = {
   city: offers[0].city,
   offers,
   activeFilter: `Popular`,

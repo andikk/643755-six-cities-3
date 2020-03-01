@@ -107,8 +107,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onCityClick: (evt, city) => {
-    evt.preventDefault();
+  onCityClick: (city) => {
     dispatch(ActionCreator.setCity(city));
   },
   onFilterClick: (activeFilter) => {

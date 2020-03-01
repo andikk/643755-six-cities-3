@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const CitiesList = (props) => {
@@ -12,7 +12,10 @@ const CitiesList = (props) => {
           {citiesList.map((item, index) => (
             <li className="locations__item" key={`${item}-${index}`}>
               <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#"
-                onClick={(evt) => (onCityClick(evt, item))}>
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  onCityClick(item);
+                }}>
                 <span>{item}</span>
               </a>
             </li>
