@@ -18,7 +18,7 @@ const PlacesSorting = (props) => {
 
       <ul className={`places__options ${opened ? `  places__options--opened` : ``} places__options--custom`}>
         {filters.map((item) => (
-          <li key={item.value} onClick={() => onSelectCloseHandle(item)} className={`places__option ${item.value === activeFilter ? `places__option--active` : ``}`} tabIndex="0">{item.label}</li>
+          <li key={item.value} onClick={() => onSelectCloseHandle(item)} className={`places__option${item.value === activeFilter ? `places__option--active` : ``}`} tabIndex="0">{item.label}</li>
         ))}
       </ul>
 

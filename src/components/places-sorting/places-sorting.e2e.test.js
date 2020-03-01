@@ -17,7 +17,10 @@ it(`Should City in sore be changed`, () => {
       <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/>
   );
 
-  placesSorting.find(`li:nth-child(1)`).simulate(`click`);
-  expect(onFilterClick).toHaveBeenCalledTimes(1);
+  placesSorting.find(`.places__option`).first().simulate(`click`);
+
+  expect(placesSorting.mock.calls.length).toBe(1);
+  expect(placesSorting).toHaveBeenCalledWith(activeFilter);
+
 });
 
