@@ -7,6 +7,7 @@ class Map extends PureComponent {
     super(props);
 
     this._mapRef = createRef();
+
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
-    const layerGroup = this._layerGroup;
+    const {layerGroup} = this._layerGroup;
     const {coordinates, activeMarker} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,

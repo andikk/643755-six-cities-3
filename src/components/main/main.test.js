@@ -5,7 +5,6 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import offers from "../../mocks/offers.js";
 
-
 const mockStore = configureStore([]);
 
 const store = mockStore({
