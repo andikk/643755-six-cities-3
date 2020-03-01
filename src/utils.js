@@ -10,18 +10,19 @@ const sortByField = (item) => {
 };
 
 const SORT_TYPE = {
-  popular: `POPULAR`,
-  priceLowToHigh: `Price: low to high`,
-  priceHighToLow: `Price: high to low`,
-  topRated: `Top rated first`
+  popular: `ALL`,
+  priceLowToHigh: `PRICE_ASC`,
+  priceHighToLow: `PRICE_DESC`,
+  topRated: `RATING_DESC`
 };
 
 export function sortOffers(offers = [], order) {
+
   if (!offers || !offers.length) {
     return offers;
   }
 
-  switch (order) {
+  switch (order.value) {
     case SORT_TYPE.priceLowToHigh :
       return offers
         .slice(0)

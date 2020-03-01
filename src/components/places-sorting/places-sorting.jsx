@@ -7,7 +7,12 @@ class PlacesSorting extends PureComponent {
 
     this.state = {
       opened: false,
-      filters: [`Popular`, `Price: low to high`, `Price: high to low`, `Top rated first`],
+      filters: [
+        {label: `Popular`, value: `ALL`},
+        {label: `Price: low to high`, value: `PRICE_ASC`},
+        {label: `Price: high to low`, value: `PRICE_DESC`},
+        {label: `Top rated first`, value: `RATING_DESC`}
+      ],
     };
 
     this._onToggleClickHandle = this._onToggleClickHandle.bind(this);
@@ -20,9 +25,9 @@ class PlacesSorting extends PureComponent {
     });
   }
 
-  _onSelectCloseHandle(item) {
+  _onSelectCloseHandle(selectedFilter) {
     this.setState({opened: false});
-    this.props.onFilterClick(item);
+    this.props.onFilterClick(selectedFilter);
   }
 
   render() {
@@ -33,7 +38,7 @@ class PlacesSorting extends PureComponent {
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span onClick={this._onToggleClickHandle} className="places__sorting-type" tabIndex="0">
-          {activeFilter}
+          {activeFilter.label}
           <svg className="places__sorting-arrow" width="7" height="4">
             <use xlinkHref="#icon-arrow-select"></use>
           </svg>
@@ -41,7 +46,7 @@ class PlacesSorting extends PureComponent {
 
         <ul className={`places__options ${opened ? `  places__options--opened` : ``} places__options--custom`}>
           {filters.map((item) => (
-            <li key={item} onClick={() => this._onSelectCloseHandle(item)} className={`places__option ${item === activeFilter ? `places__option--active` : ``}`} tabIndex="0">{item}</li>
+            <li key={item.value} onClick={() => this._onSelectCloseHandle(item)} className={`places__option ${item.value === activeFilter ? `places__option--active` : ``}`} tabIndex="0">{item.label}</li>
           ))}
         </ul>
 
@@ -59,7 +64,7 @@ class PlacesSorting extends PureComponent {
 }
 
 PlacesSorting.propTypes = {
-  activeFilter: PropTypes.string,
+  activeFilter: PropTypes.object,
   onFilterClick: PropTypes.func
 };
 

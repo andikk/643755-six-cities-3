@@ -2,7 +2,7 @@ import offers from "./mocks/offers";
 export const initialState = {
   city: offers[0].city,
   offers,
-  activeFilter: `Popular`,
+  activeFilter: {label: `Popular`, value: `ALL`},
 };
 
 const ActionType = {

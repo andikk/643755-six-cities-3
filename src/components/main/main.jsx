@@ -85,7 +85,7 @@ Main.propTypes = {
   onCityClick: PropTypes.func.isRequired,
   coordinates: PropTypes.array.isRequired,
   onFilterClick: PropTypes.func,
-  activeFilter: PropTypes.string,
+  activeFilter: PropTypes.object,
   onCardHover: PropTypes.func,
   activeOffer: PropTypes.object
 };
