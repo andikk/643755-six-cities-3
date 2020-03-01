@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import configureStore from "redux-mock-store";
 import PlacesSorting from "./places-sorting.jsx";
 import {Provider} from "react-redux";
-import {Main} from "../main/main";
+
 
 const mockStore = configureStore([]);
 const activeFilter = {label: `Popular`, value: `ALL`};
