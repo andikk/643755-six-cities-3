@@ -27,12 +27,12 @@ class Map extends PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         })
         .addTo(map);
-      this.setState({map, layerGroup: leaflet.layerGroup().addTo(map)});
+      this._layerGroup = {map, layerGroup: leaflet.layerGroup().addTo(map)};
     }
   }
 
   componentDidUpdate() {
-    const {layerGroup} = this.state;
+    const layerGroup = this._layerGroup;
     const {coordinates, activeMarker} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
