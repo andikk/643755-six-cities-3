@@ -11,7 +11,8 @@ it(`Render App`, () => {
 
   const store = mockStore({
     offers,
-    city: `Paris`
+    city: `Paris`,
+    activeFilter: {label: `Popular`, value: `ALL`}
   });
 
   const tree = renderer
