@@ -5,7 +5,6 @@ import configureStore from "redux-mock-store";
 import PlacesSorting from "./places-sorting.jsx";
 import {Provider} from "react-redux";
 
-
 const mockStore = configureStore([]);
 const activeFilter = {label: `Popular`, value: `ALL`};
 const store = mockStore({
@@ -20,8 +19,8 @@ it(`Should City in sore be changed`, () => {
   const onFilterClick = jest.fn();
 
   const placesSorting = shallow(
-    <Provider store={store}> <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/> </Provider>
-  )
+      <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/>
+  );
 
   placesSorting.props().onFilterClick();
   expect(onFilterClick).toHaveBeenCalledWith(activeFilter);
