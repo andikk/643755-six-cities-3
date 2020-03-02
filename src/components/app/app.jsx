@@ -1,9 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {getCitySelector} from "../../selectors.js";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
+import {getSortedOffersInCitySelector} from "../../selectors";
 
 class App extends PureComponent {
   constructor(props) {
@@ -63,9 +65,11 @@ App.propTypes = {
   city: PropTypes.string.isRequired,
 };
 
+
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  city: state.city,
+  offers: getSortedOffersInCitySelector(state),
+  city: getCitySelector(state),
+  activeFilter: state.activeFilter
 });
 
 export {App};

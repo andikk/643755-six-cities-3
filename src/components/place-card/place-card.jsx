@@ -65,7 +65,7 @@ PlaceCard.propTypes = {
     type: PropTypes.string,
   }).isRequired,
 
-  onCardHover: PropTypes.func.isRequired,
+  onCardHover: PropTypes.func,
   onHeaderClick: PropTypes.func
 };
 

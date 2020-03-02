@@ -7,6 +7,7 @@ class Map extends PureComponent {
     super(props);
 
     this._mapRef = createRef();
+
   }
 
   componentDidMount() {
@@ -27,22 +28,26 @@ class Map extends PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         })
         .addTo(map);
-      this.setState({map, layerGroup: leaflet.layerGroup().addTo(map)});
+      this._layerGroup = {map, layerGroup: leaflet.layerGroup().addTo(map)};
     }
   }
 
   componentDidUpdate() {
-    const {layerGroup} = this.state;
-    const {coordinates} = this.props;
+    const {layerGroup} = this._layerGroup;
+    const {coordinates, activeMarker} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
+    });
+    const activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [27, 39]
     });
 
     layerGroup.clearLayers();
     coordinates.forEach((coordinate) => {
       leaflet
-        .marker(coordinate, {icon})
+        .marker(coordinate, {icon: coordinate === activeMarker ? activeIcon : icon})
         .addTo(layerGroup);
     });
   }
@@ -56,7 +61,8 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  activeMarker: PropTypes.array
 };
 
 export default Map;
