@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list.jsx";
 import PlacesSorting from "../places-sorting/places-sorting.jsx";
+import withSelectedFilter from "../../hocs/with-selected-filter.jsx";
 import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector} from "../../selectors.js";
+import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector, getActiveFilter, getActiveOfferSelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
+const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 // главная страница
 const Main = (props) => {
   const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
@@ -48,7 +50,7 @@ const Main = (props) => {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{offersCount} places to stay in {city}</b>
 
-                <PlacesSorting onFilterClick={onFilterClick} activeFilter={activeFilter}/>
+                <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content" offers={offers}
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
@@ -93,31 +95,24 @@ Main.propTypes = {
 Main.defaultProps = {
   onHeaderClick: () => {},
   activeOffer: null,
-  activeFilter: {label: `Popular`, value: `ALL`}
 };
 
 const mapStateToProps = (state) => {
   return {
     offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
-    activeFilter: state.activeFilter,
+    activeFilter: getActiveFilter(state),
     citiesList: getCitiesListSelector(state),
     coordinates: getCoordinatesInCitySelector(state),
-    activeOffer: state.activeOffer
+    activeOffer: getActiveOfferSelector(state)
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onCityClick: (city) => {
-    dispatch(ActionCreator.setCity(city));
-  },
-  onFilterClick: (activeFilter) => {
-    dispatch(ActionCreator.setFilter(activeFilter));
-  },
-  onCardHover: (activeOffer) => {
-    dispatch(ActionCreator.setActiveOffer(activeOffer));
-  }
-});
+const mapDispatchToProps = {
+  onCityClick: ActionCreator.setCity,
+  onFilterClick: ActionCreator.setFilter,
+  onCardHover: ActionCreator.setActiveOffer
+};
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

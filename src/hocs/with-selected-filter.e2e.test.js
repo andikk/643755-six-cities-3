@@ -1,8 +1,8 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import PlacesSorting from "./places-sorting.jsx";
-import withSelectedFilter from "../../hocs/with-selected-filter.jsx";
+import PlacesSorting from "../components/places-sorting/places-sorting";
+import withSelectedFilter from "../hocs/with-selected-filter.jsx";
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 const activeFilter = {label: `Popular`, value: `ALL`};
 
@@ -21,4 +21,3 @@ it(`Should City in sore be changed`, () => {
   expect(onFilterClick.mock.calls.length).toBe(1);
 
 });
-

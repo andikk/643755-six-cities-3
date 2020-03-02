@@ -9,11 +9,11 @@ const sortByField = (item) => {
   };
 };
 
-const SORT_TYPE = {
-  popular: `ALL`,
-  priceLowToHigh: `PRICE_ASC`,
-  priceHighToLow: `PRICE_DESC`,
-  topRated: `RATING_DESC`
+const SortType = {
+  POPULAR: `ALL`,
+  PRICE_LOW_TO_HIGH: `PRICE_ASC`,
+  PRICE_HIGH_TO_LOW: `PRICE_DESC`,
+  TOP_RATED: `RATING_DESC`
 };
 
 export function sortOffers(offers = [], order) {
@@ -23,16 +23,16 @@ export function sortOffers(offers = [], order) {
   }
 
   switch (order.value) {
-    case SORT_TYPE.priceLowToHigh :
+    case SortType.PRICE_LOW_TO_HIGH :
       return offers
         .slice(0)
         .sort(sortByField(`price`))
         .reverse();
-    case SORT_TYPE.priceHighToLow :
+    case SortType.PRICE_HIGH_TO_LOW :
       return offers
         .slice(0)
         .sort(sortByField(`price`));
-    case SORT_TYPE.topRated :
+    case SortType.TOP_RATED :
       return offers
         .slice(0)
         .sort(sortByField(`rating`));

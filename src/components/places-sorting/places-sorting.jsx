@@ -1,5 +1,4 @@
 import React from "react";
-import withSelectedFilter from "../../hocs/with-selected-filter.jsx";
 import PropTypes from "prop-types";
 
 const PlacesSorting = (props) => {
@@ -39,4 +38,4 @@ PlacesSorting.defaultProps = {
   activeFilter: {label: `Popular`, value: `ALL`}
 };
 
-export default withSelectedFilter(PlacesSorting);
+export default PlacesSorting;

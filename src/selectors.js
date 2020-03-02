@@ -4,6 +4,7 @@ import {sortOffers} from "./utils.js";
 const getActiveFilter = (state) => state.activeFilter;
 const getOffersSelector = (state) => state.offers;
 const getCitySelector = (state) => state.city;
+const getActiveOfferSelector = (state) => state.activeOffer;
 
 const getCitiesListSelector = createSelector(
     getOffersSelector,
@@ -32,4 +33,6 @@ export {getCitiesListSelector,
   getCitySelector,
   getOffersInCitySelector,
   getCoordinatesInCitySelector,
-  getSortedOffersInCitySelector};
+  getSortedOffersInCitySelector,
+  getActiveFilter,
+  getActiveOfferSelector};
