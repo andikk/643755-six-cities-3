@@ -10,7 +10,7 @@ Enzyme.configure({
 });
 
 it(`Should City in sore be changed`, () => {
-  const onFilterClick = jest.fn();
+  const onToggleClickHandle = jest.fn();
   const onSelectCloseHandle = jest.fn();
   const filters = [
     {label: `Popular`, value: `ALL`},
@@ -20,11 +20,11 @@ it(`Should City in sore be changed`, () => {
   ];
 
   const placesSorting = shallow(
-      <PlacesSorting filters={filters} onSelectCloseHandle={onSelectCloseHandle} onFilterClick={onFilterClick} activeFilter={activeFilter} opened={true}/>
+      <PlacesSorting filters={filters} onSelectCloseHandle={onSelectCloseHandle} onToggleClickHandle={onToggleClickHandle } activeFilter={activeFilter} opened={true}/>
   );
 
   placesSorting.find(`.places__option:first-child`).simulate(`click`);
   expect(onSelectCloseHandle).toHaveBeenCalledWith(activeFilter);
   expect(onSelectCloseHandle).toHaveBeenCalledTimes(1);
-  expect(onFilterClick).toHaveBeenCalledWith(filters[0]);
+
 });
