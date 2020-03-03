@@ -26,4 +26,5 @@ it(`Should City in sore be changed`, () => {
   placesSorting.find(`.places__option:first-child`).simulate(`click`);
   expect(onSelectCloseHandle).toHaveBeenCalledWith(activeFilter);
   expect(onSelectCloseHandle).toHaveBeenCalledTimes(1);
+  expect(onFilterClick).toHaveBeenCalledWith(filters[0]);
 });

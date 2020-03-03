@@ -12,7 +12,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should check prop value`, () => {
+it(`Should check prop value onToggleClickHandle`, () => {
   const openedValue = true;
   const WrappedMockComponent = withSelectedFilter(MockComponent);
   const wrapper = mount(
@@ -21,7 +21,26 @@ it(`Should check prop value`, () => {
 
   let component = null;
   component = wrapper.find(MockComponent);
-  component.prop(`onToggleClickHandle`)(openedValue);
+  component.prop(`onToggleClickHandle`)();
+
+  wrapper.update();
+
+  component = wrapper.find(MockComponent);
+
+  expect(component.prop(`opened`)).toEqual(openedValue);
+
+});
+
+it(`Should check prop value onSelectCloseHandle`, () => {
+  const openedValue = false;
+  const WrappedMockComponent = withSelectedFilter(MockComponent);
+  const wrapper = mount(
+      <WrappedMockComponent/>
+  );
+
+  let component = null;
+  component = wrapper.find(MockComponent);
+  component.prop(`onSelectCloseHandle`)();
 
   wrapper.update();
 
