@@ -1,23 +1,52 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import PlacesSorting from "../components/places-sorting/places-sorting";
+
 import withSelectedFilter from "../hocs/with-selected-filter.jsx";
-const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
-const activeFilter = {label: `Popular`, value: `ALL`};
+
+function MockComponent() {
+  return <div />;
+}
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should City in sore be changed`, () => {
-  const onFilterClick = jest.fn();
-
-  const placesSorting = shallow(
-      <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
+it(`Should check prop value onToggleClickHandle`, () => {
+  const openedValue = true;
+  const WrappedMockComponent = withSelectedFilter(MockComponent);
+  const wrapper = mount(
+      <WrappedMockComponent/>
   );
 
-  placesSorting.props().onFilterClick();
-  expect(onFilterClick.mock.calls.length).toBe(1);
+  let component = null;
+  component = wrapper.find(MockComponent);
+  component.prop(`onToggleClickHandle`)();
+
+  wrapper.update();
+
+  component = wrapper.find(MockComponent);
+
+  expect(component.prop(`opened`)).toEqual(openedValue);
+
+});
+
+it(`Should check prop value onSelectCloseHandle`, () => {
+  const openedValue = false;
+  const onFilterClick = jest.fn();
+  const WrappedMockComponent = withSelectedFilter(MockComponent);
+  const wrapper = mount(
+      <WrappedMockComponent onFilterClick={onFilterClick}/>
+  );
+
+  let component = null;
+  component = wrapper.find(MockComponent);
+  component.prop(`onSelectCloseHandle`)();
+
+  wrapper.update();
+
+  component = wrapper.find(MockComponent);
+
+  expect(component.prop(`opened`)).toEqual(openedValue);
 
 });

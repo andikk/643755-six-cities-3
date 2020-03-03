@@ -27,7 +27,6 @@ const PlacesSorting = (props) => {
 
 PlacesSorting.propTypes = {
   activeFilter: PropTypes.object,
-  onFilterClick: PropTypes.func,
   opened: PropTypes.bool,
   filters: PropTypes.array,
   onToggleClickHandle: PropTypes.func,
