@@ -33,9 +33,10 @@ it(`Should check prop value onToggleClickHandle`, () => {
 
 it(`Should check prop value onSelectCloseHandle`, () => {
   const openedValue = false;
+  const onFilterClick = jest.fn();
   const WrappedMockComponent = withSelectedFilter(MockComponent);
   const wrapper = mount(
-      <WrappedMockComponent/>
+      <WrappedMockComponent onFilterClick={onFilterClick}/>
   );
 
   let component = null;
