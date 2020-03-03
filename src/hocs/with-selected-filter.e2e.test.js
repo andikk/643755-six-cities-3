@@ -31,8 +31,8 @@ it(`Should check prop value onToggleClickHandle`, () => {
 
 });
 
-it(`Should check prop value onToggleClickHandle`, () => {
-  const openedValue = true;
+it(`Should check prop value onSelectCloseHandle`, () => {
+  const openedValue = false;
   const WrappedMockComponent = withSelectedFilter(MockComponent);
   const wrapper = mount(
       <WrappedMockComponent/>
@@ -40,7 +40,7 @@ it(`Should check prop value onToggleClickHandle`, () => {
 
   let component = null;
   component = wrapper.find(MockComponent);
-  component.prop(`onToggleClickHandle`)();
+  component.prop(`onSelectCloseHandle`)();
 
   wrapper.update();
 
