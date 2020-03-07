@@ -98,7 +98,7 @@ Main.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-  //console.log(state);
+
   return {
     //offers: getSortedOffersInCitySelector(state),
     offers: getOffersSelector(state),

@@ -1,8 +1,8 @@
-//import offers from "./mocks/offers";
+//  import offers from "./mocks/offers";
 
 export const initialState = {
-  city: null,
-  offers: null,
+  city: ``,
+  offers: [],
   activeFilter: {label: `Popular`, value: `ALL`},
   activeOffer: null
 };
