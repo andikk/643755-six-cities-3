@@ -7,14 +7,23 @@ class Map extends PureComponent {
     super(props);
 
     this._mapRef = createRef();
-
+    this._icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [27, 39]
+    });
+    this._activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [27, 39]
+    });
   }
 
   componentDidMount() {
+
     const _mapRef = this._mapRef.current;
+    const {latitude, longitude, zoom} = this.props.city.location;
     if (_mapRef) {
-      const city = [52.38333, 4.9];
-      const zoom = 12;
+      const city = [latitude, longitude];
+
       const map = leaflet.map(_mapRef, {
         center: city,
         zoom,
@@ -28,27 +37,32 @@ class Map extends PureComponent {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         })
         .addTo(map);
-      this._layerGroup = {map, layerGroup: leaflet.layerGroup().addTo(map)};
+      this._layerGroup = leaflet.layerGroup().addTo(map);
+      this.renderCoordinates();
     }
   }
 
-  componentDidUpdate() {
-    const {layerGroup} = this._layerGroup;
-    const {coordinates, activeMarker} = this.props;
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [27, 39]
-    });
-    const activeIcon = leaflet.icon({
-      iconUrl: `/img/pin-active.svg`,
-      iconSize: [27, 39]
-    });
+  componentDidUpdate(prevProps) {
+    console.log(this.props.city);
+    if (
+      this.props.coordinates !== prevProps.coordinates ||
+      this.props.activeMarker !== prevProps.activeMarker
+    ) {
+      this.renderCoordinates();
+    }
+  }
 
-    layerGroup.clearLayers();
+  renderCoordinates() {
+    const {coordinates, activeMarker} = this.props;
+
+    this._layerGroup.clearLayers();
+
     coordinates.forEach((coordinate) => {
       leaflet
-        .marker(coordinate, {icon: coordinate === activeMarker ? activeIcon : icon})
-        .addTo(layerGroup);
+        .marker(coordinate, {
+          icon: coordinate === activeMarker ? this._activeIcon : this._icon
+        })
+        .addTo(this._layerGroup);
     });
   }
 
@@ -60,6 +74,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
+  city: PropTypes.object.isRequired,
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   className: PropTypes.string,
   activeMarker: PropTypes.array

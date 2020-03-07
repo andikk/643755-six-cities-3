@@ -63,9 +63,9 @@ const Main = (props) => {
                 <PlacesList className="cities__places-list tabs__content" offers={offers}
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
-              {/*<div className="cities__right-section">*/}
-              {/*  <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>*/}
-              {/*</div>*/}
+              <div className="cities__right-section">
+                <Map className={`cities__map`} city={city} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
+              </div>
             </div>
           }
 
