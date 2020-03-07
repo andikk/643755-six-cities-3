@@ -2,7 +2,9 @@ class Offer {
 
   constructor(data) {
     this.id = data.id;
-    this.city = data.city.name;
+    this.city = {};
+    this.city.name = data.city.name;
+    this.city.location = data.city.location;
     this.src = data.preview_image;
     this.photos = data.images.map((it) => it);
     this.description = data.description;

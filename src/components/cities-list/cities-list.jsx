@@ -11,12 +11,12 @@ const CitiesList = (props) => {
         <ul className="locations__list tabs__list">
           {citiesList.map((item, index) => (
             <li className="locations__item" key={`${item}-${index}`}>
-              <a className={`locations__item-link ${item === city ? `tabs__item--active` : `tabs__item`}`} href="#"
+              <a className={`locations__item-link ${item.name === city.name ? `tabs__item--active` : `tabs__item`}`} href="#"
                 onClick={(evt) => {
                   evt.preventDefault();
                   onCityClick(item);
                 }}>
-                <span>{item}</span>
+                <span>{item.name}</span>
               </a>
             </li>
           ))}
@@ -28,8 +28,8 @@ const CitiesList = (props) => {
 };
 
 CitiesList.propTypes = {
-  citiesList: PropTypes.arrayOf(PropTypes.string).isRequired,
-  city: PropTypes.string.isRequired,
+  citiesList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  city: PropTypes.object.isRequired,
   onCityClick: PropTypes.func.isRequired
 };
 

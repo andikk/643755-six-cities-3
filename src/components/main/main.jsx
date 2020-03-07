@@ -56,16 +56,16 @@ const Main = (props) => {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersCount} places to stay in {city}</b>
+                <b className="places__found">{offersCount} places to stay in {city.name}</b>
 
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content" offers={offers}
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
-              <div className="cities__right-section">
-                <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
-              </div>
+              {/*<div className="cities__right-section">*/}
+              {/*  <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>*/}
+              {/*</div>*/}
             </div>
           }
 
@@ -81,7 +81,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.array.isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.object.isRequired,
   citiesList: PropTypes.array.isRequired,
   onHeaderClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
