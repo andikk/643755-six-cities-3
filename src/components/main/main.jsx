@@ -7,7 +7,7 @@ import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
-import {getCitiesListSelector, getCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector, getActiveFilter, getActiveOfferSelector} from "../../selectors.js";
+import {getCitiesListSelector, getCitySelector, getOffersSelector, getOffersInCitySelector, getSortedOffersInCitySelector, getCoordinatesInCitySelector, getActiveFilter, getActiveOfferSelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
@@ -91,8 +91,10 @@ Main.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    offers: getSortedOffersInCitySelector(state),
+    //offers: getSortedOffersInCitySelector(state),
+    offers: getOffersSelector(state),
     city: getCitySelector(state),
     activeFilter: getActiveFilter(state),
     citiesList: getCitiesListSelector(state),

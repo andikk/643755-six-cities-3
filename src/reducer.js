@@ -1,7 +1,8 @@
-import offers from "./mocks/offers";
+//import offers from "./mocks/offers";
+
 export const initialState = {
-  city: offers[0].city,
-  offers,
+  city: null,
+  offers: null,
   activeFilter: {label: `Popular`, value: `ALL`},
   activeOffer: null
 };
@@ -39,8 +40,8 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        console.log(response.data.city);
         dispatch(ActionCreator.setOffers(response.data));
+        dispatch(ActionCreator.setCity(response.data[0].city));
       });
   },
 };
