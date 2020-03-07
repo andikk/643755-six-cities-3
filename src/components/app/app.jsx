@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
-import {getOffersSelector, getSortedOffersInCitySelector} from "../../selectors";
+import {getSortedOffersInCitySelector} from "../../selectors";
 
 class App extends PureComponent {
   constructor(props) {
@@ -66,7 +66,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffersSelector(state),
+  offers: getSortedOffersInCitySelector(state),
   // city: getCitySelector(state).name,
   // activeFilter: state.activeFilter
 });

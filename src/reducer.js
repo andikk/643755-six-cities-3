@@ -1,4 +1,5 @@
 //  import offers from "./mocks/offers";
+import Offer from "./Offer.js";
 
 export const initialState = {
   city: {},
@@ -40,10 +41,13 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
+        //if (response.data.length) {
 
-        dispatch(ActionCreator.setCity(response.data[0].city.name));
-        dispatch(ActionCreator.setOffers(response.data));
-
+          const mappedOffers = response.data.map((it) => new Offer(it));
+          // console.log(mappedOffers);
+          dispatch(ActionCreator.setCity(mappedOffers[0].city));
+          dispatch(ActionCreator.setOffers(mappedOffers));
+        //}
       });
   },
 };

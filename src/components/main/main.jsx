@@ -64,7 +64,7 @@ const Main = (props) => {
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                {/*<Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>*/}
+                <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
           }
@@ -109,23 +109,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const mapDispatchToProps = {
-//   onCityClick: ActionCreator.setCity,
-//   onFilterClick: ActionCreator.setFilter,
-//   onCardHover: ActionCreator.setActiveOffer
-// };
-
-const mapDispatchToProps = (dispatch) => ({
-  onCityClick: (city) => {
-    dispatch(ActionCreator.setCity(city));
-  },
-  onFilterClick: (activeFilter) => {
-    dispatch(ActionCreator.setFilter(activeFilter));
-  },
-  onCardHover: (activeOffer) => {
-    dispatch(ActionCreator.setActiveOffer(activeOffer));
-  }
-});
+const mapDispatchToProps = {
+  onCityClick: ActionCreator.setCity,
+  onFilterClick: ActionCreator.setFilter,
+  onCardHover: ActionCreator.setActiveOffer
+};
 
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

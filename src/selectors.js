@@ -8,13 +8,13 @@ const getActiveOfferSelector = (state) => state.activeOffer;
 
 const getCitiesListSelector = createSelector(
     getOffersSelector,
-    (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city.name)
+    (offers) => [...new Set(offers.map((offer) => offer.city))]
 );
 
 const getOffersInCitySelector = createSelector(
     getOffersSelector,
     getCitySelector,
-    (offers, city) => offers.filter((offer) => (offer.city.name === city))
+    (offers, city) => offers.filter((offer) => (offer.city === city))
 );
 
 const getCoordinatesInCitySelector = createSelector(
@@ -27,6 +27,29 @@ const getSortedOffersInCitySelector = createSelector(
     getActiveFilter,
     (offers, order) => sortOffers(offers, order)
 );
+
+
+// const getCitiesListSelector = createSelector(
+//     getOffersSelector,
+//     (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city.name)
+// );
+//
+// const getOffersInCitySelector = createSelector(
+//     getOffersSelector,
+//     getCitySelector,
+//     (offers, city) => offers.filter((offer) => (offer.city.name === city))
+// );
+//
+// const getCoordinatesInCitySelector = createSelector(
+//     getOffersInCitySelector,
+//     (offers) => offers.map((offer) => (offer.coordinates))
+// );
+//
+// const getSortedOffersInCitySelector = createSelector(
+//     getOffersInCitySelector,
+//     getActiveFilter,
+//     (offers, order) => sortOffers(offers, order)
+// );
 
 
 export {getCitiesListSelector,
