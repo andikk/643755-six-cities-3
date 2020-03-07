@@ -41,7 +41,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
 
-        dispatch(ActionCreator.setCity(response.data[0].city));
+        dispatch(ActionCreator.setCity(response.data[0].city.name));
         dispatch(ActionCreator.setOffers(response.data));
 
       });

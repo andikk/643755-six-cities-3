@@ -14,7 +14,7 @@ const getCitiesListSelector = createSelector(
 const getOffersInCitySelector = createSelector(
     getOffersSelector,
     getCitySelector,
-    (offers, city) => offers.filter((offer) => (offer.city.name === city.name))
+    (offers, city) => offers.filter((offer) => (offer.city.name === city))
 );
 
 const getCoordinatesInCitySelector = createSelector(

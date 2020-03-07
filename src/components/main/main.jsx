@@ -22,7 +22,6 @@ const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 const Main = (props) => {
   const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
   const offersCount = offers.length;
-console.log(citiesList);
 
   return (
     <div className="page page--gray page--main">
@@ -57,7 +56,7 @@ console.log(citiesList);
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offersCount} places to stay in {city.name}</b>
+                <b className="places__found">{offersCount} places to stay in {city}</b>
 
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
@@ -65,7 +64,7 @@ console.log(citiesList);
                   onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                <Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
+                {/*<Map className={`cities__map`} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>*/}
               </div>
             </div>
           }
@@ -99,9 +98,9 @@ Main.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(getOffersInCitySelector(state));
+
   return {
-    offers: getOffersInCitySelector(state),
+    offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
     activeFilter: getActiveFilter(state),
     citiesList: getCitiesListSelector(state),
@@ -118,7 +117,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick: (city) => {
-   // console.log(city);
     dispatch(ActionCreator.setCity(city));
   },
   onFilterClick: (activeFilter) => {
