@@ -45,6 +45,7 @@ class App extends PureComponent {
 
   render() {
     const {offers} = this.props;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -62,13 +63,13 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // city: PropTypes.string.isRequired,
+// city: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffersInCitySelector(state),
-  // city: getCitySelector(state).name,
-  // activeFilter: state.activeFilter
+//  city: getCitySelector(state).name,
+//  activeFilter: state.activeFilter
 });
 
 export {App};

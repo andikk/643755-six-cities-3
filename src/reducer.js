@@ -41,13 +41,9 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        //if (response.data.length) {
-
-          const mappedOffers = response.data.map((it) => new Offer(it));
-          // console.log(mappedOffers);
-          dispatch(ActionCreator.setCity(mappedOffers[0].city));
-          dispatch(ActionCreator.setOffers(mappedOffers));
-        //}
+        const mappedOffers = response.data.map((it) => new Offer(it));
+        dispatch(ActionCreator.setCity(mappedOffers[0].city));
+        dispatch(ActionCreator.setOffers(mappedOffers));
       });
   },
 };
