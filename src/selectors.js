@@ -6,14 +6,9 @@ const getOffersSelector = (state) => state.offers;
 const getCitySelector = (state) => state.city;
 const getActiveOfferSelector = (state) => state.activeOffer;
 
-// const getCitiesListSelector = createSelector(
-//     getOffersSelector,
-//     (offers) => [...new Set(offers.map((offer) => offer.city))]
-// );
-
 const getCitiesListSelector = createSelector(
     getOffersSelector,
-    (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city)
+    (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city.name)
 );
 
 const getOffersInCitySelector = createSelector(
