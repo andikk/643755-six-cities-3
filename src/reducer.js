@@ -40,9 +40,10 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        console.log(response.data[0].city);
-        dispatch(ActionCreator.setOffers(response.data));
+
         dispatch(ActionCreator.setCity(response.data[0].city));
+        dispatch(ActionCreator.setOffers(response.data));
+
       });
   },
 };
