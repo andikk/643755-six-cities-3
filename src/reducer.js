@@ -35,6 +35,16 @@ const ActionCreator = {
   })
 };
 
+const Operation = {
+  loadOffers: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        console.log(response.data.city);
+        dispatch(ActionCreator.setOffers(response.data));
+      });
+  },
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CITY:
@@ -57,4 +67,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export {ActionCreator, ActionType, reducer};
+export {ActionCreator, ActionType, Operation, reducer};
