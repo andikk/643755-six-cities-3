@@ -83,7 +83,6 @@ Main.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.object.isRequired,
   citiesList: PropTypes.array.isRequired,
-  onHeaderClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
   coordinates: PropTypes.array.isRequired,
   onFilterClick: PropTypes.func,
@@ -93,7 +92,6 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
-  onHeaderClick: () => {},
   activeOffer: null,
 };
 

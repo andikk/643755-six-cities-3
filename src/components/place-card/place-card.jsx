@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const PlaceCard = (props) => {
   const {card} = props;
   const {premium, src, price, rating, name, type, id} = card;
-  const {onHeaderClick, onCardHover} = props;
+  const {onCardHover} = props;
 
   return (
     <article className="cities__place-card place-card"
@@ -48,7 +48,6 @@ const PlaceCard = (props) => {
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${id}`}>{name}</Link>
-          {/*<a href="#" onClick={() => onHeaderClick(id)}>{name}</a>*/}
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -68,11 +67,6 @@ PlaceCard.propTypes = {
   }).isRequired,
 
   onCardHover: PropTypes.func,
-  onHeaderClick: PropTypes.func
-};
-
-PlaceCard.defaultProps = {
-  onHeaderClick: () => {}
 };
 
 export default PlaceCard;
