@@ -10,8 +10,8 @@ const initialState = {
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
-    city: offers[0].city,
-    offers,
+    city: {},
+    offers: [],
     activeFilter: {label: `Popular`, value: `ALL`},
     activeOffer: null
   });

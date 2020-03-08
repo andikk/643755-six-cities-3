@@ -6,7 +6,7 @@ import {
   getSortedOffersInCitySelector} from './selectors';
 import {initialState} from "./reducer";
 import offers from "./mocks/offers";
-const citiesListMock = [`Amsterdam`, `Paris`];
+const citiesListMock = ["Amsterdam"];
 const cityMock = `Paris`;
 const offersInCityMock = [
   {
