@@ -1,6 +1,5 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {getCitySelector} from "../../selectors.js";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
@@ -50,13 +49,27 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderApp()}
+            <Main offers={offers}
+            />
           </Route>
-          <Route path="/offer/">
-            <Property card={offers[0]}/>
+          <Route path="/offer/:id"
+            children={({match}) => (
+              <Property card={offers[match.params.id]}/>
+            )}>
+
           </Route>
         </Switch>
       </BrowserRouter>
+      // <BrowserRouter>
+      //   <Switch>
+      //     <Route exact path="/">
+      //       {this._renderApp()}
+      //     </Route>
+      //     <Route path="/offer/">
+      //       <Property card={offers[0]}/>
+      //     </Route>
+      //   </Switch>
+      // </BrowserRouter>
     );
   }
 }

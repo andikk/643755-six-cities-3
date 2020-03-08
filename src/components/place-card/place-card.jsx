@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from 'react-router-dom';
 // карточка предложения
 const PlaceCard = (props) => {
   const {card} = props;
@@ -46,7 +47,8 @@ const PlaceCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={() => onHeaderClick(id)}>{name}</a>
+          <Link to={`/offer/${id}`}>{name}</Link>
+          {/*<a href="#" onClick={() => onHeaderClick(id)}>{name}</a>*/}
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
