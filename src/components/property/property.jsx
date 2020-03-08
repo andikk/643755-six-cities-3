@@ -7,7 +7,7 @@ import PlacesList from "../places-list/places-list.jsx";
 const Property = (props) => {
   const {card} = props;
 
-  const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood} = card;
+  const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood, city} = card;
 
   const coordinates = neighborhood.map((item) => (item.coordinates));
 
@@ -122,8 +122,7 @@ const Property = (props) => {
 
             </div>
           </div>
-          {/*<Map className={`cities__map`} city={city} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>*/}
-          {/*<Map className="property__map" coordinates={coordinates}/>*/}
+          <Map className={`cities__map`} city={city} coordinates={coordinates}/>
 
         </section>
         <div className="container">
@@ -154,7 +153,8 @@ Property.propTypes = {
     name: PropTypes.string,
     type: PropTypes.string,
     reviews: PropTypes.array,
-    neighborhood: PropTypes.array
+    neighborhood: PropTypes.array,
+    city: PropTypes.object
   }).isRequired
 };
 
