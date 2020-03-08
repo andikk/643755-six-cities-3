@@ -9,8 +9,6 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
 import {getCitiesListSelector,
   getCitySelector,
-  getOffersSelector,
-  getOffersInCitySelector,
   getSortedOffersInCitySelector,
   getCoordinatesInCitySelector,
   getActiveFilter,
@@ -20,7 +18,7 @@ import {ActionCreator} from "../../reducer";
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 // главная страница
 const Main = (props) => {
-  const {offers, onHeaderClick, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
+  const {offers, city, citiesList, onCityClick, coordinates, onFilterClick, activeFilter, onCardHover, activeOffer} = props;
   const offersCount = offers.length;
 
   return (
@@ -61,7 +59,7 @@ const Main = (props) => {
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content" offers={offers}
-                  onHeaderClick={onHeaderClick} onCardHover={onCardHover}/>
+                  onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
                 <Map className={`cities__map`} city={city} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>

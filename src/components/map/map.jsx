@@ -43,7 +43,7 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.coordinates);
+
     if (
       this.props.coordinates !== prevProps.coordinates ||
       this.props.activeMarker !== prevProps.activeMarker
