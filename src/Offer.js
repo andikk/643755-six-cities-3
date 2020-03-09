@@ -6,12 +6,12 @@ class Offer {
     this.city.name = data.city.name;
     this.city.location = data.city.location;
     this.src = data.preview_image;
-    this.photos = data.images.map((it) => it);
+    this.photos = data.images.slice(0);
     this.description = data.description;
     this.premium = data.is_premium;
     this.bedrooms = data.bedrooms;
     this.guests = data.max_adults;
-    this.features = data.goods.map((it) => it);
+    this.features = data.goods.slice(0);
     this.owner = {};
     this.owner.id = data.host.id;
     this.owner.name = data.host.name;

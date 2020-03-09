@@ -24,31 +24,39 @@ class Map extends PureComponent {
     if (_mapRef) {
       const city = [latitude, longitude];
 
-      const map = leaflet.map(_mapRef, {
+      this._map = leaflet.map(_mapRef, {
         center: city,
         zoom,
         zoomControl: false,
         marker: true
       });
-      map.setView(city, zoom);
+      this._map.setView(city, zoom);
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
           attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
         })
-        .addTo(map);
-      this._layerGroup = leaflet.layerGroup().addTo(map);
+        .addTo(this._map);
+      this._layerGroup = leaflet.layerGroup().addTo(this._map);
       this.renderCoordinates();
     }
   }
 
   componentDidUpdate(prevProps) {
-
     if (
       this.props.coordinates !== prevProps.coordinates ||
       this.props.activeMarker !== prevProps.activeMarker
     ) {
       this.renderCoordinates();
+    }
+
+    if (
+      this.props.city !== prevProps.city
+    ) {
+      const {latitude, longitude, zoom} = this.props.city.location;
+      const city = [latitude, longitude];
+
+      this._map.setView(city, zoom);
     }
   }
 
