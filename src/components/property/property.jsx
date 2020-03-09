@@ -6,9 +6,7 @@ import PlacesList from "../places-list/places-list.jsx";
 // страница предложения
 const Property = (props) => {
   const {card} = props;
-
   const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood, city} = card;
-
   const coordinates = neighborhood.map((item) => (item.coordinates));
 
   return (

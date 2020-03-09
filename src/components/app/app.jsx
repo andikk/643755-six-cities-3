@@ -22,12 +22,10 @@ class App extends PureComponent {
             <Main offers={offers}
             />
           </Route>
-          <Route path="/offer/:id"
-            /* eslint-disable-next-line react/no-children-prop */
-            children={({match}) => (
+          <Route path="/offer/:id">
+            {({match}) => (
               <Property card={offers[match.params.id]}/>
-            )}>
-
+            )}
           </Route>
         </Switch>
       </BrowserRouter>
