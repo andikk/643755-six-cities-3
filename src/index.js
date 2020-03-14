@@ -19,6 +19,7 @@ const store = createStore(
 );
 
 store.dispatch(Operation.loadOffers());
+store.dispatch(Operation.checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
