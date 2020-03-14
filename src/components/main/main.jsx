@@ -14,7 +14,7 @@ import {getCitiesListSelector,
   getActiveFilter,
   getActiveOfferSelector,
   getAuthorizationStatusSelector} from "../../selectors.js";
-import {ActionCreator} from "../../reducer";
+import {ActionCreator, Operation} from "../../reducer";
 
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 // главная страница
@@ -130,7 +130,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   onCityClick: ActionCreator.setCity,
   onFilterClick: ActionCreator.setFilter,
-  onCardHover: ActionCreator.setActiveOffer
+  onCardHover: ActionCreator.setActiveOffer,
 };
 
 export {Main};

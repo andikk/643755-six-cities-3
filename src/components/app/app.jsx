@@ -6,15 +6,15 @@ import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
+import {ActionCreator, Operation} from "../../reducer";
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
   }
 
-
   render() {
-    const {offers} = this.props;
+    const {offers, login} = this.props;
 
     return (
       <BrowserRouter>
@@ -24,7 +24,7 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path="/login">
-            <Signin/>
+            <Signin onSubmit={login}/>
           </Route>
           <Route path="/offer/:id">
             {({match}) => (
@@ -39,11 +39,18 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  login: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffersInCitySelector(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(Operation.login(authData));
+  }
+});
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
