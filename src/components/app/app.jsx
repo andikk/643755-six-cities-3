@@ -6,7 +6,7 @@ import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
-import {ActionCreator, Operation} from "../../reducer";
+import {Operation} from "../../reducer";
 
 class App extends PureComponent {
   constructor(props) {
