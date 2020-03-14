@@ -12,7 +12,8 @@ import {getCitiesListSelector,
   getSortedOffersInCitySelector,
   getCoordinatesInCitySelector,
   getActiveFilter,
-  getActiveOfferSelector} from "../../selectors.js";
+  getActiveOfferSelector,
+  getAuthorizationStatusSelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
@@ -96,6 +97,7 @@ Main.defaultProps = {
 const mapStateToProps = (state) => {
 
   return {
+    authorizationStatus: getAuthorizationStatusSelector(state),
     offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
     activeFilter: getActiveFilter(state),

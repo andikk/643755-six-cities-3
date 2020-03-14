@@ -5,6 +5,7 @@ const getActiveFilter = (state) => state.activeFilter;
 const getOffersSelector = (state) => state.offers;
 const getCitySelector = (state) => state.city;
 const getActiveOfferSelector = (state) => state.activeOffer;
+const getAuthorizationStatusSelector = (state) => state.authorizationStatus;
 
 const getCitiesListSelector = createSelector(
     getOffersSelector,
@@ -34,4 +35,6 @@ export {getCitiesListSelector,
   getCoordinatesInCitySelector,
   getSortedOffersInCitySelector,
   getActiveFilter,
-  getActiveOfferSelector, getOffersSelector};
+  getActiveOfferSelector,
+  getOffersSelector,
+  getAuthorizationStatusSelector};

@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import Main from "../main/main.jsx";
 import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
-import Signin from "../signin/signin";
+import Signin from "../signin/signin.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -24,7 +24,7 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path="/login">
-            <Signin onSubmit={}/>
+            <Signin/>
           </Route>
           <Route path="/offer/:id">
             {({match}) => (

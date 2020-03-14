@@ -6,7 +6,6 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-
 export const initialState = {
   city: {},
   offers: [],
