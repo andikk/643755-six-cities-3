@@ -33,7 +33,7 @@ const Main = (props) => {
     user} = props;
 
   const offersCount = offers.length;
-  const {userEmail} = user;
+  // const {userEmail} = user;
 
   return (
     <div className="page page--gray page--main">
@@ -51,7 +51,7 @@ const Main = (props) => {
                   {(authorizationStatus === `AUTH`) &&
                     <a className="header__nav-link header__nav-link--profile" href="#">
                       <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__user-name user__name">{ userEmail }</span>
+                      {/*<span className="header__user-name user__name">{ userEmail }</span>*/}
                     </a>
                   }
                   {(authorizationStatus === `NO_AUTH`) &&
