@@ -12,6 +12,7 @@ export const initialState = {
   activeFilter: {label: `Popular`, value: `ALL`},
   activeOffer: null,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: null,
 };
 
 const ActionType = {
@@ -20,6 +21,7 @@ const ActionType = {
   SET_FILTER: `SET_FILTER`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_USER: `SET_USER`,
 };
 
 const ActionCreator = {
@@ -49,6 +51,13 @@ const ActionCreator = {
       payload: status,
     };
   },
+
+  setUser: (payload) => {
+    return {
+      type: ActionType.SET_USER,
+      payload,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,6 +81,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.SET_USER:
+      return Object.assign({}, state, {
+        user: action.payload,
       });
     default: return state;
   }
@@ -102,8 +115,9 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setUser(response.data));
       });
   },
 };

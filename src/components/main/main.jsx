@@ -13,8 +13,9 @@ import {getCitiesListSelector,
   getCoordinatesInCitySelector,
   getActiveFilter,
   getActiveOfferSelector,
-  getAuthorizationStatusSelector} from "../../selectors.js";
-import {ActionCreator, Operation} from "../../reducer";
+  getAuthorizationStatusSelector,
+  getUserSelector} from "../../selectors.js";
+import {ActionCreator} from "../../reducer";
 
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 // главная страница
@@ -28,9 +29,11 @@ const Main = (props) => {
     activeFilter,
     onCardHover,
     activeOffer,
-    authorizationStatus} = props;
+    authorizationStatus,
+    user} = props;
 
   const offersCount = offers.length;
+  const {userEmail} = user;
 
   return (
     <div className="page page--gray page--main">
@@ -49,7 +52,7 @@ const Main = (props) => {
                   {(authorizationStatus === `AUTH`) &&
                     <a className="header__nav-link header__nav-link--profile" href="#">
                       <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__user-name user__name">{ userEmail }</span>
                     </a>
                   }
                   {(authorizationStatus === `NO_AUTH`) &&
@@ -107,7 +110,8 @@ Main.propTypes = {
   activeFilter: PropTypes.object,
   onCardHover: PropTypes.func,
   activeOffer: PropTypes.object,
-  authorizationStatus: PropTypes.string
+  authorizationStatus: PropTypes.string,
+  user: PropTypes.object
 };
 
 Main.defaultProps = {
@@ -117,6 +121,7 @@ Main.defaultProps = {
 const mapStateToProps = (state) => {
 
   return {
+    user: getUserSelector(state),
     authorizationStatus: getAuthorizationStatusSelector(state),
     offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
