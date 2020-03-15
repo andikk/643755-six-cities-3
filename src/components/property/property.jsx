@@ -4,143 +4,149 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
 import {connect} from "react-redux";
+import {getOfferByIdSelector} from "../../selectors";
 
 // страница предложения
-const Property = (props) => {
+class Property extends PureComponent {
 
-  const {card} = props;
-  const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood, city} = card;
-  const coordinates = neighborhood.map((item) => (item.coordinates));
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <div className="page">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+  render() {
+    const {card} = this.props;
+    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood, city} = card;
+    const coordinates = neighborhood.map((item) => (item.coordinates));
+
+    return (
+      <div className="page">
+        <header className="header">
+          <div className="container">
+            <div className="header__wrapper">
+              <div className="header__left">
+                <a className="header__logo-link" href="main.html">
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                </a>
+              </div>
+              <nav className="header__nav">
+                <ul className="header__nav-list">
+                  <li className="header__nav-item user">
+                    <a className="header__nav-link header__nav-link--profile" href="#">
+                      <div className="header__avatar-wrapper user__avatar-wrapper">
+                      </div>
+                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="page__main page__main--property">
-        <section className="property">
-          <div className="property__gallery-container container">
-            <div className="property__gallery">
+        <main className="page__main page__main--property">
+          <section className="property">
+            <div className="property__gallery-container container">
+              <div className="property__gallery">
 
-              {photos.filter((photo, index) => index < 6)
+                {photos.filter((photo, index) => index < 6)
                   .map((photo, index) => (
                     <div className="property__image-wrapper" key={photo + index}>
                       <img className="property__image" src={photo} alt={name}/>
                     </div>
                   ))}
-            </div>
+              </div>
 
-          </div>
-          <div className="property__container container">
-            <div className="property__wrapper">
-              {premium &&
+            </div>
+            <div className="property__container container">
+              <div className="property__wrapper">
+                {premium &&
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
-              }
+                }
 
-              <div className="property__name-wrapper">
-                <h1 className="property__name">
-                  {name}
-                </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark"></use>
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
-              </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}/>
-                  <span className="visually-hidden">Rating</span>
+                <div className="property__name-wrapper">
+                  <h1 className="property__name">
+                    {name}
+                  </h1>
+                  <button className="property__bookmark-button button" type="button">
+                    <svg className="property__bookmark-icon" width="31" height="33">
+                      <use xlinkHref="#icon-bookmark"></use>
+                    </svg>
+                    <span className="visually-hidden">To bookmarks</span>
+                  </button>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
-              </div>
-              <ul className="property__features">
-                <li className="property__feature property__feature--entire">
-                  {type}
-                </li>
-                <li className="property__feature property__feature--bedrooms">
-                  {bedrooms} Bedrooms
-                </li>
-                <li className="property__feature property__feature--adults">
-                    Max {guests} adults
-                </li>
-              </ul>
-              <div className="property__price">
-                <b className="property__price-value">&euro;{price}</b>
-                <span className="property__price-text">&nbsp;night</span>
-              </div>
-              <div className="property__inside">
-                <h2 className="property__inside-title">What&apos;s inside</h2>
-                <ul className="property__inside-list">
-                  {features.map((feature, index) => (
-                    <li className="property__inside-item" key={feature + index}>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="property__host">
-                <h2 className="property__host-title">Meet the host</h2>
-                <div className="property__host-user user">
-                  <div
-                    className={`property__avatar-wrapper ${owner.super ? ` property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={owner.src} width="74" height="74"
-                      alt={owner.name}/>
+                <div className="property__rating rating">
+                  <div className="property__stars rating__stars">
+                    <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}/>
+                    <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__user-name">
-                    {owner.name}
-                  </span>
+                  <span className="property__rating-value rating__value">4.8</span>
                 </div>
-                <div className="property__description">
-                  <p className="property__text">
-                    {description}
-                  </p>
+                <ul className="property__features">
+                  <li className="property__feature property__feature--entire">
+                    {type}
+                  </li>
+                  <li className="property__feature property__feature--bedrooms">
+                    {bedrooms} Bedrooms
+                  </li>
+                  <li className="property__feature property__feature--adults">
+                    Max {guests} adults
+                  </li>
+                </ul>
+                <div className="property__price">
+                  <b className="property__price-value">&euro;{price}</b>
+                  <span className="property__price-text">&nbsp;night</span>
                 </div>
+                <div className="property__inside">
+                  <h2 className="property__inside-title">What&apos;s inside</h2>
+                  <ul className="property__inside-list">
+                    {features.map((feature, index) => (
+                      <li className="property__inside-item" key={feature + index}>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="property__host">
+                  <h2 className="property__host-title">Meet the host</h2>
+                  <div className="property__host-user user">
+                    <div
+                      className={`property__avatar-wrapper ${owner.super ? ` property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                      <img className="property__avatar user__avatar" src={owner.src} width="74" height="74"
+                        alt={owner.name}/>
+                    </div>
+                    <span className="property__user-name">
+                      {owner.name}
+                    </span>
+                  </div>
+                  <div className="property__description">
+                    <p className="property__text">
+                      {description}
+                    </p>
+                  </div>
+                </div>
+
+                <ReviewsList className="property__reviews" reviews={reviews}/>
+
               </div>
-
-              <ReviewsList className="property__reviews" reviews={reviews}/>
-
             </div>
-          </div>
-          <Map className={`cities__map`} city={city} coordinates={coordinates}/>
-
-        </section>
-        <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
-
-            <PlacesList offers={neighborhood} className={`near-places__list `}/>
+            <Map className={`cities__map`} city={city} coordinates={coordinates}/>
 
           </section>
-        </div>
-      </main>
-    </div>
-  );
-};
+          <div className="container">
+            <section className="near-places places">
+              <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
+              <PlacesList offers={neighborhood} className={`near-places__list `}/>
+
+            </section>
+          </div>
+        </main>
+      </div>
+    );
+  }
+}
 
 Property.propTypes = {
   card: PropTypes.shape({
@@ -161,8 +167,8 @@ Property.propTypes = {
   }).isRequired
 };
 
-const mapStateToProps = (state) => ({
-  card: state.activeOffer,
+const mapStateToProps = (state, ownProps) => ({
+  card: getOfferByIdSelector(state)(Number(ownProps.match.params.id))
 });
 
 export {Property};
