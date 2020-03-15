@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 import Main from "../main/main.jsx";
+import Favorites from "../favorites/favorites.jsx";
 import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
@@ -21,11 +22,13 @@ class App extends PureComponent {
       <BrowserRouter history={history}>
         <Switch>
           <Route exact path="/">
-            <Main offers={offers}
-            />
+            <Main offers={offers}/>
           </Route>
           <Route exact path="/login">
             <Signin onSubmit={login}/>
+          </Route>
+          <Route exact path="/favorites">
+            <Favorites/>
           </Route>
           <Route path="/offer/:id" exact component={Property}/>
           <Route

@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import PlacesList from "../places-list/places-list.jsx";
 
 class Favorites extends PureComponent {
   constructor(props) {
@@ -46,6 +47,10 @@ class Favorites extends PureComponent {
                       </a>
                     </div>
                   </div>
+                  <PlacesList className="favorites__places"
+                    classNameForArticle="favorites__"
+                    offers={offers}
+                  />
                   <div className="favorites__places">
                     <article className="favorites__card place-card">
                       <div className="favorites__image-wrapper place-card__image-wrapper">

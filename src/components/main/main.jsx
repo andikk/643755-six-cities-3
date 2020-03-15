@@ -53,7 +53,7 @@ const Main = (props) => {
                     <a className="header__nav-link header__nav-link--profile" href="#">
                       <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
                       <span className="header__user-name user__name">test@test.ru</span>
-                      {/*<span className="header__user-name user__name">{ userEmail }</span>*/}
+                      {/* <span className="header__user-name user__name">{ userEmail }</span>*/}
                     </a>
                   }
                   {(authorizationStatus === `NO_AUTH`) &&
@@ -81,7 +81,9 @@ const Main = (props) => {
 
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
-                <PlacesList className="cities__places-list tabs__content" offers={offers}
+                <PlacesList className="cities__places-list tabs__content places__list"
+                  classNameForArticle="cities__"
+                  offers={offers}
                   onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">

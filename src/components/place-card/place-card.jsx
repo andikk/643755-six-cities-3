@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 // карточка предложения
 const PlaceCard = (props) => {
-  const {card} = props;
+  const {card, classNameForArticle} = props;
+
   const {premium, src, price, rating, name, type, id} = card;
   const {onCardHover} = props;
 
   return (
-    <article className="cities__place-card place-card"
+    <article className={`${classNameForArticle}place-card place-card`}
       onMouseEnter={() => {
         onCardHover(card);
       }}
@@ -22,7 +23,7 @@ const PlaceCard = (props) => {
         </div>
       }
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classNameForArticle}image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={src} width="260" height="200" alt={name}/>
         </a>
@@ -66,6 +67,7 @@ PlaceCard.propTypes = {
     type: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
+  classNameForArticle: PropTypes.string,
   onCardHover: PropTypes.func,
 };
 
