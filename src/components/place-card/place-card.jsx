@@ -65,7 +65,7 @@ PlaceCard.propTypes = {
     rating: PropTypes.number,
     type: PropTypes.string,
   }).isRequired,
-
+  className: PropTypes.string,
   onCardHover: PropTypes.func,
 };
 
