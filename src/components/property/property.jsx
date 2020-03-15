@@ -1,10 +1,13 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
+import {connect} from "react-redux";
+
 // страница предложения
 const Property = (props) => {
+
   const {card} = props;
   const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, reviews, neighborhood, city} = card;
   const coordinates = neighborhood.map((item) => (item.coordinates));
@@ -40,11 +43,11 @@ const Property = (props) => {
             <div className="property__gallery">
 
               {photos.filter((photo, index) => index < 6)
-                .map((photo, index) => (
-                  <div className="property__image-wrapper" key={photo + index}>
-                    <img className="property__image" src={photo} alt={name}/>
-                  </div>
-                ))}
+                  .map((photo, index) => (
+                    <div className="property__image-wrapper" key={photo + index}>
+                      <img className="property__image" src={photo} alt={name}/>
+                    </div>
+                  ))}
             </div>
 
           </div>
@@ -69,7 +72,7 @@ const Property = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}} />
+                  <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">4.8</span>
@@ -82,7 +85,7 @@ const Property = (props) => {
                   {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {guests} adults
+                    Max {guests} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -102,8 +105,10 @@ const Property = (props) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${owner.super ? ` property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={owner.src} width="74" height="74" alt={owner.name} />
+                  <div
+                    className={`property__avatar-wrapper ${owner.super ? ` property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={owner.src} width="74" height="74"
+                      alt={owner.name}/>
                   </div>
                   <span className="property__user-name">
                     {owner.name}
@@ -134,8 +139,8 @@ const Property = (props) => {
       </main>
     </div>
   );
-
 };
+
 
 Property.propTypes = {
   card: PropTypes.shape({
@@ -156,4 +161,9 @@ Property.propTypes = {
   }).isRequired
 };
 
-export default Property;
+const mapStateToProps = (state) => ({
+  card: state.activeOffer,
+});
+
+export {Property};
+export default connect(mapStateToProps)(Property);
