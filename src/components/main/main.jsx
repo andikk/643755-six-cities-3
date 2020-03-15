@@ -7,6 +7,7 @@ import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
+import {Link} from 'react-router-dom';
 import {getCitiesListSelector,
   getCitySelector,
   getSortedOffersInCitySelector,
@@ -56,10 +57,10 @@ const Main = (props) => {
                     </a>
                   }
                   {(authorizationStatus === `NO_AUTH`) &&
-                      <a className="header__nav-link header__nav-link--profile" href="#">
+                      <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
                         <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
                         <span className="header__login">Sign in</span>
-                      </a>
+                      </Link>
                   }
                 </li>
               </ul>

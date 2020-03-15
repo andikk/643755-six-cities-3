@@ -7,7 +7,9 @@ const createAPI = () => {
     withCredentials: true,
   });
   const onSuccess = (response) => response;
-  const onError = (error) => error;
+  const onError = (error) => {
+    throw error;
+  };
 
   api.interceptors.response.use(onSuccess, onError);
 

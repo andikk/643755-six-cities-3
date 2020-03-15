@@ -7,6 +7,7 @@ import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
 import {Operation} from "../../reducer";
+import history from "../../history";
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,7 +18,7 @@ class App extends PureComponent {
     const {offers, login} = this.props;
 
     return (
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Switch>
           <Route exact path="/">
             <Main offers={offers}
@@ -26,11 +27,16 @@ class App extends PureComponent {
           <Route exact path="/login">
             <Signin onSubmit={login}/>
           </Route>
-          <Route path="/offer/:id">
-            {({match}) => (
-              <Property card={offers[match.params.id]}/>
+          <Route path="/offer/:id" exact component={Property}/>
+          <Route
+            render={() => (
+              <h1>
+                404.
+                <br />
+                <small>Page not found</small>
+              </h1>
             )}
-          </Route>
+          />
         </Switch>
       </BrowserRouter>
     );
