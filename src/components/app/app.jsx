@@ -27,16 +27,11 @@ class App extends PureComponent {
           <Route exact path="/login">
             <Signin onSubmit={login}/>
           </Route>
-          <Route path="/offer/:id" exact component={Property}/>
-          <Route
-            render={() => (
-              <h1>
-                404.
-                <br />
-                <small>Page not found</small>
-              </h1>
+          <Route path="/offer/:id">
+            {({match}) => (
+              <Property card={offers[match.params.id]}/>
             )}
-          />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -50,6 +45,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffersInCitySelector(state),
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

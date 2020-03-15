@@ -30,6 +30,11 @@ const getSortedOffersInCitySelector = createSelector(
     (offers, order) => sortOffers(offers, order)
 );
 
+const getOfferByIdSelector = createSelector(
+    getOffersSelector,
+    (offers) => (id) => offers.find((offer) => offer.id === id)
+);
+
 export {getCitiesListSelector,
   getCitySelector,
   getOffersInCitySelector,
@@ -39,4 +44,5 @@ export {getCitiesListSelector,
   getActiveOfferSelector,
   getOffersSelector,
   getAuthorizationStatusSelector,
-  getUserSelector};
+  getUserSelector,
+  getOfferByIdSelector};
