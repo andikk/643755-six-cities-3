@@ -9,6 +9,9 @@ import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
 import {Operation} from "../../reducer";
 import history from "../../history";
+import withRouteAuth from "../../hocs/with-route-auth.js";
+
+const AuthRoute = withRouteAuth(Route);
 
 class App extends PureComponent {
   constructor(props) {
@@ -27,9 +30,9 @@ class App extends PureComponent {
           <Route exact path="/login">
             <Signin onSubmit={login}/>
           </Route>
-          <Route exact path="/favorites">
+          <AuthRoute exact path="/favorites">
             <Favorites/>
-          </Route>
+          </AuthRoute>
           <Route path="/offer/:id" exact component={Property}/>
           <Route
             render={() => (

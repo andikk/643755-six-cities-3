@@ -47,10 +47,10 @@ class Favorites extends PureComponent {
                       </a>
                     </div>
                   </div>
-                  <PlacesList className="favorites__places"
-                    classNameForArticle="favorites__"
-                    offers={offers}
-                  />
+                  {/*<PlacesList className="favorites__places"*/}
+                  {/*  classNameForArticle="favorites__"*/}
+                  {/*  offers={offers}*/}
+                  {/*/>*/}
                   <div className="favorites__places">
                     <article className="favorites__card place-card">
                       <div className="favorites__image-wrapper place-card__image-wrapper">
@@ -75,7 +75,7 @@ class Favorites extends PureComponent {
                         </div>
                         <div className="place-card__rating rating">
                           <div className="place-card__stars rating__stars">
-                            <span style="width: 100%"></span>
+                            <span style={{width: `100%`}}></span>
                             <span className="visually-hidden">Rating</span>
                           </div>
                         </div>
@@ -109,7 +109,7 @@ class Favorites extends PureComponent {
                         </div>
                         <div className="place-card__rating rating">
                           <div className="place-card__stars rating__stars">
-                            <span style="width: 80%"></span>
+                            <span style={{width: `80%`}}></span>
                             <span className="visually-hidden">Rating</span>
                           </div>
                         </div>
@@ -154,7 +154,7 @@ class Favorites extends PureComponent {
                         </div>
                         <div className="place-card__rating rating">
                           <div className="place-card__stars rating__stars">
-                            <span style="width: 100%"></span>
+                            <span style={{width: `100%`}}></span>
                             <span className="visually-hidden">Rating</span>
                           </div>
                         </div>
@@ -179,3 +179,5 @@ class Favorites extends PureComponent {
     );
   }
 }
+
+export default Favorites;
