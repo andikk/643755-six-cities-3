@@ -50,11 +50,11 @@ const Main = (props) => {
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   {(authorizationStatus === `AUTH`) &&
-                    <a className="header__nav-link header__nav-link--profile" href="#">
+                    <Link to="/favorites" className="header__nav-link header__nav-link--profile" href="#">
                       <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__user-name user__name">test@test.ru</span>
+                      <span className="header__user-name user__name">test@test.ru </span>
                       {/* <span className="header__user-name user__name">{ userEmail }</span>*/}
-                    </a>
+                    </Link>
                   }
                   {(authorizationStatus === `NO_AUTH`) &&
                       <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
