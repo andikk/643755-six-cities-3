@@ -23,9 +23,9 @@ class Property extends PureComponent {
   }
 
   render() {
-    const {card, reviews, neighborhood} = this.props;
-    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city} = card;
-    const coordinates = neighborhood.map((item) => (item.coordinates));
+    const {card, reviews, neighborhood, onCardHover} = this.props;
+    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates} = card;
+    const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
     return (
       <div className="page">
@@ -143,14 +143,20 @@ class Property extends PureComponent {
 
               </div>
             </div>
-            <Map className={`cities__map`} city={city} coordinates={coordinates}/>
+
+            <Map className={`cities__map`}
+              city={city}
+              coordinates={coordinatesNearby}
+              activeMarker={coordinates}/>
 
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-              <PlacesList offers={neighborhood} className={`near-places__list `} classNameForArticle="near-places__"/>
+              <PlacesList offers={neighborhood}
+                onCardHover={onCardHover}
+                className={`near-places__list `} classNameForArticle="near-places__"/>
 
             </section>
           </div>
@@ -173,13 +179,15 @@ Property.propTypes = {
     rating: PropTypes.number,
     name: PropTypes.string,
     type: PropTypes.string,
-    city: PropTypes.object
+    city: PropTypes.object,
+    coordinates: PropTypes.array
   }).isRequired,
   loadReviews: PropTypes.func,
   loadNearby: PropTypes.func,
   offerId: PropTypes.number,
   reviews: PropTypes.array,
-  neighborhood: PropTypes.array
+  neighborhood: PropTypes.array,
+  onCardHover: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -192,6 +200,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
+  onCardHover: ActionCreator.setActiveOffer,
 });
 
 export {Property};

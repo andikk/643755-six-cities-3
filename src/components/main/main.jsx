@@ -87,7 +87,10 @@ const Main = (props) => {
                   onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                <Map className={`cities__map`} city={city} coordinates={coordinates} activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
+                <Map className={`cities__map`}
+                  city={city}
+                  coordinates={coordinates}
+                  activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
           }
