@@ -113,12 +113,16 @@ const reducer = (state = initialState, action) => {
 };
 
 const Operation = {
-  loadOffers: () => (dispatch, getState, api) => {
+  loadOffers: (offerId) => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
+
         const mappedOffers = response.data.map((it) => new Offer(it));
-        dispatch(ActionCreator.setCity(mappedOffers[0].city));
-        dispatch(ActionCreator.setOffers(mappedOffers));
+        if (offerId === undefined) {
+          dispatch(ActionCreator.setCity(mappedOffers[0].city));
+          dispatch(ActionCreator.setOffers(mappedOffers));
+        }
+
       });
   },
 

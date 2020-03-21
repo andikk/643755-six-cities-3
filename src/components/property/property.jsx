@@ -16,8 +16,13 @@ class Property extends PureComponent {
     super(props);
   }
 
+  componentWillMount() {
+     const {loadOffers} = this.props;
+      loadOffers();
+  }
+
   componentDidMount() {
-    const {loadReviews, loadNearby, offerId} = this.props;
+    const {loadReviews, loadNearby, loadOffers, offerId} = this.props;
     loadReviews(offerId);
     loadNearby(offerId);
   }
@@ -190,14 +195,18 @@ Property.propTypes = {
   onCardHover: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
-  offerId: Number(ownProps.match.params.id),
-  reviews: getReviewsSelector(state),
-  neighborhood: getOffersNearbySelector(state)
-});
+const mapStateToProps = (state, ownProps) => {
+
+  return ({
+    card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
+    offerId: Number(ownProps.match.params.id),
+    reviews: getReviewsSelector(state),
+    neighborhood: getOffersNearbySelector(state)
+  });
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadOffers: () => dispatch(Operation.loadOffers),
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
   onCardHover: ActionCreator.setActiveOffer,
