@@ -4,9 +4,9 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
 import {connect} from "react-redux";
-import {getOfferByIdSelector, getReviewsSelector} from "../../selectors";
+import {getOfferByIdSelector, getReviewsSelector, getOffersNearbySelector} from "../../selectors";
 import ReviewForm from "../review-form/review-form.jsx";
-import {Operation} from "../../reducer";
+import {ActionCreator, Operation} from "../../reducer";
 
 
 // страница предложения
@@ -17,13 +17,14 @@ class Property extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadReviews, offerId} = this.props;
+    const {loadReviews, loadNearby, offerId} = this.props;
     loadReviews(offerId);
+    loadNearby(offerId);
   }
 
   render() {
-    const {card, reviews} = this.props;
-    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, neighborhood, city} = card;
+    const {card, reviews, neighborhood} = this.props;
+    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city} = card;
     const coordinates = neighborhood.map((item) => (item.coordinates));
 
     return (
@@ -32,7 +33,7 @@ class Property extends PureComponent {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link" href="main.html">
+                <a className="header__logo-link" href="/">
                   <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
                 </a>
               </div>
@@ -149,7 +150,7 @@ class Property extends PureComponent {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-              <PlacesList offers={neighborhood} className={`near-places__list `}/>
+              <PlacesList offers={neighborhood} className={`near-places__list `} classNameForArticle="near-places__"/>
 
             </section>
           </div>
@@ -172,22 +173,25 @@ Property.propTypes = {
     rating: PropTypes.number,
     name: PropTypes.string,
     type: PropTypes.string,
-    neighborhood: PropTypes.array,
     city: PropTypes.object
   }).isRequired,
   loadReviews: PropTypes.func,
+  loadNearby: PropTypes.func,
   offerId: PropTypes.number,
   reviews: PropTypes.array,
+  neighborhood: PropTypes.array
 };
 
 const mapStateToProps = (state, ownProps) => ({
   card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
   offerId: Number(ownProps.match.params.id),
-  reviews: getReviewsSelector(state)
+  reviews: getReviewsSelector(state),
+  neighborhood: getOffersNearbySelector(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id))
+  loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
+  loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
 });
 
 export {Property};

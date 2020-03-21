@@ -3,6 +3,7 @@ import {sortOffers} from "./utils.js";
 
 const getActiveFilter = (state) => state.activeFilter;
 const getOffersSelector = (state) => state.offers;
+const getOffersNearbySelector = (state) => state.offersNearby;
 const getReviewsSelector = (state) => state.reviews;
 const getCitySelector = (state) => state.city;
 const getActiveOfferSelector = (state) => state.activeOffer;
@@ -47,4 +48,5 @@ export {getCitiesListSelector,
   getAuthorizationStatusSelector,
   getUserSelector,
   getOfferByIdSelector,
-  getReviewsSelector};
+  getReviewsSelector,
+  getOffersNearbySelector};

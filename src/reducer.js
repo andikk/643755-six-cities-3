@@ -9,6 +9,7 @@ const AuthorizationStatus = {
 export const initialState = {
   city: {},
   offers: [],
+  offersNearby: [],
   reviews: [],
   activeFilter: {label: `Popular`, value: `ALL`},
   activeOffer: null,
@@ -19,6 +20,7 @@ export const initialState = {
 const ActionType = {
   SET_CITY: `SET_CITY`,
   SET_OFFERS: `SET_OFFERS`,
+  SET_OFFERS_NEARBY: `SET_OFFERS_NEARBY`,
   SET_REVIEWS: `SET_REVIEWS`,
   SET_FILTER: `SET_FILTER`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
@@ -34,6 +36,11 @@ const ActionCreator = {
 
   setOffers: (payload) => ({
     type: ActionType.SET_OFFERS,
+    payload,
+  }),
+
+  setOffersNearby: (payload) => ({
+    type: ActionType.SET_OFFERS_NEARBY,
     payload,
   }),
 
@@ -77,6 +84,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         offers: action.payload,
       });
+    case ActionType.SET_OFFERS_NEARBY:
+      return Object.assign({}, state, {
+        offersNearby: action.payload,
+      });
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
         reviews: action.payload,
@@ -110,6 +121,15 @@ const Operation = {
         dispatch(ActionCreator.setOffers(mappedOffers));
       });
   },
+
+  loadNearby: (id) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${id}/nearby`)
+      .then((response) => {
+        const mappedOffers = response.data.map((it) => new Offer(it));
+        dispatch(ActionCreator.setOffersNearby(mappedOffers));
+      });
+  },
+
 
   loadReviews: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
