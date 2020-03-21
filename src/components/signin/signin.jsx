@@ -1,6 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import history from '../../history.js';
+import {Redirect} from "react-router-dom";
+import {getAuthorizationStatusSelector} from "../../selectors.js";
+import {Operation} from "../../reducer";
 
 class Signin extends PureComponent {
   constructor(props) {
@@ -10,6 +15,15 @@ class Signin extends PureComponent {
     this.passwordRef = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {authorizationStatus} = this.props;
+    if (prevProps.authorizationStatus !== this.props.authorizationStatus) {
+      return (authorizationStatus === `AUTH`) ? true : history.push(`/`);
+    }
+
+    return true;
   }
 
   handleSubmit(evt) {
@@ -86,4 +100,15 @@ Signin.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default Signin;
+const mapStateToProps = (state) => {
+  return {
+    authorizationStatus: getAuthorizationStatusSelector(state)
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  checkAuth: () => dispatch(Operation.checkAuth)
+});
+
+export {Signin};
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

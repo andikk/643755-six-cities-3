@@ -34,7 +34,6 @@ const Main = (props) => {
     user} = props;
 
   const offersCount = offers.length;
-  // const {userEmail} = user;
 
   return (
     <div className="page page--gray page--main">
