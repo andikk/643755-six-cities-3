@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // отзыв
 const ReviewsItem = (props) => {
 
-  const {text, rating, user, date} = props.review;
+  const {comment, rating, user, date} = props.review;
 
   return (
     <li className="reviews__item">
@@ -13,7 +13,7 @@ const ReviewsItem = (props) => {
             alt="Reviews avatar"/>
         </div>
         <span className="reviews__user-name">
-          {user}
+          {user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -24,7 +24,7 @@ const ReviewsItem = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {text}
+          {comment}
         </p>
         <time className="reviews__time" dateTime={date}>{date}</time>
       </div>
@@ -35,12 +35,11 @@ const ReviewsItem = (props) => {
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
     id: PropTypes.number,
-    text: PropTypes.string,
-    user: PropTypes.string,
+    comment: PropTypes.string,
+    user: PropTypes.object,
     rating: PropTypes.number,
     date: PropTypes.string
   })
 };
-
 
 export default ReviewsItem;

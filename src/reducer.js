@@ -9,6 +9,7 @@ const AuthorizationStatus = {
 export const initialState = {
   city: {},
   offers: [],
+  reviews: [],
   activeFilter: {label: `Popular`, value: `ALL`},
   activeOffer: null,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -18,6 +19,7 @@ export const initialState = {
 const ActionType = {
   SET_CITY: `SET_CITY`,
   SET_OFFERS: `SET_OFFERS`,
+  SET_REVIEWS: `SET_REVIEWS`,
   SET_FILTER: `SET_FILTER`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
@@ -32,6 +34,11 @@ const ActionCreator = {
 
   setOffers: (payload) => ({
     type: ActionType.SET_OFFERS,
+    payload,
+  }),
+
+  setReviews: (payload) => ({
+    type: ActionType.SET_REVIEWS,
     payload,
   }),
 
@@ -70,6 +77,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         offers: action.payload,
       });
+    case ActionType.SET_REVIEWS:
+      return Object.assign({}, state, {
+        reviews: action.payload,
+      });
     case ActionType.SET_FILTER:
       return Object.assign({}, state, {
         activeFilter: action.payload,
@@ -97,6 +108,13 @@ const Operation = {
         const mappedOffers = response.data.map((it) => new Offer(it));
         dispatch(ActionCreator.setCity(mappedOffers[0].city));
         dispatch(ActionCreator.setOffers(mappedOffers));
+      });
+  },
+
+  loadReviews: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) => {
+        dispatch(ActionCreator.setReviews(response.data));
       });
   },
 

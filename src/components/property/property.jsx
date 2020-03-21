@@ -5,12 +5,21 @@ import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
 import {connect} from "react-redux";
 import {getOfferByIdSelector} from "../../selectors";
+import ReviewForm from "../review-form/review-form.jsx";
+import {Operation} from "../../reducer";
+
 
 // страница предложения
 class Property extends PureComponent {
 
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const {loadReviews, offerId} = this.props;
+    console.log(offerId);
+    loadReviews(offerId);
   }
 
   render() {
@@ -126,8 +135,11 @@ class Property extends PureComponent {
                     </p>
                   </div>
                 </div>
-
-                <ReviewsList className="property__reviews" reviews={reviews}/>
+                <section className="property__reviews reviews">
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                  <ReviewsList className="property__reviews" reviews={reviews}/>
+                  <ReviewForm/>
+                </section>
 
               </div>
             </div>
@@ -164,12 +176,19 @@ Property.propTypes = {
     reviews: PropTypes.array,
     neighborhood: PropTypes.array,
     city: PropTypes.object
-  }).isRequired
+  }).isRequired,
+  loadReviews: PropTypes.func,
+  offerId: PropTypes.number
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  card: getOfferByIdSelector(state)(Number(ownProps.match.params.id))
+  card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
+  offerId: Number(ownProps.match.params.id)
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id))
 });
 
 export {Property};
-export default connect(mapStateToProps)(Property);
+export default connect(mapStateToProps, mapDispatchToProps)(Property);
