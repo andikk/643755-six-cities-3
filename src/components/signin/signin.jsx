@@ -19,23 +19,25 @@ class Signin extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {authorizationStatus, history} = this.props;
-    console.log(history);
+
     if (prevProps.authorizationStatus !== this.props.authorizationStatus) {
-      return (authorizationStatus === `AUTH`) ? true : history.push(`/`);
+      console.log((authorizationStatus === `AUTH`));
+      //return (authorizationStatus === `NO_AUTH`) ? true : history.push(`/`);
     }
 
     return true;
   }
 
   handleSubmit(evt) {
-    const {login} = this.props;
+    const {login, history} = this.props;
 
     evt.preventDefault();
-
-    login({
+    console.log(login);
+    return login({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
-    });
+    }).then(() => {console.log(123)});
+    //history.push(`/`);
   }
 
   render() {
