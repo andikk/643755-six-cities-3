@@ -9,7 +9,7 @@ const PlaceCard = (props) => {
   const {onCardHover} = props;
 
   return (
-    <article className={`${classNameForArticle}place-card place-card`}
+    <article className={`${classNameForArticle} place-card`}
       onMouseEnter={() => {
         onCardHover(card);
       }}

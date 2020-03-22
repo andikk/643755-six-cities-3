@@ -7,8 +7,7 @@ import Favorites from "../favorites/favorites.jsx";
 import Property from "../property/property.jsx";
 import {getSortedOffersInCitySelector} from "../../selectors";
 import Signin from "../signin/signin.jsx";
-import {Operation} from "../../reducer";
-import history from "../../history";
+import history from "../../history.js";
 import withRouteAuth from "../../hocs/with-route-auth.js";
 
 const AuthRoute = withRouteAuth(Route);
@@ -19,7 +18,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, login} = this.props;
+    const {offers} = this.props;
 
     return (
       <BrowserRouter history={history}>
@@ -27,9 +26,7 @@ class App extends PureComponent {
           <Route exact path="/">
             <Main offers={offers}/>
           </Route>
-          <Route exact path="/login">
-            <Signin onSubmit={login}/>
-          </Route>
+          <Route exact path="/login" component={Signin}/>
           <AuthRoute exact path="/favorites">
             <Favorites/>
           </AuthRoute>
@@ -51,18 +48,11 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  login: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   offers: getSortedOffersInCitySelector(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(Operation.login(authData));
-  }
-});
-
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

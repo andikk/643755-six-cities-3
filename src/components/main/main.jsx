@@ -80,12 +80,12 @@ const Main = (props) => {
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content places__list"
-                  classNameForArticle="cities__"
+                  classNameForArticle="cities__place-card"
                   offers={offers}
                   onCardHover={onCardHover}/>
               </section>
               <div className="cities__right-section">
-                <Map className={`cities__map`}
+                <Map className="cities__map"
                   city={city}
                   coordinates={coordinates}
                   activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>

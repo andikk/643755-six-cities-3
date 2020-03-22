@@ -2,8 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import history from '../../history.js';
-import {Redirect} from "react-router-dom";
+//import history from '../../history.js';
 import {getAuthorizationStatusSelector} from "../../selectors.js";
 import {Operation} from "../../reducer";
 
@@ -18,7 +17,7 @@ class Signin extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {authorizationStatus} = this.props;
+    const {authorizationStatus, history} = this.props;
     if (prevProps.authorizationStatus !== this.props.authorizationStatus) {
       return (authorizationStatus === `AUTH`) ? true : history.push(`/`);
     }
@@ -27,11 +26,11 @@ class Signin extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {login} = this.props;
 
     evt.preventDefault();
 
-    onSubmit({
+    login({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -97,7 +96,7 @@ class Signin extends PureComponent {
 
 
 Signin.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -107,7 +106,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  checkAuth: () => dispatch(Operation.checkAuth)
+  checkAuth: () => dispatch(Operation.checkAuth),
+  login(authData) {
+    dispatch(Operation.login(authData));
+  }
 });
 
 export {Signin};

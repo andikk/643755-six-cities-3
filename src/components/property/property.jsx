@@ -16,18 +16,16 @@ class Property extends PureComponent {
     super(props);
   }
 
-  componentWillMount() {
-     const {loadOffers} = this.props;
-      loadOffers();
-  }
-
   componentDidMount() {
-    const {loadReviews, loadNearby, loadOffers, offerId} = this.props;
+    const {loadReviews, loadNearby, offerId} = this.props;
     loadReviews(offerId);
     loadNearby(offerId);
   }
 
   render() {
+    if (!this.props.card) {
+      return null;
+    }
     const {card, reviews, neighborhood, onCardHover} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
@@ -149,7 +147,7 @@ class Property extends PureComponent {
               </div>
             </div>
 
-            <Map className={`cities__map`}
+            <Map className={`property__map`}
               city={city}
               coordinates={coordinatesNearby}
               activeMarker={coordinates}/>
@@ -161,7 +159,7 @@ class Property extends PureComponent {
 
               <PlacesList offers={neighborhood}
                 onCardHover={onCardHover}
-                className={`near-places__list `} classNameForArticle="near-places__"/>
+                className="near-places__list places__list" classNameForArticle="near-places__card"/>
 
             </section>
           </div>
@@ -206,7 +204,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadOffers: () => dispatch(Operation.loadOffers),
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
   onCardHover: ActionCreator.setActiveOffer,
