@@ -4,9 +4,15 @@ import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import PlacesList from "../places-list/places-list.jsx";
 import {connect} from "react-redux";
-import {getOfferByIdSelector, getReviewsSelector, getOffersNearbySelector} from "../../selectors";
+import {
+  getOfferByIdSelector,
+  getReviewsSelector,
+  getOffersNearbySelector,
+  getAuthorizationStatusSelector, getUserSelector
+} from "../../selectors";
 import ReviewForm from "../review-form/review-form.jsx";
 import {ActionCreator, Operation} from "../../reducer";
+import {Link} from "react-router-dom";
 
 
 // страница предложения
@@ -17,16 +23,17 @@ class Property extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadReviews, loadNearby, offerId} = this.props;
+    const {loadReviews, loadNearby, offerId, checkAuth} = this.props;
     loadReviews(offerId);
     loadNearby(offerId);
+    checkAuth();
   }
 
   render() {
     if (!this.props.card) {
       return null;
     }
-    const {card, reviews, neighborhood, onCardHover} = this.props;
+    const {card, reviews, neighborhood, onCardHover, authorizationStatus, user} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
@@ -43,11 +50,18 @@ class Property extends PureComponent {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
+                    {(authorizationStatus === `AUTH`) &&
+                    <Link to="/favorites" className="header__nav-link header__nav-link--profile" href="#">
+                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
+                      <span className="header__user-name user__name">{ user.email }</span>
+                    </Link>
+                    }
+                    {(authorizationStatus === `NO_AUTH`) &&
+                    <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
+                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
+                      <span className="header__login">Sign in</span>
+                    </Link>
+                    }
                   </li>
                 </ul>
               </nav>
@@ -141,7 +155,9 @@ class Property extends PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList className="property__reviews" reviews={reviews}/>
+                  {(authorizationStatus === `AUTH`) &&
                   <ReviewForm/>
+                  }
                 </section>
 
               </div>
@@ -191,21 +207,27 @@ Property.propTypes = {
   reviews: PropTypes.array,
   neighborhood: PropTypes.array,
   onCardHover: PropTypes.func,
+  checkAuth: PropTypes.func,
+  authorizationStatus: PropTypes.string,
+  user: PropTypes.object
 };
 
 const mapStateToProps = (state, ownProps) => {
 
   return ({
+    user: getUserSelector(state),
     card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
     offerId: Number(ownProps.match.params.id),
     reviews: getReviewsSelector(state),
-    neighborhood: getOffersNearbySelector(state)
+    neighborhood: getOffersNearbySelector(state),
+    authorizationStatus: getAuthorizationStatusSelector(state)
   });
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
+  checkAuth: () => dispatch(Operation.checkAuth),
   onCardHover: ActionCreator.setActiveOffer,
 });
 

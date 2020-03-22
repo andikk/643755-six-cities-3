@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 //import history from '../../history.js';
 import {getAuthorizationStatusSelector} from "../../selectors.js";
 import {Operation} from "../../reducer";
+import {getUserSelector} from "../../selectors";
 
 class Signin extends PureComponent {
   constructor(props) {
@@ -18,6 +19,7 @@ class Signin extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {authorizationStatus, history} = this.props;
+    console.log(history);
     if (prevProps.authorizationStatus !== this.props.authorizationStatus) {
       return (authorizationStatus === `AUTH`) ? true : history.push(`/`);
     }
@@ -37,6 +39,7 @@ class Signin extends PureComponent {
   }
 
   render() {
+
     return (
       <div className="page page--gray page--login">
         <header className="header">
@@ -50,11 +53,12 @@ class Signin extends PureComponent {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
+
+                    <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
+                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
                       <span className="header__login">Sign in</span>
-                    </a>
+                    </Link>
+
                   </li>
                 </ul>
               </nav>
@@ -97,6 +101,8 @@ class Signin extends PureComponent {
 
 Signin.propTypes = {
   login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string,
+  history: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
