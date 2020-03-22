@@ -2,10 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-//import history from '../../history.js';
 import {getAuthorizationStatusSelector} from "../../selectors.js";
 import {Operation} from "../../reducer";
-import {getUserSelector} from "../../selectors";
 
 class Signin extends PureComponent {
   constructor(props) {
@@ -18,26 +16,25 @@ class Signin extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {authorizationStatus, history} = this.props;
+    const {authorizationStatus, history, location} = this.props;
+    const {state: {referer = `/`} = {}} = location;
 
     if (prevProps.authorizationStatus !== this.props.authorizationStatus) {
-      console.log((authorizationStatus === `AUTH`));
-      //return (authorizationStatus === `NO_AUTH`) ? true : history.push(`/`);
+      return (authorizationStatus === `NO_AUTH`) ? true : history.push(referer);
     }
 
     return true;
   }
 
   handleSubmit(evt) {
-    const {login, history} = this.props;
+    const {login} = this.props;
 
     evt.preventDefault();
-    console.log(login);
+
     return login({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
-    }).then(() => {console.log(123)});
-    //history.push(`/`);
+    });
   }
 
   render() {
@@ -100,11 +97,11 @@ class Signin extends PureComponent {
   }
 }
 
-
 Signin.propTypes = {
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string,
-  history: PropTypes.object
+  history: PropTypes.object,
+  location: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
@@ -113,11 +110,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  checkAuth: () => dispatch(Operation.checkAuth),
-  login(authData) {
-    dispatch(Operation.login(authData));
-  }
+const mapDispatchToProps = (dispatch) => ({
+  login: (authData) => dispatch(Operation.login(authData))
 });
 
 export {Signin};

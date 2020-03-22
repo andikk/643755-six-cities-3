@@ -14,26 +14,29 @@ import ReviewForm from "../review-form/review-form.jsx";
 import {ActionCreator, Operation} from "../../reducer";
 import {Link} from "react-router-dom";
 
-
 // страница предложения
 class Property extends PureComponent {
-
   constructor(props) {
     super(props);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.card !== prevProps.card) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   componentDidMount() {
-    const {loadReviews, loadNearby, offerId, checkAuth} = this.props;
+    const {loadReviews, loadNearby, offerId} = this.props;
     loadReviews(offerId);
     loadNearby(offerId);
-    checkAuth();
   }
 
   render() {
     if (!this.props.card) {
       return null;
     }
-    const {card, reviews, neighborhood, onCardHover, authorizationStatus, user} = this.props;
+    const {card = {}, reviews = [], neighborhood = [], onCardHover, authorizationStatus, user = {}} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
@@ -163,9 +166,9 @@ class Property extends PureComponent {
               </div>
             </div>
 
-            <Map className={`property__map`}
+            <Map className="property__map"
               city={city}
-              coordinates={coordinatesNearby}
+              coordinates={[...coordinatesNearby, coordinates]}
               activeMarker={coordinates}/>
 
           </section>
@@ -207,7 +210,6 @@ Property.propTypes = {
   reviews: PropTypes.array,
   neighborhood: PropTypes.array,
   onCardHover: PropTypes.func,
-  checkAuth: PropTypes.func,
   authorizationStatus: PropTypes.string,
   user: PropTypes.object
 };
@@ -227,7 +229,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
-  checkAuth: () => dispatch(Operation.checkAuth),
   onCardHover: ActionCreator.setActiveOffer,
 });
 

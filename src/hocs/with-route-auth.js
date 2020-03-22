@@ -9,8 +9,6 @@ const withRouteAuth = (Component) => {
     const {location} = props;
     const currentLocation = location && location.pathname;
 
-    console.log(hasAuth);
-
     return (hasAuth === `AUTH`) ? (
       <Component {...props}/>
     ) : (
