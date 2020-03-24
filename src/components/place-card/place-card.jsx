@@ -5,8 +5,19 @@ import {Link} from 'react-router-dom';
 const PlaceCard = (props) => {
   const {card, classNameForArticle} = props;
 
-  const {premium, src, price, rating, name, type, id} = card;
-  const {onCardHover} = props;
+  const {premium, src, price, rating, name, type, id, isFavorite} = card;
+  const {onCardHover, onBookmarkClick} = props;
+
+  const handleBookmarkClick = () => {
+    const BookmarkActions = {
+      ADD: `1`,
+      REMOVE: `0`
+    };
+
+    const {ADD, REMOVE} = BookmarkActions;
+    const status = isFavorite ? REMOVE : ADD;
+    onBookmarkClick(id, status);
+  };
 
   return (
     <article className={`${classNameForArticle} place-card`}
@@ -34,7 +45,8 @@ const PlaceCard = (props) => {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={`place-card__bookmark-button place-card__bookmark-button${isFavorite ? `--active` : ``} button`}
+            type="button" onClick={handleBookmarkClick}>
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -61,6 +73,7 @@ PlaceCard.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     premium: PropTypes.bool,
+    isFavorite: PropTypes.bool,
     src: PropTypes.string,
     price: PropTypes.number,
     rating: PropTypes.number,
@@ -69,6 +82,7 @@ PlaceCard.propTypes = {
   className: PropTypes.string,
   classNameForArticle: PropTypes.string,
   onCardHover: PropTypes.func,
+  onBookmarkClick: PropTypes.func,
 };
 
 export default PlaceCard;

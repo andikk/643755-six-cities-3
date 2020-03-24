@@ -130,7 +130,6 @@ const Operation = {
       });
   },
 
-
   loadReviews: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
       .then((response) => {
@@ -158,6 +157,22 @@ const Operation = {
         dispatch(ActionCreator.setUser(response.data));
       });
   },
+
+  addToFavorite: (id, status) => (dispatch, getState, api) => {
+    //dispatch(checkAuth())
+    return api.post(`favorite/${id}/${status}`)
+      .then((response) => {
+        if (response) {
+          // dispatch(loadOffers());
+        //  dispatch(loadFavoriteOffers());
+        } else {
+          return history.push(`/login`);
+        }
+
+        return true;
+      });
+  }
+
 };
 
 export {ActionCreator, ActionType, Operation, reducer};
