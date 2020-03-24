@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 const ReviewsItem = (props) => {
 
   const {comment, rating, user, date} = props.review;
-
+  const monthNames = [`January`, `February`, `March`, `April`, `May`, `June`,
+    `July`, `August`, `September`, `October`, `November`, `December`
+  ];
+  const tmpDate = new Date(date);
+  const displayDate = `${monthNames[tmpDate.getMonth()]} ${tmpDate.getFullYear()}`;
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -26,7 +30,7 @@ const ReviewsItem = (props) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{displayDate}</time>
       </div>
     </li>
   );
