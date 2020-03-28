@@ -36,8 +36,23 @@ class Property extends PureComponent {
     if (!this.props.card) {
       return null;
     }
+
+    const {addToFavorite, offerId} = this.props;
+
+    const handleBookmarkClick = () => {
+      const BookmarkActions = {
+        ADD: `1`,
+        REMOVE: `0`
+      };
+
+      const {ADD, REMOVE} = BookmarkActions;
+      const status = isFavorite ? REMOVE : ADD;
+
+      addToFavorite(offerId, status);
+    };
+
     const {card = {}, reviews = [], neighborhood = [], onCardHover, authorizationStatus, user = {}} = this.props;
-    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates} = card;
+    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates, isFavorite} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
     return (
@@ -98,11 +113,16 @@ class Property extends PureComponent {
                   <h1 className="property__name">
                     {name}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
-                    <svg className="property__bookmark-icon" width="31" height="33">
+                  <button
+                    style={{position: `absolute`, top: `41px`, right: `93px`}}
+                    className={`place-card__bookmark-button place-card__bookmark-button${isFavorite ? `--active` : ``} button`}
+                    type="button"
+                    onClick={handleBookmarkClick}
+                  >
+                    <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
-                    <span className="visually-hidden">To bookmarks</span>
+                    <span className="visually-hidden">In bookmarks</span>
                   </button>
                 </div>
                 <div className="property__rating rating">
@@ -211,14 +231,15 @@ Property.propTypes = {
   neighborhood: PropTypes.array,
   onCardHover: PropTypes.func,
   authorizationStatus: PropTypes.string,
-  user: PropTypes.object
+  user: PropTypes.object,
+  addToFavorite: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {
-
+  const id = Number(ownProps.match.params.id);
   return ({
     user: getUserSelector(state),
-    card: getOfferByIdSelector(state)(Number(ownProps.match.params.id)),
+    card: getOfferByIdSelector(state)(id),
     offerId: Number(ownProps.match.params.id),
     reviews: getReviewsSelector(state),
     neighborhood: getOffersNearbySelector(state),
@@ -230,6 +251,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
   onCardHover: ActionCreator.setActiveOffer,
+  addToFavorite: (id, status) => {
+    return dispatch(Operation.addToFavorite(id, status))
+      .catch(() => {
+        ownProps.history.push(`/login`);
+      });
+  }
 });
 
 export {Property};

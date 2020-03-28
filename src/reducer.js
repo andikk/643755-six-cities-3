@@ -1,5 +1,5 @@
-//  import offers from "./mocks/offers";
 import Offer from "./Offer.js";
+import {getOfferByIdSelector} from "./selectors.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -8,11 +8,13 @@ const AuthorizationStatus = {
 
 export const initialState = {
   city: {},
-  offers: [],
-  offersNearby: [],
+  offersIds: [],
+  offersMap: {},
+  offersNearbyIds: [],
+  offersFavorites: [],
   reviews: [],
+  activeOfferId: null,
   activeFilter: {label: `Popular`, value: `ALL`},
-  activeOffer: null,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: null,
 };
@@ -24,6 +26,7 @@ const ActionType = {
   SET_REVIEWS: `SET_REVIEWS`,
   SET_FILTER: `SET_FILTER`,
   SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
+  SET_FAVORITE_OFFER: `SET_FAVORITE_OFFER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER: `SET_USER`,
 };
@@ -59,6 +62,12 @@ const ActionCreator = {
     payload,
   }),
 
+  setFavoriteOffer: (id, payload) => ({
+    type: ActionType.SET_FAVORITE_OFFER,
+    meta: {id},
+    payload,
+  }),
+
   requireAuthorization: (status) => {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
@@ -82,11 +91,21 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SET_OFFERS:
       return Object.assign({}, state, {
-        offers: action.payload,
+        offersIds: action.payload.map((offer) => offer.id),
+        offersMap: action.payload.reduce((out, offer) => {
+          out[offer.id] = offer;
+          return out;
+        }, {})
       });
     case ActionType.SET_OFFERS_NEARBY:
       return Object.assign({}, state, {
-        offersNearby: action.payload,
+        offersNearbyIds: action.payload.map((offer) => offer.id),
+        offersMap: Object.assign({},
+            state.offersMap,
+            action.payload.reduce((out, offer) => {
+              out[offer.id] = offer;
+              return out;
+            }, {})),
       });
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
@@ -98,7 +117,16 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SET_ACTIVE_OFFER:
       return Object.assign({}, state, {
-        activeOffer: action.payload,
+        activeOfferId: action.payload,
+      });
+    case ActionType.SET_FAVORITE_OFFER:
+      return Object.assign({}, state, {
+        offersMap: Object.assign({}, state.offersMap, {
+          [action.meta.id]: Object.assign({},
+              state.offersMap[action.meta.id],
+              {isFavorite: action.payload}
+          ),
+        })
       });
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
@@ -158,18 +186,14 @@ const Operation = {
       });
   },
 
-  addToFavorite: (id, status) => (dispatch, getState, api) => {
-    //dispatch(checkAuth())
+  addToFavorite: (id) => (dispatch, getState, api) => {
+    const state = getState();
+    const offer = getOfferByIdSelector(state)(id);
+    const status = offer.isFavorite ? 0 : 1;
+
     return api.post(`favorite/${id}/${status}`)
       .then((response) => {
-        if (response) {
-          // dispatch(loadOffers());
-        //  dispatch(loadFavoriteOffers());
-        } else {
-          return history.push(`/login`);
-        }
-
-        return true;
+        dispatch(ActionCreator.setFavoriteOffer(id, !!status));
       });
   }
 

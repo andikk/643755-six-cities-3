@@ -16,6 +16,7 @@ const PlaceCard = (props) => {
 
     const {ADD, REMOVE} = BookmarkActions;
     const status = isFavorite ? REMOVE : ADD;
+
     onBookmarkClick(id, status);
   };
 

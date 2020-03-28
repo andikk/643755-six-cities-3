@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {Operation} from "../../reducer.js";
 
 // список предложений
 const PlacesList = (props) => {
@@ -29,8 +29,13 @@ PlacesList.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  addToFavorite: (id, status) => dispatch(ActionCreator.addToFavorite(id, status)),
+  addToFavorite: (id, status) => {
+    return dispatch(Operation.addToFavorite(id, status))
+      .catch(() => {
+        ownProps.history.push(`/login`);
+      });
+  }
 });
 
 export {PlacesList};
-export default connect(mapDispatchToProps)(PlacesList);
+export default connect(null, mapDispatchToProps)(PlacesList);

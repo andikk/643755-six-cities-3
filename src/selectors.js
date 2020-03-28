@@ -2,13 +2,31 @@ import {createSelector} from 'reselect';
 import {sortOffers} from "./utils.js";
 
 const getActiveFilter = (state) => state.activeFilter;
-const getOffersSelector = (state) => state.offers;
-const getOffersNearbySelector = (state) => state.offersNearby;
+const getOffersIdsSelector = (state) => state.offersIds;
+const getOffersMapSelector = (state) => state.offersMap;
+//const getOffersNearbySelector = (state) => state.offersNearby;
+const getOffersNearbyIdsSelector = (state) => state.offersNearbyIds;
 const getReviewsSelector = (state) => state.reviews;
 const getCitySelector = (state) => state.city;
-const getActiveOfferSelector = (state) => state.activeOffer;
+//const getActiveOfferSelector = (state) => state.activeOffer;
+const getActiveOfferIdSelector = (state) => state.activeOfferId;
 const getAuthorizationStatusSelector = (state) => state.authorizationStatus;
 const getUserSelector = (state) => state.user;
+
+const getOffersSelector = createSelector(
+  getOffersIdsSelector, getOffersMapSelector,
+  (offersIds, offersMap) => offersIds.map(id => offersMap[id])
+);
+
+const getActiveOfferSelector = createSelector (
+  getActiveOfferIdSelector, getOffersMapSelector,
+  (offerId, offersMap) => offersMap[offerId]
+);
+
+const getOffersNearbySelector = createSelector (
+  getOffersNearbyIdsSelector, getOffersMapSelector,
+  (offersNearbyIds, offersMap) => offersNearbyIds.map(id => offersMap[id])
+);
 
 const getCitiesListSelector = createSelector(
     getOffersSelector,
@@ -33,8 +51,8 @@ const getSortedOffersInCitySelector = createSelector(
 );
 
 const getOfferByIdSelector = createSelector(
-    getOffersSelector,
-    (offers) => (id) => offers.find((offer) => offer.id === id)
+    getOffersMapSelector,
+    (offersMap) => (id) => offersMap[id],
 );
 
 export {getCitiesListSelector,

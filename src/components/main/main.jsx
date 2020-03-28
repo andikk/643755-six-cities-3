@@ -82,7 +82,8 @@ const Main = (props) => {
                 <PlacesList className="cities__places-list tabs__content places__list"
                   classNameForArticle="cities__place-card"
                   offers={offers}
-                  onCardHover={onCardHover}/>
+                  history={props.history}
+                  onCardHover={({id}) => onCardHover(id)}/>
               </section>
               <div className="cities__right-section">
                 <Map className="cities__map"
