@@ -11,7 +11,7 @@ import {
   getAuthorizationStatusSelector, getUserSelector
 } from "../../selectors";
 import ReviewForm from "../review-form/review-form.jsx";
-import {ActionCreator, Operation} from "../../reducer";
+import {Operation} from "../../reducer.js";
 import {Link} from "react-router-dom";
 
 // страница предложения
@@ -51,7 +51,7 @@ class Property extends PureComponent {
       addToFavorite(offerId, status);
     };
 
-    const {card = {}, reviews = [], neighborhood = [], onCardHover, authorizationStatus, user = {}} = this.props;
+    const {card = {}, reviews = [], neighborhood = [], authorizationStatus, user = {}} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates, isFavorite} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
@@ -197,7 +197,6 @@ class Property extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
               <PlacesList offers={neighborhood}
-                onCardHover={onCardHover}
                 className="near-places__list places__list" classNameForArticle="near-places__card"/>
 
             </section>
@@ -250,7 +249,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   loadReviews: () => dispatch(Operation.loadReviews(ownProps.match.params.id)),
   loadNearby: () => dispatch(Operation.loadNearby(ownProps.match.params.id)),
-  onCardHover: ActionCreator.setActiveOffer,
   addToFavorite: (id, status) => {
     return dispatch(Operation.addToFavorite(id, status))
       .catch(() => {

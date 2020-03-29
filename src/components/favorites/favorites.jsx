@@ -1,13 +1,37 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import PlacesList from "../places-list/places-list.jsx";
+import {connect} from "react-redux";
+import {Operation} from "../../reducer";
+import {getOffersFavoritesSelector} from "../../selectors.js";
 
 class Favorites extends PureComponent {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    const {loadFavorites} = this.props;
+    loadFavorites();
+  }
+
+
   render() {
+
+    const {favoritesOffers, addToFavorite} = this.props;
+
+    // const handleBookmarkClick = () => {
+    //   const BookmarkActions = {
+    //     ADD: `1`,
+    //     REMOVE: `0`
+    //   };
+    //
+    //   const {ADD, REMOVE} = BookmarkActions;
+    //   const status = REMOVE;
+    //
+    //   addToFavorite(offerId, status);
+    // };
+
+
 
     return (
       <div className="page">
@@ -47,10 +71,7 @@ class Favorites extends PureComponent {
                       </a>
                     </div>
                   </div>
-                  {/*<PlacesList className="favorites__places"*/}
-                  {/*  classNameForArticle="favorites__"*/}
-                  {/*  offers={offers}*/}
-                  {/*/>*/}
+
                   <div className="favorites__places">
                     <article className="favorites__card place-card">
                       <div className="favorites__image-wrapper place-card__image-wrapper">
@@ -180,4 +201,29 @@ class Favorites extends PureComponent {
   }
 }
 
-export default Favorites;
+
+Favorites.propTypes = {
+  favoritesOffers: PropTypes.array,
+  loadFavorites: PropTypes.func,
+  addToFavorite: PropTypes.func,
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    favoritesOffers: getOffersFavoritesSelector(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadFavorites: () => dispatch(Operation.loadFavorites(ownProps.match.params.id)),
+  addToFavorite: (id, status) => {
+    return dispatch(Operation.addToFavorite(id, status))
+      .catch(() => {
+        ownProps.history.push(`/login`);
+      });
+  }
+});
+
+export {Favorites};
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+

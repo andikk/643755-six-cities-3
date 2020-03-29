@@ -31,7 +31,8 @@ const Main = (props) => {
     onCardHover,
     activeOffer,
     authorizationStatus,
-    user} = props;
+    user,
+    history} = props;
 
   const offersCount = offers.length;
 
@@ -82,8 +83,9 @@ const Main = (props) => {
                 <PlacesList className="cities__places-list tabs__content places__list"
                   classNameForArticle="cities__place-card"
                   offers={offers}
-                  history={props.history}
+                  history={history}
                   onCardHover={({id}) => onCardHover(id)}/>
+
               </section>
               <div className="cities__right-section">
                 <Map className="cities__map"
@@ -115,7 +117,8 @@ Main.propTypes = {
   onCardHover: PropTypes.func,
   activeOffer: PropTypes.object,
   authorizationStatus: PropTypes.string,
-  user: PropTypes.object
+  user: PropTypes.object,
+  history: PropTypes.object
 };
 
 Main.defaultProps = {

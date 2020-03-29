@@ -28,6 +28,11 @@ PlacesList.propTypes = {
   classNameForArticle: PropTypes.string
 };
 
+PlacesList.defaultProps = {
+  onCardHover: () => {}
+};
+
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
   addToFavorite: (id, status) => {
     return dispatch(Operation.addToFavorite(id, status))

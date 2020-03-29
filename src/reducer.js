@@ -11,7 +11,7 @@ export const initialState = {
   offersIds: [],
   offersMap: {},
   offersNearbyIds: [],
-  offersFavorites: [],
+  offersFavoritesIds: [],
   reviews: [],
   activeOfferId: null,
   activeFilter: {label: `Popular`, value: `ALL`},
@@ -29,6 +29,7 @@ const ActionType = {
   SET_FAVORITE_OFFER: `SET_FAVORITE_OFFER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER: `SET_USER`,
+  SET_OFFERS_FAVORITES: `SET_OFFERS_FAVORITES`
 };
 
 const ActionCreator = {
@@ -44,6 +45,11 @@ const ActionCreator = {
 
   setOffersNearby: (payload) => ({
     type: ActionType.SET_OFFERS_NEARBY,
+    payload,
+  }),
+
+  setOffersFavorites: (payload) => ({
+    type: ActionType.SET_OFFERS_FAVORITES,
     payload,
   }),
 
@@ -107,6 +113,16 @@ const reducer = (state = initialState, action) => {
               return out;
             }, {})),
       });
+    case ActionType.SET_OFFERS_FAVORITES:
+      return Object.assign({}, state, {
+        offersFavoritesIds: action.payload.map((offer) => offer.id),
+        offersMap: Object.assign({},
+            state.offersMap,
+            action.payload.reduce((out, offer) => {
+              out[offer.id] = offer;
+              return out;
+            }, {})),
+      });
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
         reviews: action.payload,
@@ -155,6 +171,15 @@ const Operation = {
       .then((response) => {
         const mappedOffers = response.data.map((it) => new Offer(it));
         dispatch(ActionCreator.setOffersNearby(mappedOffers));
+      });
+  },
+
+  loadFavorites: () => (dispatch, getState, api) => {
+
+    return api.get(`/favorite`)
+      .then((response) => {
+        const mappedOffers = response.data.map((it) => new Offer(it));
+        dispatch(ActionCreator.setOffersFavorites(mappedOffers));
       });
   },
 
