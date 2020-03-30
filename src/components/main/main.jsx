@@ -82,7 +82,7 @@ const Main = (props) => {
 
                 <PlacesList className="cities__places-list tabs__content places__list"
                   classNameForArticle="cities__place-card"
-                            classNameForItems="cities"
+                  classNameForItems="cities"
                   offers={offers}
                   history={history}
                   onCardHover={({id}) => onCardHover(id)}/>

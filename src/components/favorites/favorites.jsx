@@ -17,28 +17,7 @@ class Favorites extends PureComponent {
 
   render() {
 
-    const {favoritesOffers, addToFavorite, favoritesCities} = this.props;
-    favoritesCities.forEach((city) => {
-      console.log(city.name);
-      favoritesOffers.forEach((offer) => {
-        if (offer.city.name === city.name) {
-          console.log(offer);
-        }
-      });
-    });
-
-
-    // const handleBookmarkClick = () => {
-    //   const BookmarkActions = {
-    //     ADD: `1`,
-    //     REMOVE: `0`
-    //   };
-    //
-    //   const {ADD, REMOVE} = BookmarkActions;
-    //   const status = REMOVE;
-    //
-    //   addToFavorite(offerId, status);
-    // };
+    const {favoritesOffers, favoritesCities} = this.props;
 
     return (
       <div className="page">
@@ -108,7 +87,6 @@ Favorites.propTypes = {
   favoritesOffers: PropTypes.array,
   favoritesCities: PropTypes.array,
   loadFavorites: PropTypes.func,
-  addToFavorite: PropTypes.func,
 };
 
 const mapStateToProps = (state, ownProps) => {
