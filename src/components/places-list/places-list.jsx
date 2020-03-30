@@ -6,13 +6,14 @@ import {Operation} from "../../reducer.js";
 
 // список предложений
 const PlacesList = (props) => {
-  const {offers, onCardHover, addToFavorite, className, classNameForArticle} = props;
+  const {offers, onCardHover, addToFavorite, className, classNameForArticle, classNameForItems} = props;
 
   return (
     <div className={`${className}`}>
       {offers.map((offer) => <PlaceCard key={offer.id} card={offer}
         onCardHover={onCardHover}
         classNameForArticle={classNameForArticle}
+        classNameForItems={classNameForItems}
         onBookmarkClick={addToFavorite}
       />)}
     </div>

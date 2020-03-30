@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
 // карточка предложения
 const PlaceCard = (props) => {
-  const {card, classNameForArticle} = props;
+  const {card, classNameForArticle, classNameForItems} = props;
 
   const {premium, src, price, rating, name, type, id, isFavorite} = card;
   const {onCardHover, onBookmarkClick} = props;
@@ -35,12 +35,12 @@ const PlaceCard = (props) => {
         </div>
       }
 
-      <div className={`${classNameForArticle}image-wrapper place-card__image-wrapper`}>
+      <div className={`${classNameForItems}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={src} width="260" height="200" alt={name}/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${classNameForItems}__card-info place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>

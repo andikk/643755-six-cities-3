@@ -197,7 +197,9 @@ class Property extends PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
               <PlacesList offers={neighborhood}
-                className="near-places__list places__list" classNameForArticle="near-places__card"/>
+                className="near-places__list places__list"
+                classNameForArticle="near-places__card"
+                classNameForItems="near-places"/>
 
             </section>
           </div>

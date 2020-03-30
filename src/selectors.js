@@ -39,6 +39,11 @@ const getCitiesListSelector = createSelector(
     (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city)
 );
 
+const getFavoritesCitiesListSelector = createSelector(
+  getOffersFavoritesSelector,
+  (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city)
+);
+
 const getOffersInCitySelector = createSelector(
     getOffersSelector,
     getCitySelector,
@@ -74,4 +79,5 @@ export {getCitiesListSelector,
   getOfferByIdSelector,
   getReviewsSelector,
   getOffersNearbySelector,
-  getOffersFavoritesSelector};
+  getOffersFavoritesSelector,
+  getFavoritesCitiesListSelector};
