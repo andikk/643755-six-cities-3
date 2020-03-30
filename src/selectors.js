@@ -4,12 +4,10 @@ import {sortOffers} from "./utils.js";
 const getActiveFilter = (state) => state.activeFilter;
 const getOffersIdsSelector = (state) => state.offersIds;
 const getOffersMapSelector = (state) => state.offersMap;
-//const getOffersNearbySelector = (state) => state.offersNearby;
 const getOffersNearbyIdsSelector = (state) => state.offersNearbyIds;
 const getOffersFavoritesIdsSelector = (state) => state.offersFavoritesIds;
 const getReviewsSelector = (state) => state.reviews;
 const getCitySelector = (state) => state.city;
-//const getActiveOfferSelector = (state) => state.activeOffer;
 const getActiveOfferIdSelector = (state) => state.activeOfferId;
 const getAuthorizationStatusSelector = (state) => state.authorizationStatus;
 const getUserSelector = (state) => state.user;
@@ -80,4 +78,5 @@ export {getCitiesListSelector,
   getReviewsSelector,
   getOffersNearbySelector,
   getOffersFavoritesSelector,
-  getFavoritesCitiesListSelector};
+  getFavoritesCitiesListSelector,
+  getActiveOfferIdSelector};

@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
 import UserNav from "../user-nav/user-nav.jsx";
-import {Link} from 'react-router-dom';
 import {getCitiesListSelector,
   getCitySelector,
   getSortedOffersInCitySelector,

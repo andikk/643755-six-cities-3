@@ -29,7 +29,8 @@ const ActionType = {
   SET_FAVORITE_OFFER: `SET_FAVORITE_OFFER`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER: `SET_USER`,
-  SET_OFFERS_FAVORITES: `SET_OFFERS_FAVORITES`
+  SET_OFFERS_FAVORITES: `SET_OFFERS_FAVORITES`,
+  SET_COMMENT: `SET_COMMENT`,
 };
 
 const ActionCreator = {
@@ -87,6 +88,11 @@ const ActionCreator = {
       payload,
     };
   },
+
+  setComment: (payload) => ({
+    type: ActionType.SET_COMMENT,
+    payload,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -209,6 +215,17 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUser(response.data));
+      });
+  },
+
+  addComment: (commentData, offerId) => (dispatch, getState, api) => {
+
+    return api.post(`/comments/${offerId}`, {
+      comment: commentData.text,
+      rating: commentData.rating,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.setComment(response.data));
       });
   },
 
