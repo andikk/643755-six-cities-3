@@ -13,6 +13,7 @@ import {
 import ReviewForm from "../review-form/review-form.jsx";
 import {Operation} from "../../reducer.js";
 import {Link} from "react-router-dom";
+import UserNav from "../user-nav/user-nav.jsx";
 
 // страница предложения
 class Property extends PureComponent {
@@ -51,7 +52,7 @@ class Property extends PureComponent {
       addToFavorite(offerId, status);
     };
 
-    const {card = {}, reviews = [], neighborhood = [], authorizationStatus, user = {}} = this.props;
+    const {card = {}, reviews = [], neighborhood = [], authorizationStatus} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates, isFavorite} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
@@ -65,24 +66,7 @@ class Property extends PureComponent {
                   <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
                 </a>
               </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    {(authorizationStatus === `AUTH`) &&
-                    <Link to="/favorites" className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__user-name user__name">{ user.email }</span>
-                    </Link>
-                    }
-                    {(authorizationStatus === `NO_AUTH`) &&
-                    <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__login">Sign in</span>
-                    </Link>
-                    }
-                  </li>
-                </ul>
-              </nav>
+              <UserNav/>
             </div>
           </div>
         </header>
@@ -231,15 +215,13 @@ Property.propTypes = {
   reviews: PropTypes.array,
   neighborhood: PropTypes.array,
   onCardHover: PropTypes.func,
-  authorizationStatus: PropTypes.string,
-  user: PropTypes.object,
   addToFavorite: PropTypes.func,
+  authorizationStatus: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) => {
   const id = Number(ownProps.match.params.id);
   return ({
-    user: getUserSelector(state),
     card: getOfferByIdSelector(state)(id),
     offerId: Number(ownProps.match.params.id),
     reviews: getReviewsSelector(state),

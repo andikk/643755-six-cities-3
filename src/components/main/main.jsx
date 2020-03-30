@@ -7,15 +7,14 @@ import Map from "../map/map.jsx";
 import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
+import UserNav from "../user-nav/user-nav.jsx";
 import {Link} from 'react-router-dom';
 import {getCitiesListSelector,
   getCitySelector,
   getSortedOffersInCitySelector,
   getCoordinatesInCitySelector,
   getActiveFilter,
-  getActiveOfferSelector,
-  getAuthorizationStatusSelector,
-  getUserSelector} from "../../selectors.js";
+  getActiveOfferSelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
@@ -30,8 +29,6 @@ const Main = (props) => {
     activeFilter,
     onCardHover,
     activeOffer,
-    authorizationStatus,
-    user,
     history} = props;
 
   const offersCount = offers.length;
@@ -46,24 +43,7 @@ const Main = (props) => {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
               </a>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  {(authorizationStatus === `AUTH`) &&
-                    <Link to="/favorites" className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                      <span className="header__user-name user__name">{ user && user.email }</span>
-                    </Link>
-                  }
-                  {(authorizationStatus === `NO_AUTH`) &&
-                      <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
-                        <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
-                        <span className="header__login">Sign in</span>
-                      </Link>
-                  }
-                </li>
-              </ul>
-            </nav>
+            <UserNav/>
           </div>
         </div>
       </header>
@@ -117,8 +97,6 @@ Main.propTypes = {
   activeFilter: PropTypes.object,
   onCardHover: PropTypes.func,
   activeOffer: PropTypes.object,
-  authorizationStatus: PropTypes.string,
-  user: PropTypes.object,
   history: PropTypes.object
 };
 
@@ -129,8 +107,6 @@ Main.defaultProps = {
 const mapStateToProps = (state) => {
 
   return {
-    user: getUserSelector(state),
-    authorizationStatus: getAuthorizationStatusSelector(state),
     offers: getSortedOffersInCitySelector(state),
     city: getCitySelector(state),
     activeFilter: getActiveFilter(state),
