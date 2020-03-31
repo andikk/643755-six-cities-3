@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 import withReviewForm from "../../hocs/with-review-form.js";
 
 const MAX_RATING = 5;
-const toIndex = (it, index) => index + 1;
 
+const toIndex = (it, index) => MAX_RATING - index;
 const ReviewForm = (props) => {
-  const {rating, comment, invalid, submitting, onRatingChange, onCommentChange, addComment, offerId} = props;
+  const {rating, comment, invalid, submitting, onRatingChange, onCommentChange, addComment, offerId, onSubmit} = props;
   const ratings = Array.from({length: MAX_RATING}, toIndex);
   const disabled = invalid || submitting;
 
-  const handleSubmit = (evt) => {
-
-    evt.preventDefault();
-
-    return addComment({
-      text: comment,
-      rating,
-    }, offerId);
-  };
-
+  // const handleSubmit = (evt) => {
+  //
+  //   evt.preventDefault();
+  //
+  //   return addComment({
+  //     text: comment,
+  //     rating,
+  //   }, offerId);
+  //
+  // };
 
   return (
-    <form className="reviews__form form" onSubmit={handleSubmit} action="" method="post">
+    <form className="reviews__form form" onSubmit={onSubmit} action="" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratings.map((it) => (
@@ -36,7 +36,6 @@ const ReviewForm = (props) => {
             </label>
           </React.Fragment>
         ))}
-
       </div>
 
       <textarea value={comment}
@@ -69,4 +68,3 @@ ReviewForm.propTypes = {
 
 export {ReviewForm};
 export default withReviewForm(ReviewForm);
-

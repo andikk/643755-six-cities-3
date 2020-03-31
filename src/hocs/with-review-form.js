@@ -21,7 +21,7 @@ const withReviewForm = (Component) => {
       this._handleCommentChange = this._handleCommentChange.bind(this);
       this._resetSubmitting = this._resetSubmitting.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
-
+      this._resetFormValues = this._resetFormValues(this);
       this._isMounted = true;
     }
 
@@ -62,15 +62,21 @@ const withReviewForm = (Component) => {
       }
     }
 
+    _resetFormValues() {
+
+      this.setState({comment: ``});
+    }
+
     _handleSubmit() {
       const {onSubmit} = this.props;
       const {rating, comment} = this.state;
-
+      console.log(123);
       this.setState({submitting: true});
 
       return onSubmit({rating, comment})
         .then((response) => {
           this._resetSubmitting();
+          this._resetFormValues();
           return response;
         })
         .catch(this._resetSubmitting);
