@@ -68,12 +68,12 @@ const withReviewForm = (Component) => {
     }
 
     _handleSubmit() {
-      const {onSubmit} = this.props;
+      const {onSubmit, offerId} = this.props;
       const {rating, comment} = this.state;
-      console.log(123);
+
       this.setState({submitting: true});
 
-      return onSubmit({rating, comment})
+      return onSubmit({rating, comment}, offerId)
         .then((response) => {
           this._resetSubmitting();
           this._resetFormValues();
@@ -121,6 +121,7 @@ export const withReviewFormPropTypes = {
   onCommentChange: PropTypes.func,
   /** Обработчик события изменения комментария */
   onSubmit: PropTypes.func,
+  offerId: PropTypes.number
 };
 
 export default withReviewForm;
