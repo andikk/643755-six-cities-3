@@ -38,7 +38,7 @@ class Property extends PureComponent {
       return null;
     }
 
-    const {addToFavorite, offerId} = this.props;
+    const {addToFavorite, offerId, addComment} = this.props;
 
     const handleBookmarkClick = () => {
       const BookmarkActions = {
@@ -163,7 +163,7 @@ class Property extends PureComponent {
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList className="property__reviews" reviews={reviews}/>
                   {(authorizationStatus === `AUTH`) &&
-                  <ReviewForm offerId={offerId}/>
+                  <ReviewForm offerId={offerId} addComment={addComment}/>
                   }
                 </section>
 
@@ -216,7 +216,8 @@ Property.propTypes = {
   neighborhood: PropTypes.array,
   onCardHover: PropTypes.func,
   addToFavorite: PropTypes.func,
-  authorizationStatus: PropTypes.string
+  authorizationStatus: PropTypes.string,
+  addComment: PropTypes.func
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -238,7 +239,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       .catch(() => {
         ownProps.history.push(`/login`);
       });
-  }
+  },
+  addComment: (commentData, offerId) => dispatch(Operation.addComment(commentData, offerId))
 });
 
 export {Property};
