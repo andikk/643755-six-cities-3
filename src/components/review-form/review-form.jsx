@@ -10,19 +10,19 @@ const ReviewForm = (props) => {
   const ratings = Array.from({length: MAX_RATING}, toIndex);
   const disabled = invalid || submitting;
 
-  // const handleSubmit = (evt) => {
-  //
-  //   evt.preventDefault();
-  //
-  //   return addComment({
-  //     text: comment,
-  //     rating,
-  //   }, offerId);
-  //
-  // };
+  const handleSubmit = (evt) => {
+
+    evt.preventDefault();
+
+    return onSubmit({
+      text: comment,
+      rating,
+    }, offerId);
+
+  };
 
   return (
-    <form className="reviews__form form" onSubmit={onSubmit} action="" method="post">
+    <form className="reviews__form form" onSubmit={handleSubmit} action="" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {ratings.map((it) => (
