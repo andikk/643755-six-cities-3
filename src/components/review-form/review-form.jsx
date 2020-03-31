@@ -1,16 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getActiveOfferIdSelector} from "../../selectors.js";
 import {Operation} from "../../reducer.js";
-
 
 class ReviewForm extends PureComponent {
   constructor(props) {
     super(props);
 
     this.commentTextRef = React.createRef();
-
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,7 +18,7 @@ class ReviewForm extends PureComponent {
     evt.preventDefault();
 
     return addComment({
-      login: this.commentTextRef.current.value,
+      text: this.commentTextRef.current.value,
       rating: 1,
     }, offerId);
   }
@@ -94,7 +91,7 @@ ReviewForm.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  offerId: getActiveOfferIdSelector(state)
+  //offerId: getActiveOfferIdSelector(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

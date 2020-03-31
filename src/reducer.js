@@ -30,7 +30,6 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_USER: `SET_USER`,
   SET_OFFERS_FAVORITES: `SET_OFFERS_FAVORITES`,
-  SET_COMMENT: `SET_COMMENT`,
 };
 
 const ActionCreator = {
@@ -89,10 +88,6 @@ const ActionCreator = {
     };
   },
 
-  setComment: (payload) => ({
-    type: ActionType.SET_COMMENT,
-    payload,
-  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -225,7 +220,7 @@ const Operation = {
       rating: commentData.rating,
     })
       .then((response) => {
-        dispatch(ActionCreator.setComment(response.data));
+        dispatch(ActionCreator.setReviews(response.data));
       });
   },
 

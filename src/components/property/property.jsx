@@ -163,7 +163,7 @@ class Property extends PureComponent {
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList className="property__reviews" reviews={reviews}/>
                   {(authorizationStatus === `AUTH`) &&
-                  <ReviewForm/>
+                  <ReviewForm offerId={offerId}/>
                   }
                 </section>
 
