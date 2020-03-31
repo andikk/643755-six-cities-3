@@ -101,6 +101,7 @@ const withReviewForm = (Component) => {
   WithReviewForm.propTypes = {
     /** Отправить форму */
     onSubmit: PropTypes.func,
+    offerId: PropTypes.number
   };
 
   return WithReviewForm;
@@ -121,7 +122,6 @@ export const withReviewFormPropTypes = {
   onCommentChange: PropTypes.func,
   /** Обработчик события изменения комментария */
   onSubmit: PropTypes.func,
-  offerId: PropTypes.number
 };
 
 export default withReviewForm;
