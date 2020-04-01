@@ -13,6 +13,7 @@ import {
 import ReviewForm from "../review-form/review-form.jsx";
 import {Operation} from "../../reducer.js";
 import UserNav from "../user-nav/user-nav.jsx";
+import {BookmarkActions} from "../../const.js";
 
 // страница предложения
 class Property extends PureComponent {
@@ -40,10 +41,6 @@ class Property extends PureComponent {
     const {addToFavorite, offerId, addComment} = this.props;
 
     const handleBookmarkClick = () => {
-      const BookmarkActions = {
-        ADD: `1`,
-        REMOVE: `0`
-      };
 
       const {ADD, REMOVE} = BookmarkActions;
       const status = isFavorite ? REMOVE : ADD;

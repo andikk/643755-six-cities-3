@@ -1,5 +1,6 @@
 import Offer from "./Offer.js";
 import {getOfferByIdSelector} from "./selectors.js";
+import {ACTIVE_FILTER} from "./const.js";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -14,7 +15,7 @@ export const initialState = {
   offersFavoritesIds: [],
   reviews: [],
   activeOfferId: null,
-  activeFilter: {label: `Popular`, value: `ALL`},
+  activeFilter: ACTIVE_FILTER,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: null,
 };
@@ -197,7 +198,7 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setUser(user.data));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });
   },
@@ -230,11 +231,10 @@ const Operation = {
     const status = offer.isFavorite ? 0 : 1;
 
     return api.post(`favorite/${id}/${status}`)
-      .then((response) => {
+      .then(() => {
         dispatch(ActionCreator.setFavoriteOffer(id, !!status));
       });
   }
-
 };
 
 export {ActionCreator, ActionType, Operation, reducer};

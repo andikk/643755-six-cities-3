@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from 'react-router-dom';
+import {BookmarkActions} from "../../const.js";
 // карточка предложения
 const PlaceCard = (props) => {
   const {card, classNameForArticle, classNameForItems} = props;
@@ -9,10 +10,6 @@ const PlaceCard = (props) => {
   const {onCardHover, onBookmarkClick} = props;
 
   const handleBookmarkClick = () => {
-    const BookmarkActions = {
-      ADD: `1`,
-      REMOVE: `0`
-    };
 
     const {ADD, REMOVE} = BookmarkActions;
     const status = isFavorite ? REMOVE : ADD;

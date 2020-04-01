@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {ACTIVE_FILTER} from "../../const.js";
 
 const PlacesSorting = (props) => {
 
@@ -34,7 +35,7 @@ PlacesSorting.propTypes = {
 };
 
 PlacesSorting.defaultProps = {
-  activeFilter: {label: `Popular`, value: `ALL`}
+  activeFilter: ACTIVE_FILTER
 };
 
 export default PlacesSorting;

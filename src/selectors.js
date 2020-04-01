@@ -13,23 +13,23 @@ const getAuthorizationStatusSelector = (state) => state.authorizationStatus;
 const getUserSelector = (state) => state.user;
 
 const getOffersSelector = createSelector(
-  getOffersIdsSelector, getOffersMapSelector,
-  (offersIds, offersMap) => offersIds.map(id => offersMap[id])
+    getOffersIdsSelector, getOffersMapSelector,
+    (offersIds, offersMap) => offersIds.map((id) => offersMap[id])
 );
 
-const getActiveOfferSelector = createSelector (
-  getActiveOfferIdSelector, getOffersMapSelector,
-  (offerId, offersMap) => offersMap[offerId]
+const getActiveOfferSelector = createSelector(
+    getActiveOfferIdSelector, getOffersMapSelector,
+    (offerId, offersMap) => offersMap[offerId]
 );
 
-const getOffersNearbySelector = createSelector (
-  getOffersNearbyIdsSelector, getOffersMapSelector,
-  (offersNearbyIds, offersMap) => offersNearbyIds.map(id => offersMap[id])
+const getOffersNearbySelector = createSelector(
+    getOffersNearbyIdsSelector, getOffersMapSelector,
+    (offersNearbyIds, offersMap) => offersNearbyIds.map((id) => offersMap[id])
 );
 
-const getOffersFavoritesSelector = createSelector (
-  getOffersFavoritesIdsSelector, getOffersMapSelector,
-  (offersNearbyIds, offersMap) => offersNearbyIds.map(id => offersMap[id])
+const getOffersFavoritesSelector = createSelector(
+    getOffersFavoritesIdsSelector, getOffersMapSelector,
+    (offersNearbyIds, offersMap) => offersNearbyIds.map((id) => offersMap[id])
 );
 
 const getCitiesListSelector = createSelector(
@@ -38,8 +38,8 @@ const getCitiesListSelector = createSelector(
 );
 
 const getFavoritesCitiesListSelector = createSelector(
-  getOffersFavoritesSelector,
-  (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city)
+    getOffersFavoritesSelector,
+    (offers) => [...new Set(offers.map((offer) => offer.city.name))].map((city) => offers.find((offer) => offer.city.name === city).city)
 );
 
 const getOffersInCitySelector = createSelector(
@@ -61,7 +61,7 @@ const getSortedOffersInCitySelector = createSelector(
 
 const getOfferByIdSelector = createSelector(
     getOffersMapSelector,
-    (offersMap) => (id) => offersMap[id],
+    (offersMap) => (id) => offersMap[id]
 );
 
 export {getCitiesListSelector,

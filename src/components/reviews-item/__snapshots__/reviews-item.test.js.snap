@@ -14,15 +14,12 @@ exports[`Should ReviewsItem render correctly 1`] = `
         alt="Reviews avatar"
         className="reviews__avatar user__avatar"
         height="54"
-        src="img/avatar-max.jpg"
         width="54"
       />
     </div>
     <span
       className="reviews__user-name"
-    >
-      Max
-    </span>
+    />
   </div>
   <div
     className="reviews__info"
@@ -49,14 +46,12 @@ exports[`Should ReviewsItem render correctly 1`] = `
     </div>
     <p
       className="reviews__text"
-    >
-      Review1 object1
-    </p>
+    />
     <time
       className="reviews__time"
       dateTime="2017-01-26"
     >
-      2017-01-26
+      January 2017
     </time>
   </div>
 </li>
