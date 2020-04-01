@@ -21,7 +21,7 @@ const withReviewForm = (Component) => {
       this._handleCommentChange = this._handleCommentChange.bind(this);
       this._resetSubmitting = this._resetSubmitting.bind(this);
       this._handleSubmit = this._handleSubmit.bind(this);
-      this._resetFormValues = this._resetFormValues(this);
+      this._resetFormValues = this._resetFormValues.bind(this);
       this._isMounted = true;
     }
 
@@ -63,8 +63,7 @@ const withReviewForm = (Component) => {
     }
 
     _resetFormValues() {
-
-      this.setState({comment: ``});
+      this.setState({comment: ``, rating: 0});
     }
 
     _handleSubmit() {

@@ -216,7 +216,7 @@ const Operation = {
   addComment: (commentData, offerId) => (dispatch, getState, api) => {
 
     return api.post(`/comments/${offerId}`, {
-      comment: commentData.text,
+      comment: commentData.comment,
       rating: commentData.rating,
     })
       .then((response) => {

@@ -15,7 +15,7 @@ const ReviewForm = (props) => {
     evt.preventDefault();
 
     return onSubmit({
-      text: comment,
+      comment,
       rating,
     }, offerId);
 
