@@ -64,7 +64,7 @@ const Main = (props) => {
                   classNameForItems="cities"
                   offers={offers}
                   history={history}
-                  onCardHover={({id}) => onCardHover(id)}/>
+                  onCardHover={(card) => onCardHover(card && card.id)}/>
 
               </section>
               <div className="cities__right-section">

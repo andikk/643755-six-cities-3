@@ -6,12 +6,11 @@ const MAX_RATING = 5;
 
 const toIndex = (it, index) => MAX_RATING - index;
 const ReviewForm = (props) => {
-  const {rating, comment, invalid, submitting, onRatingChange, onCommentChange, addComment, offerId, onSubmit} = props;
+  const {rating, comment, invalid, submitting, onRatingChange, onCommentChange, offerId, onSubmit} = props;
   const ratings = Array.from({length: MAX_RATING}, toIndex);
   const disabled = invalid || submitting;
 
   const handleSubmit = (evt) => {
-
     evt.preventDefault();
 
     return onSubmit({
@@ -64,6 +63,13 @@ const ReviewForm = (props) => {
 ReviewForm.propTypes = {
   offerId: PropTypes.number,
   handleSubmit: PropTypes.func,
+  rating: PropTypes.number,
+  comment: PropTypes.string,
+  invalid: PropTypes.bool,
+  submitting: PropTypes.bool,
+  onRatingChange: PropTypes.func,
+  onCommentChange: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 export {ReviewForm};

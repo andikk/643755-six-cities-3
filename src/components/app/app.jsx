@@ -9,7 +9,6 @@ import withRouteAuth from "../../hocs/with-route-auth.js";
 const AuthRoute = withRouteAuth(Route);
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <Switch>
@@ -29,7 +28,6 @@ const App = () => {
       </Switch>
     </BrowserRouter>
   );
-
 };
 
 export default App;

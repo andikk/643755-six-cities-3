@@ -84,6 +84,7 @@ PlaceCard.propTypes = {
   classNameForArticle: PropTypes.string,
   onCardHover: PropTypes.func,
   onBookmarkClick: PropTypes.func,
+  classNameForItems: PropTypes.string
 };
 
 export default PlaceCard;

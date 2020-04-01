@@ -7,13 +7,9 @@ const withReviewForm = (Component) => {
       super(props);
 
       this.state = {
-        /** Рейтинг */
         rating: null,
-        /** Комментарий */
         comment: ``,
-        /** Форма не валидна */
         invalid: true,
-        /** Форма в состоянии отправки */
         submitting: false,
       };
 
@@ -98,7 +94,6 @@ const withReviewForm = (Component) => {
   }
 
   WithReviewForm.propTypes = {
-    /** Отправить форму */
     onSubmit: PropTypes.func,
     offerId: PropTypes.number
   };
@@ -107,19 +102,12 @@ const withReviewForm = (Component) => {
 };
 
 export const withReviewFormPropTypes = {
-  /** Рейтинг  */
   rating: PropTypes.number,
-  /** Комментарий  */
   comment: PropTypes.string,
-  /** Валидна ли форма */
   invalid: PropTypes.bool,
-  /** Форма в состоянии отправки */
   submitting: PropTypes.bool,
-  /** Обработчик события изменения рейтенга */
   onRatingChange: PropTypes.func,
-  /** Обработчик события изменения комментария */
   onCommentChange: PropTypes.func,
-  /** Обработчик события изменения комментария */
   onSubmit: PropTypes.func,
 };
 

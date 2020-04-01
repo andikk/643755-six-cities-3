@@ -8,11 +8,10 @@ import {
   getOfferByIdSelector,
   getReviewsSelector,
   getOffersNearbySelector,
-  getAuthorizationStatusSelector, getUserSelector
+  getAuthorizationStatusSelector,
 } from "../../selectors";
 import ReviewForm from "../review-form/review-form.jsx";
 import {Operation} from "../../reducer.js";
-import {Link} from "react-router-dom";
 import UserNav from "../user-nav/user-nav.jsx";
 
 // страница предложения

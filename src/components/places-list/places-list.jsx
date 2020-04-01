@@ -26,7 +26,8 @@ PlacesList.propTypes = {
   className: PropTypes.string.isRequired,
   onCardHover: PropTypes.func,
   addToFavorite: PropTypes.func,
-  classNameForArticle: PropTypes.string
+  classNameForArticle: PropTypes.string,
+  classNameForItems: PropTypes.string
 };
 
 PlacesList.defaultProps = {

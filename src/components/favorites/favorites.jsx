@@ -51,37 +51,37 @@ class Favorites extends PureComponent {
           </main>
         }
         {(favoritesOffers.length) &&
-        <main className="page__main page__main--favorites">
-          <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
+          <main className="page__main page__main--favorites">
+            <div className="page__favorites-container container">
+              <section className="favorites">
+                <h1 className="favorites__title">Saved listing</h1>
 
-              <ul className="favorites__list">
-                {favoritesCities.map((city) =>
-                  (<li key={city.name} className="favorites__locations-items">
-                    <div className="favorites__locations locations locations--current">
-                      <div className="locations__item">
-                        <a className="locations__item-link" href="#">
-                          <span>{city.name}</span>
-                        </a>
+                <ul className="favorites__list">
+                  {favoritesCities.map((city) =>
+                    (<li key={city.name} className="favorites__locations-items">
+                      <div className="favorites__locations locations locations--current">
+                        <div className="locations__item">
+                          <a className="locations__item-link" href="#">
+                            <span>{city.name}</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
 
-                    <PlacesList className="favorites__places"
-                                classNameForArticle="favorites__card"
-                                classNameForItems="favorites"
-                                offers={favoritesOffers.filter((offer) => offer.city.name === city.name)}
-                    />
-                  </li>))
-                }
-              </ul>
+                      <PlacesList className="favorites__places"
+                        classNameForArticle="favorites__card"
+                        classNameForItems="favorites"
+                        offers={favoritesOffers.filter((offer) => offer.city.name === city.name)}
+                      />
+                    </li>))
+                  }
+                </ul>
 
-            </section>
-          </div>
-        </main>
+              </section>
+            </div>
+          </main>
         }
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <a className="footer__logo-link" href="/">
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
           </a>
         </footer>
@@ -90,14 +90,13 @@ class Favorites extends PureComponent {
   }
 }
 
-
 Favorites.propTypes = {
   favoritesOffers: PropTypes.array,
   favoritesCities: PropTypes.array,
   loadFavorites: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     favoritesOffers: getOffersFavoritesSelector(state),
     favoritesCities: getFavoritesCitiesListSelector(state)
