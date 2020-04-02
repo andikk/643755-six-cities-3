@@ -1,11 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
+import App from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import thunk from "redux-thunk";
+import createAPI from "../../api.js";
+const api = createAPI({onError: () => {}});
 
+const middlewares = [thunk.withExtraArgument(api)];
+const createMockStore = configureStore(middlewares);
+const mockStore = createMockStore();
 
-const mockStore = configureStore([]);
+//const mockStore = configureStore([]);
 
 it(`Render App`, () => {
 
