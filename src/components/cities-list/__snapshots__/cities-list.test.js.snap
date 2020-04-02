@@ -18,18 +18,22 @@ exports[`Should CitiesList render correctly 1`] = `
           href="#"
           onClick={[Function]}
         >
-          <span />
+          <span>
+            Cologne
+          </span>
         </a>
       </li>
       <li
         className="locations__item"
       >
         <a
-          className="locations__item-link tabs__item--active"
+          className="locations__item-link tabs__item"
           href="#"
           onClick={[Function]}
         >
-          <span />
+          <span>
+            Paris
+          </span>
         </a>
       </li>
     </ul>
