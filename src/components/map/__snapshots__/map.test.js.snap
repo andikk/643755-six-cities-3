@@ -2,6 +2,6 @@
 
 exports[`Should Map render correctly 1`] = `
 <section
-  className="cities__map map"
+  className="PropTypes.string map"
 />
 `;
