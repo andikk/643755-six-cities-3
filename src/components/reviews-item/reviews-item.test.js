@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import ReviewsItem from "./reviews-item.jsx";
 
 it(`Should ReviewsItem render correctly`, () => {
-  const review =  {
+  const review = {
     id: 1,
     comment: `PropTypes.string`,
     user: {},
