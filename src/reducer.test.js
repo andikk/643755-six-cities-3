@@ -1,19 +1,56 @@
 import {reducer, ActionCreator, ActionType} from './reducer';
-import offers from "./mocks/offers";
+//import offers from "./mocks/offers";
+import {ACTIVE_FILTER} from "./const";
+
+const offers = [{id: 1,
+  city: {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}},
+  src: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+  photos: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/6.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/20.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/7.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/18.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`],
+  description: `Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.`,
+  premium: false,
+  bedrooms: 5,
+  guests: 5,
+  features: [`Breakfast`, `Washer`, `Air conditioning`, `Laptop friendly workspace`, `Baby seat`],
+  owner: {id: 25, name: `Angelina`, super: true, src: `img/avatar-angelina.jpg`},
+  price: 403,
+  rating: 2.9,
+  name: `Wood and stone place`,
+  type: `house`,
+  coordinates: [50.932361, 6.937974],
+  reviews: [],
+  neighborhood: [],
+  isFavorite: false}];
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
 
 const initialState = {
-  city: offers[0].city,
-  offers,
-  activeFilter: null,
-  activeOffer: null
+  city: {},
+  offersIds: [],
+  offersMap: {},
+  offersNearbyIds: [],
+  offersFavoritesIds: [],
+  reviews: [],
+  activeOfferId: null,
+  activeFilter: ACTIVE_FILTER,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: null,
 };
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     city: {},
-    offers: [],
-    activeFilter: {label: `Popular`, value: `ALL`},
-    activeOffer: null
+    offersIds: [],
+    offersMap: {},
+    offersNearbyIds: [],
+    offersFavoritesIds: [],
+    reviews: [],
+    activeOfferId: null,
+    activeFilter: ACTIVE_FILTER,
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    user: null,
   });
 });
 
@@ -21,24 +58,30 @@ describe(`setCity action`, () => {
   it(`returns expected results`, () => {
     const mockResult = {
       type: `SET_CITY`,
-      payload: `Paris`,
+      payload: {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}},
     };
 
-    expect(ActionCreator.setCity(`Paris`)).toEqual(mockResult);
+    expect(ActionCreator.setCity({name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}})).toEqual(mockResult);
   });
 });
 
 it(`sets city correctly`, () => {
-  const mockCity = `Paris`;
+  const mockCity = {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}};
   const mockAction = {
     type: ActionType.SET_CITY,
     payload: mockCity,
   };
   const mockResult = {
     city: mockCity,
-    offers,
-    activeFilter: null,
-    activeOffer: null
+    offersIds: [],
+    offersMap: {},
+    offersNearbyIds: [],
+    offersFavoritesIds: [],
+    reviews: [],
+    activeOfferId: null,
+    activeFilter: ACTIVE_FILTER,
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    user: null,
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);
@@ -57,16 +100,40 @@ describe(`setOffersList action`, () => {
 });
 
 it(`sets offers correctly`, () => {
-
   const mockAction = {
     type: ActionType.SET_OFFERS,
     payload: offers,
   };
   const mockResult = {
-    city: `Amsterdam`,
-    offers,
-    activeFilter: null,
-    activeOffer: null
+    city: {},
+    offersIds: [1],
+    offersMap: {
+      1: {id: 1,
+        city: {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}},
+        src: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+        photos: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/6.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/20.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/7.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/18.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`],
+        description: `Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.`,
+        premium: false,
+        bedrooms: 5,
+        guests: 5,
+        features: [`Breakfast`, `Washer`, `Air conditioning`, `Laptop friendly workspace`, `Baby seat`],
+        owner: {id: 25, name: `Angelina`, super: true, src: `img/avatar-angelina.jpg`},
+        price: 403,
+        rating: 2.9,
+        name: `Wood and stone place`,
+        type: `house`,
+        coordinates: [50.932361, 6.937974],
+        reviews: [],
+        neighborhood: [],
+        isFavorite: false}
+    },
+    offersNearbyIds: [],
+    offersFavoritesIds: [],
+    reviews: [],
+    activeOfferId: null,
+    activeFilter: ACTIVE_FILTER,
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    user: null,
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);
@@ -74,7 +141,7 @@ it(`sets offers correctly`, () => {
 
 describe(`setFilter action`, () => {
   it(`returns expected results`, () => {
-    const mockData = `Popular`;
+    const mockData = ACTIVE_FILTER;
     const mockResult = {
       type: `SET_FILTER`,
       payload: mockData,
@@ -88,13 +155,19 @@ it(`sets filter correctly`, () => {
 
   const mockAction = {
     type: ActionType.SET_FILTER,
-    payload: `Popular`,
+    payload: ACTIVE_FILTER,
   };
   const mockResult = {
-    city: `Amsterdam`,
-    offers,
-    activeFilter: `Popular`,
-    activeOffer: null
+    city: {},
+    offersIds: [],
+    offersMap: {},
+    offersNearbyIds: [],
+    offersFavoritesIds: [],
+    reviews: [],
+    activeOfferId: null,
+    activeFilter: ACTIVE_FILTER,
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    user: null,
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);
@@ -102,64 +175,7 @@ it(`sets filter correctly`, () => {
 
 describe(`setActiveOffer action`, () => {
   it(`returns expected results`, () => {
-    const mockData = {
-      id: 0,
-      city: `Amsterdam`,
-      src: `img/apartment-01.jpg`,
-      photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
-      description: `Super description`,
-      premium: true,
-      bedrooms: 3,
-      guests: 4,
-      features: [`Wifi`, `Cable TV`, `Kitchen`],
-      owner: {
-        name: `Jon`,
-        super: true,
-        src: `img/avatar-max.jpg`
-      },
-      price: 120,
-      rating: 1,
-      name: `Name0`,
-      type: `Apartment`,
-      coordinates: [52.3909553943508, 4.85309666406198],
-      reviews: [
-        {id: 0, text: `Review1 object1`, rating: 1, user: `Max`, date: `2017-01-26`},
-        {id: 1, text: `Review2 object1`, rating: 1, user: `Max`, date: `2018-01-26`},
-        {id: 2, text: `Review3 object1`, rating: 1, user: `Max`, date: `2019-01-26`}
-      ],
-      neighborhood: [
-        {
-          id: 1,
-          coordinates: [52.369553943508, 4.85309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 2,
-          coordinates: [52.3909553943508, 4.929309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 3,
-          coordinates: [52.3909553943508, 4.729309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-      ]
-    };
+    const mockData = 1;
     const mockResult = {
       type: `SET_ACTIVE_OFFER`,
       payload: mockData,
@@ -174,127 +190,19 @@ it(`sets ActiveOffer correctly`, () => {
 
   const mockAction = {
     type: ActionType.SET_ACTIVE_OFFER,
-    payload: {
-      id: 0,
-      city: `Amsterdam`,
-      src: `img/apartment-01.jpg`,
-      photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
-      description: `Super description`,
-      premium: true,
-      bedrooms: 3,
-      guests: 4,
-      features: [`Wifi`, `Cable TV`, `Kitchen`],
-      owner: {
-        name: `Jon`,
-        super: true,
-        src: `img/avatar-max.jpg`
-      },
-      price: 120,
-      rating: 1,
-      name: `Name0`,
-      type: `Apartment`,
-      coordinates: [52.3909553943508, 4.85309666406198],
-      reviews: [
-        {id: 0, text: `Review1 object1`, rating: 1, user: `Max`, date: `2017-01-26`},
-        {id: 1, text: `Review2 object1`, rating: 1, user: `Max`, date: `2018-01-26`},
-        {id: 2, text: `Review3 object1`, rating: 1, user: `Max`, date: `2019-01-26`}
-      ],
-      neighborhood: [
-        {
-          id: 1,
-          coordinates: [52.369553943508, 4.85309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 2,
-          coordinates: [52.3909553943508, 4.929309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 3,
-          coordinates: [52.3909553943508, 4.729309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-      ]
-    },
+    payload: 1
   };
   const mockResult = {
-    city: `Amsterdam`,
-    offers,
-    activeFilter: null,
-    activeOffer: {
-      id: 0,
-      city: `Amsterdam`,
-      src: `img/apartment-01.jpg`,
-      photos: [`img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`, `img/apartment-01.jpg`],
-      description: `Super description`,
-      premium: true,
-      bedrooms: 3,
-      guests: 4,
-      features: [`Wifi`, `Cable TV`, `Kitchen`],
-      owner: {
-        name: `Jon`,
-        super: true,
-        src: `img/avatar-max.jpg`
-      },
-      price: 120,
-      rating: 1,
-      name: `Name0`,
-      type: `Apartment`,
-      coordinates: [52.3909553943508, 4.85309666406198],
-      reviews: [
-        {id: 0, text: `Review1 object1`, rating: 1, user: `Max`, date: `2017-01-26`},
-        {id: 1, text: `Review2 object1`, rating: 1, user: `Max`, date: `2018-01-26`},
-        {id: 2, text: `Review3 object1`, rating: 1, user: `Max`, date: `2019-01-26`}
-      ],
-      neighborhood: [
-        {
-          id: 1,
-          coordinates: [52.369553943508, 4.85309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 2,
-          coordinates: [52.3909553943508, 4.929309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-        {
-          id: 3,
-          coordinates: [52.3909553943508, 4.729309666406198],
-          name: `Some name`,
-          premium: true,
-          src: `img/apartment-01.jpg`,
-          price: 100,
-          rating: 2.3,
-          type: `Appartment`
-        },
-      ]
-    }
+    city: {},
+    offersIds: [],
+    offersMap: {},
+    offersNearbyIds: [],
+    offersFavoritesIds: [],
+    reviews: [],
+    activeOfferId: 1,
+    activeFilter: ACTIVE_FILTER,
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+    user: null,
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);

@@ -2,7 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PlacesSorting from "./places-sorting.jsx";
 
-
 it(`Should PlacesSorting  render correctly`, () => {
   const activeFilter = {label: `Popular`, value: `ALL`};
   const filters = [
