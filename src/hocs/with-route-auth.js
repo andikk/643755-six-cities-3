@@ -5,8 +5,8 @@ import {Redirect} from "react-router-dom";
 import {getAuthorizationStatusSelector} from "../selectors.js";
 
 const withRouteAuth = (Component) => {
-  function WithRouteAuth({hasAuth, ...props}) {
-    const {location} = props;
+  function WithRouteAuth(props) {
+    const {hasAuth, location} = props;
     const currentLocation = location && location.pathname;
 
     return (hasAuth === `AUTH`) ? (

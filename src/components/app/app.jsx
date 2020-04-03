@@ -13,16 +13,15 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Main}/>
-        <Route exact path="/login" component={Signin}/>
-        <AuthRoute exact path="/favorites" component={Favorites}/>
+        <Route path="/login" component={Signin}/>
+        <AuthRoute path="/favorites" component={Favorites}/>
         <Route path="/offer/:id" exact component={Property}/>
         <Route
           render={() => (
-            <h1>
-                404.
-              <br />
+            <div>
+              <h1>404</h1>
               <small>Page not found</small>
-            </h1>
+            </div>
           )}
         />
       </Switch>

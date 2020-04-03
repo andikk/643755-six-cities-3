@@ -40,7 +40,12 @@ const withReviewForm = (Component) => {
     }
 
     _handleRatingChange(rating) {
-      this.setState({rating});
+      const {comment} = this.state;
+      const isCommentValid = this._validateComment(comment);
+      const isRatingValid = this._validateRating(rating);
+      const invalid = !isCommentValid || !isRatingValid;
+
+      this.setState({rating, invalid});
     }
 
     _handleCommentChange(comment) {
@@ -74,12 +79,16 @@ const withReviewForm = (Component) => {
           this._resetFormValues();
           return response;
         })
-        .catch(this._resetSubmitting);
+        .catch(() => {
+          this._resetSubmitting();
+          // eslint-disable-next-line no-alert
+          window.confirm(`Error when submitting! Please reload the page.`);
+        });
     }
 
     _validateComment(value) {
       const MIN_COMMENT_LENGTH = 50;
-      const MAX_COMMENT_LENGTH = 400;
+      const MAX_COMMENT_LENGTH = 300;
 
       return (
         (typeof value === `string`) &&

@@ -2,34 +2,27 @@
 
 exports[`Should PlaceCard render correctly 1`] = `
 <article
-  className="cities__place-card place-card"
+  className="PropTypes.string place-card"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="PropTypes.string__image-wrapper place-card__image-wrapper"
   >
     <a
       href="#"
     >
       <img
-        alt="Name0"
+        alt="Wood and stone place"
         className="place-card__image"
-        height="200"
-        src="img/apartment-01.jpg"
-        width="260"
+        height={100}
+        src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg"
+        width={100}
       />
     </a>
   </div>
   <div
-    className="place-card__info"
+    className="PropTypes.string__card-info place-card__info"
   >
     <div
       className="place-card__price-wrapper"
@@ -41,7 +34,7 @@ exports[`Should PlaceCard render correctly 1`] = `
           className="place-card__price-value"
         >
           €
-          120
+          403
         </b>
         <span
           className="place-card__price-text"
@@ -50,7 +43,8 @@ exports[`Should PlaceCard render correctly 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="place-card__bookmark-button place-card__bookmark-button button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -78,7 +72,7 @@ exports[`Should PlaceCard render correctly 1`] = `
         <span
           style={
             Object {
-              "width": "20%",
+              "width": "100%",
             }
           }
         />
@@ -93,16 +87,16 @@ exports[`Should PlaceCard render correctly 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
         onClick={[Function]}
       >
-        Name0
+        Wood and stone place
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      house
     </p>
   </div>
 </article>

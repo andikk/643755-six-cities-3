@@ -139,6 +139,9 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SET_FAVORITE_OFFER:
       return Object.assign({}, state, {
+        offersFavoritesIds: action.payload
+          ? state.offersFavoritesIds.concat(action.meta.id)
+          : state.offersFavoritesIds.filter((id) => id !== action.meta.id),
         offersMap: Object.assign({}, state.offersMap, {
           [action.meta.id]: Object.assign({},
               state.offersMap[action.meta.id],

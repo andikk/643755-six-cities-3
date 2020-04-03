@@ -9,6 +9,7 @@ import {
   getReviewsSelector,
   getOffersNearbySelector,
   getAuthorizationStatusSelector,
+  getReviewsCountSelector
 } from "../../selectors";
 import ReviewForm from "../review-form/review-form.jsx";
 import {Operation} from "../../reducer.js";
@@ -38,7 +39,7 @@ class Property extends PureComponent {
       return null;
     }
 
-    const {addToFavorite, offerId, addComment, location} = this.props;
+    const {addToFavorite, offerId, addComment, location, reviewsCount} = this.props;
 
     const handleBookmarkClick = () => {
 
@@ -155,7 +156,7 @@ class Property extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
                   <ReviewsList className="property__reviews" reviews={reviews}/>
                   {(authorizationStatus === `AUTH`) &&
                   <ReviewForm offerId={offerId} onSubmit={addComment}/>
@@ -215,7 +216,8 @@ Property.propTypes = {
   addToFavorite: PropTypes.func,
   authorizationStatus: PropTypes.string,
   addComment: PropTypes.func,
-  location: PropTypes.object
+  location: PropTypes.object,
+  reviewsCount: PropTypes.number
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -225,7 +227,8 @@ const mapStateToProps = (state, ownProps) => {
     offerId: Number(ownProps.match.params.id),
     reviews: getReviewsSelector(state),
     neighborhood: getOffersNearbySelector(state),
-    authorizationStatus: getAuthorizationStatusSelector(state)
+    authorizationStatus: getAuthorizationStatusSelector(state),
+    reviewsCount: getReviewsCountSelector(state)
   });
 };
 
@@ -235,7 +238,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   addToFavorite: (id, status) => {
     return dispatch(Operation.addToFavorite(id, status))
       .catch(() => {
-        ownProps.history.push(`/login`);
+        ownProps.history.push(`/login`, {referer: `/offer/${id}`});
       });
   },
   addComment: (commentData, offerId) => dispatch(Operation.addComment(commentData, offerId))

@@ -6,7 +6,7 @@ import {BookmarkActions} from "../../const.js";
 const PlaceCard = (props) => {
   const {card, classNameForArticle, classNameForItems, imgSize} = props;
 
-  const {premium, src, price, rating, ratingValue, name, type, id, isFavorite} = card;
+  const {premium, src, price, ratingValue, name, type, id, isFavorite} = card;
   const {onCardHover, onBookmarkClick} = props;
 
   const handleBookmarkClick = () => {

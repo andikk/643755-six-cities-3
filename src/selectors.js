@@ -6,11 +6,14 @@ const getOffersIdsSelector = (state) => state.offersIds;
 const getOffersMapSelector = (state) => state.offersMap;
 const getOffersNearbyIdsSelector = (state) => state.offersNearbyIds;
 const getOffersFavoritesIdsSelector = (state) => state.offersFavoritesIds;
-const getReviewsSelector = (state) => state.reviews;
 const getCitySelector = (state) => state.city;
 const getActiveOfferIdSelector = (state) => state.activeOfferId;
 const getAuthorizationStatusSelector = (state) => state.authorizationStatus;
 const getUserSelector = (state) => state.user;
+const getReviewsSelector = (state) => state.reviews.sort((a, b) => {
+  return new Date(b.date) - new Date(a.date);
+}).slice(0, 10);
+const getReviewsCountSelector = (state) => state.reviews.length;
 
 const getOffersSelector = createSelector(
     getOffersIdsSelector, getOffersMapSelector,
@@ -29,7 +32,7 @@ const getOffersNearbySelector = createSelector(
 
 const getOffersFavoritesSelector = createSelector(
     getOffersFavoritesIdsSelector, getOffersMapSelector,
-    (offersNearbyIds, offersMap) => offersNearbyIds.map((id) => offersMap[id])
+    (offersFavoritesIds, offersMap) => offersFavoritesIds.map((id) => offersMap[id])
 );
 
 const getCitiesListSelector = createSelector(
@@ -79,4 +82,5 @@ export {getCitiesListSelector,
   getOffersNearbySelector,
   getOffersFavoritesSelector,
   getFavoritesCitiesListSelector,
-  getActiveOfferIdSelector};
+  getActiveOfferIdSelector,
+  getReviewsCountSelector};

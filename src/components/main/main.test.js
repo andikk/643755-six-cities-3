@@ -12,7 +12,6 @@ const store = mockStore({
   city: `Paris`
 });
 
-
 it(`Should Main render correctly`, () => {
   const coordinates = offers.map((offer) => (offer.coordinates));
 
