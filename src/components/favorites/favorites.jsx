@@ -70,6 +70,7 @@ class Favorites extends PureComponent {
                       <PlacesList className="favorites__places"
                         classNameForArticle="favorites__card"
                         classNameForItems="favorites"
+                        imgSize={{width: 150, height: 110}}
                         offers={favoritesOffers.filter((offer) => offer.city.name === city.name)}
                       />
                     </li>))

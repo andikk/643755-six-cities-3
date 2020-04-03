@@ -179,6 +179,7 @@ class Property extends PureComponent {
               <PlacesList offers={neighborhood}
                 className="near-places__list places__list"
                 classNameForArticle="near-places__card"
+                imgSize={{width: 260, height: 200}}
                 classNameForItems="near-places"/>
 
             </section>
@@ -204,7 +205,7 @@ Property.propTypes = {
     type: PropTypes.string,
     city: PropTypes.object,
     coordinates: PropTypes.array
-  }).isRequired,
+  }),
   loadReviews: PropTypes.func,
   loadNearby: PropTypes.func,
   offerId: PropTypes.number,

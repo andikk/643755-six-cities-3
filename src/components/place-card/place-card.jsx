@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {BookmarkActions} from "../../const.js";
 // карточка предложения
 const PlaceCard = (props) => {
-  const {card, classNameForArticle, classNameForItems} = props;
+  const {card, classNameForArticle, classNameForItems, imgSize} = props;
 
   const {premium, src, price, rating, name, type, id, isFavorite} = card;
   const {onCardHover, onBookmarkClick} = props;
@@ -34,7 +34,7 @@ const PlaceCard = (props) => {
 
       <div className={`${classNameForItems}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={src} width="260" height="200" alt={name}/>
+          <img className="place-card__image" src={src} width={imgSize.width} height={imgSize.height} alt={name}/>
         </a>
       </div>
       <div className={`${classNameForItems}__card-info place-card__info`}>
@@ -76,12 +76,13 @@ PlaceCard.propTypes = {
     price: PropTypes.number,
     rating: PropTypes.number,
     type: PropTypes.string,
-  }).isRequired,
-  className: PropTypes.string,
-  classNameForArticle: PropTypes.string,
+  }),
   onCardHover: PropTypes.func,
   onBookmarkClick: PropTypes.func,
-  classNameForItems: PropTypes.string
+  className: PropTypes.string,
+  classNameForArticle: PropTypes.string,
+  classNameForItems: PropTypes.string,
+  imgSize: PropTypes.object
 };
 
 export default PlaceCard;

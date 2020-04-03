@@ -64,6 +64,7 @@ const Main = (props) => {
                   classNameForItems="cities"
                   offers={offers}
                   history={history}
+                  imgSize={{width: 260, height: 200}}
                   onCardHover={(card) => onCardHover(card && card.id)}/>
 
               </section>

@@ -6,7 +6,7 @@ import {Operation} from "../../reducer.js";
 
 // список предложений
 const PlacesList = (props) => {
-  const {offers, onCardHover, addToFavorite, className, classNameForArticle, classNameForItems} = props;
+  const {offers, onCardHover, imgSize, addToFavorite, className, classNameForArticle, classNameForItems} = props;
 
   return (
     <div className={`${className}`}>
@@ -14,6 +14,7 @@ const PlacesList = (props) => {
         onCardHover={onCardHover}
         classNameForArticle={classNameForArticle}
         classNameForItems={classNameForItems}
+        imgSize={imgSize}
         onBookmarkClick={addToFavorite}
       />)}
     </div>
@@ -24,10 +25,11 @@ const PlacesList = (props) => {
 PlacesList.propTypes = {
   offers: PropTypes.arrayOf(PlaceCard.propTypes.card).isRequired,
   className: PropTypes.string.isRequired,
+  classNameForArticle: PropTypes.string,
+  classNameForItems: PropTypes.string,
+  imgSize: PropTypes.object,
   onCardHover: PropTypes.func,
   addToFavorite: PropTypes.func,
-  classNameForArticle: PropTypes.string,
-  classNameForItems: PropTypes.string
 };
 
 PlacesList.defaultProps = {
