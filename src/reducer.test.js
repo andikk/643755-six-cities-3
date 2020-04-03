@@ -1,5 +1,4 @@
 import {reducer, ActionCreator, ActionType} from './reducer';
-// import offers from "./mocks/offers";
 import {ACTIVE_FILTER} from "./const";
 
 const offers = [{id: 1,
