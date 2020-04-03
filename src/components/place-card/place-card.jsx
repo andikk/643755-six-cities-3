@@ -6,7 +6,7 @@ import {BookmarkActions} from "../../const.js";
 const PlaceCard = (props) => {
   const {card, classNameForArticle, classNameForItems, imgSize} = props;
 
-  const {premium, src, price, rating, name, type, id, isFavorite} = card;
+  const {premium, src, price, rating, ratingValue, name, type, id, isFavorite} = card;
   const {onCardHover, onBookmarkClick} = props;
 
   const handleBookmarkClick = () => {
@@ -53,7 +53,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}></span>
+            <span style={{width: `${ratingValue <= 4 ? ratingValue * 20 : 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -75,6 +75,7 @@ PlaceCard.propTypes = {
     src: PropTypes.string,
     price: PropTypes.number,
     rating: PropTypes.number,
+    ratingValue: PropTypes.number,
     type: PropTypes.string,
   }),
   onCardHover: PropTypes.func,

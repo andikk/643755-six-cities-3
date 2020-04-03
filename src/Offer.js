@@ -19,6 +19,7 @@ class Offer {
     this.owner.src = data.host.avatar_url;
     this.price = data.price;
     this.rating = data.rating;
+    this.ratingValue = Math.round(data.rating);
     this.name = data.title;
     this.type = data.type;
     this.coordinates = [data.location.latitude, data.location.longitude];

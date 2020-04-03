@@ -38,7 +38,7 @@ class Property extends PureComponent {
       return null;
     }
 
-    const {addToFavorite, offerId, addComment} = this.props;
+    const {addToFavorite, offerId, addComment, location} = this.props;
 
     const handleBookmarkClick = () => {
 
@@ -49,7 +49,7 @@ class Property extends PureComponent {
     };
 
     const {card = {}, reviews = [], neighborhood = [], authorizationStatus} = this.props;
-    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, name, type, city, coordinates, isFavorite} = card;
+    const {photos, description, premium, bedrooms, guests, features, owner, price, rating, ratingValue, name, type, city, coordinates, isFavorite} = card;
     const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
 
     return (
@@ -62,7 +62,7 @@ class Property extends PureComponent {
                   <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
                 </a>
               </div>
-              <UserNav/>
+              <UserNav referer={location.pathname}/>
             </div>
           </div>
         </header>
@@ -97,8 +97,7 @@ class Property extends PureComponent {
                     style={{position: `absolute`, top: `41px`, right: `93px`}}
                     className={`place-card__bookmark-button place-card__bookmark-button${isFavorite ? `--active` : ``} button`}
                     type="button"
-                    onClick={handleBookmarkClick}
-                  >
+                    onClick={handleBookmarkClick}>
                     <svg className="place-card__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -107,10 +106,10 @@ class Property extends PureComponent {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${rating <= 4 ? rating * 20 : 100}%`}}/>
+                    <span style={{width: `${ratingValue <= 4 ? ratingValue * 20 : 100}%`}}/>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">4.8</span>
+                  <span className="property__rating-value rating__value">{rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
@@ -201,6 +200,7 @@ Property.propTypes = {
     owner: PropTypes.object,
     price: PropTypes.number,
     rating: PropTypes.number,
+    ratingValue: PropTypes.number,
     name: PropTypes.string,
     type: PropTypes.string,
     city: PropTypes.object,
@@ -214,7 +214,8 @@ Property.propTypes = {
   onCardHover: PropTypes.func,
   addToFavorite: PropTypes.func,
   authorizationStatus: PropTypes.string,
-  addComment: PropTypes.func
+  addComment: PropTypes.func,
+  location: PropTypes.object
 };
 
 const mapStateToProps = (state, ownProps) => {

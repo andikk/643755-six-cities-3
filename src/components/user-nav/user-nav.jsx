@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {getAuthorizationStatusSelector, getUserSelector} from "../../selectors";
 
 const UserNav = (props) => {
-  const {authorizationStatus, user} = props;
+  const {authorizationStatus, user, referer} = props;
 
   return (
     <nav className="header__nav">
@@ -18,7 +18,7 @@ const UserNav = (props) => {
           </Link>
           }
           {(authorizationStatus === `NO_AUTH`) &&
-          <Link to="/login" className="header__nav-link header__nav-link--profile" href="#">
+          <Link to={{pathname: `/login`, state: {referer}}} className="header__nav-link header__nav-link--profile" href="#">
             <div className="header__avatar-wrapper user__avatar-wrapper"> </div>
             <span className="header__login">Sign in</span>
           </Link>
@@ -32,6 +32,7 @@ const UserNav = (props) => {
 UserNav.propTypes = {
   authorizationStatus: PropTypes.string,
   user: PropTypes.object,
+  referer: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
