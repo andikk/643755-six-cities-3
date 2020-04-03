@@ -4,7 +4,6 @@ import Signin from "./signin.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
-import UserNav from "../user-nav/user-nav";
 
 const mockStore = configureStore([]);
 

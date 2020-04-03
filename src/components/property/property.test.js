@@ -5,7 +5,6 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
 
-
 const mockStore = configureStore([]);
 
 it(`Should Property render correctly`, () => {

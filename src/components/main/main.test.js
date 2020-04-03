@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Main} from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-//import offers from "../../mocks/offers.js";
+import {MemoryRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 const offers = [
@@ -66,10 +66,10 @@ const store = mockStore({
 it(`Should Main render correctly`, () => {
 
   const tree = renderer
-    .create(<Provider store={store}><Main
+    .create(<Provider store={store}><MemoryRouter><Main
       offers={offers}
       city={{name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}}}
-      citiesList={[`Cologne`, `Stavropol`]}
+      citiesList={[{name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}}]}
       onCityClick={()=>{}}
       coordinates={[50.938361, 6.959974]}
       onFilterClick={() => {}}
@@ -78,7 +78,7 @@ it(`Should Main render correctly`, () => {
       activeOffer={{}}
       history={{}}
       onHeaderClick = {() => {}}
-    /></Provider>)
+    /></MemoryRouter></Provider>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
