@@ -24,7 +24,7 @@ class Offer {
     this.type = data.type;
     this.coordinates = [data.location.latitude, data.location.longitude];
     this.reviews = [];
-    this.neighborhood = [];
+    this.neighborhoods = [];
     this.isFavorite = data.is_favorite;
   }
 }

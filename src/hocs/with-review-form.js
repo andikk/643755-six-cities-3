@@ -16,23 +16,9 @@ const withReviewForm = (Component) => {
       this._handleRatingChange = this._handleRatingChange.bind(this);
       this._handleCommentChange = this._handleCommentChange.bind(this);
       this._resetSubmitting = this._resetSubmitting.bind(this);
-      this._handleSubmit = this._handleSubmit.bind(this);
+      this._handleFormSubmit = this._handleFormSubmit.bind(this);
       this._resetFormValues = this._resetFormValues.bind(this);
       this._isMounted = true;
-    }
-
-    render() {
-      const {rating, comment, invalid, submitting} = this.state;
-
-      return <Component
-        {...this.props}
-        rating={rating}
-        comment={comment}
-        invalid={invalid}
-        submitting={submitting}
-        onRatingChange={this._handleRatingChange}
-        onCommentChange={this._handleCommentChange}
-        onSubmit={this._handleSubmit}/>;
     }
 
     componentWillUnmount() {
@@ -67,7 +53,7 @@ const withReviewForm = (Component) => {
       this.setState({comment: ``, rating: 0});
     }
 
-    _handleSubmit() {
+    _handleFormSubmit() {
       const {onSubmit, offerId} = this.props;
       const {rating, comment} = this.state;
 
@@ -99,6 +85,20 @@ const withReviewForm = (Component) => {
 
     _validateRating(value) {
       return (value > 0);
+    }
+
+    render() {
+      const {rating, comment, invalid, submitting} = this.state;
+
+      return <Component
+        {...this.props}
+        rating={rating}
+        comment={comment}
+        invalid={invalid}
+        submitting={submitting}
+        onRatingChange={this._handleRatingChange}
+        onCommentChange={this._handleCommentChange}
+        onSubmit={this._handleFormSubmit}/>;
     }
   }
 

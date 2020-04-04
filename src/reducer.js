@@ -165,7 +165,7 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        const mappedOffers = response.data.map((it) => new Offer(it));
+        const mappedOffers = response.data.map((item) => new Offer(item));
         dispatch(ActionCreator.setCity(mappedOffers[0].city));
         dispatch(ActionCreator.setOffers(mappedOffers));
       });
@@ -174,7 +174,7 @@ const Operation = {
   loadNearby: (id) => (dispatch, getState, api) => {
     return api.get(`/hotels/${id}/nearby`)
       .then((response) => {
-        const mappedOffers = response.data.map((it) => new Offer(it));
+        const mappedOffers = response.data.map((item) => new Offer(item));
         dispatch(ActionCreator.setOffersNearby(mappedOffers));
       });
   },
@@ -183,7 +183,7 @@ const Operation = {
 
     return api.get(`/favorite`)
       .then((response) => {
-        const mappedOffers = response.data.map((it) => new Offer(it));
+        const mappedOffers = response.data.map((item) => new Offer(item));
         dispatch(ActionCreator.setOffersFavorites(mappedOffers));
       });
   },

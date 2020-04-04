@@ -31,7 +31,7 @@ it(`Should Property render correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [],
@@ -64,7 +64,7 @@ it(`Should Property render correctly`, () => {
     type: `house`,
     coordinates: [50.932361, 6.937974],
     reviews: [],
-    neighborhood: [],
+    neighborhoods: [],
     isFavorite: false};
 
   const tree = renderer
@@ -78,7 +78,7 @@ it(`Should Property render correctly`, () => {
               loadNearby={()=>{}}
               offerId={1}
               reviews={[]}
-              neighborhood={[]}
+              neighborhoods={[]}
               onCardHover={()=>{}}
               addToFavorite={()=>{}}
               authorizationStatus={`PropTypes.string`}

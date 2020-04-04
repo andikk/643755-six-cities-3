@@ -45,7 +45,7 @@ class Map extends PureComponent {
   componentDidUpdate(prevProps) {
     if (
       this.props.coordinates !== prevProps.coordinates ||
-      this.props.activeMarker !== prevProps.activeMarker
+      this.props.activeMarkerCoordinates !== prevProps.activeMarkerCoordinates
     ) {
       this.renderCoordinates();
     }
@@ -61,14 +61,14 @@ class Map extends PureComponent {
   }
 
   renderCoordinates() {
-    const {coordinates, activeMarker} = this.props;
+    const {coordinates, activeMarkerCoordinates} = this.props;
 
     this._layerGroup.clearLayers();
 
     coordinates.forEach((coordinate) => {
       leaflet
         .marker(coordinate, {
-          icon: coordinate === activeMarker ? this._activeIcon : this._icon
+          icon: coordinate === activeMarkerCoordinates ? this._activeIcon : this._icon
         })
         .addTo(this._layerGroup);
     });
@@ -85,7 +85,7 @@ Map.propTypes = {
   city: PropTypes.object.isRequired,
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
   className: PropTypes.string,
-  activeMarker: PropTypes.array
+  activeMarkerCoordinates: PropTypes.array
 };
 
 export default Map;

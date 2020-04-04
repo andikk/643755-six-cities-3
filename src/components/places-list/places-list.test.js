@@ -28,7 +28,7 @@ it(`Should PlacesList List render correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [],
@@ -62,7 +62,7 @@ it(`Should PlacesList List render correctly`, () => {
       type: `house`,
       coordinates: [50.932361, 6.937974],
       reviews: [],
-      neighborhood: [],
+      neighborhoods: [],
       isFavorite: false}
   ];
 

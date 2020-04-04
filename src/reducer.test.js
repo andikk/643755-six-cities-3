@@ -17,7 +17,7 @@ const offers = [{id: 1,
   type: `house`,
   coordinates: [50.932361, 6.937974],
   reviews: [],
-  neighborhood: [],
+  neighborhoods: [],
   isFavorite: false}];
 
 const AuthorizationStatus = {
@@ -123,7 +123,7 @@ it(`sets offers correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [],
@@ -246,7 +246,7 @@ it(`sets OffersNearby correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [1],
@@ -299,7 +299,7 @@ it(`sets OffersFavorites correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [],
@@ -348,7 +348,7 @@ describe(`setFavoriteOffer action`, () => {
             "id": 1,
             "isFavorite": false,
             "name": `Wood and stone place`,
-            "neighborhood": [],
+            "neighborhoods": [],
             "owner": {
               "id": 25,
               "name": `Angelina`,

@@ -9,7 +9,7 @@ it(`Should Map render correctly`, () => {
       city = {{name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}}}
       coordinates = {[[50.938361, 6.959974]]}
       className = {`PropTypes.string`}
-      activeMarker = {[50.938361, 6.959974]}
+      activeMarkerCoordinates = {[50.938361, 6.959974]}
     />)
     .toJSON();
 

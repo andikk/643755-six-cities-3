@@ -49,9 +49,9 @@ class Property extends PureComponent {
       addToFavorite(offerId, status);
     };
 
-    const {card = {}, reviews = [], neighborhood = [], authorizationStatus} = this.props;
+    const {card = {}, reviews = [], neighborhoods = [], authorizationStatus} = this.props;
     const {photos, description, premium, bedrooms, guests, features, owner, price, rating, ratingValue, name, type, city, coordinates, isFavorite} = card;
-    const coordinatesNearby = neighborhood.map((item) => (item.coordinates));
+    const coordinatesNearby = neighborhoods.map((item) => (item.coordinates));
 
     return (
       <div className="page">
@@ -169,14 +169,14 @@ class Property extends PureComponent {
             <Map className="property__map"
               city={city}
               coordinates={[...coordinatesNearby, coordinates]}
-              activeMarker={coordinates}/>
+              activeMarkerCoordinates={coordinates}/>
 
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-              <PlacesList offers={neighborhood}
+              <PlacesList offers={neighborhoods}
                 className="near-places__list places__list"
                 classNameForArticle="near-places__card"
                 imgSize={{width: 260, height: 200}}
@@ -215,7 +215,7 @@ Property.propTypes = {
   loadNearby: PropTypes.func,
   offerId: PropTypes.number,
   reviews: PropTypes.array,
-  neighborhood: PropTypes.array,
+  neighborhoods: PropTypes.array,
   onCardHover: PropTypes.func,
   addToFavorite: PropTypes.func,
   authorizationStatus: PropTypes.string,
@@ -230,7 +230,7 @@ const mapStateToProps = (state, ownProps) => {
     card: getOfferByIdSelector(state)(id),
     offerId: Number(ownProps.match.params.id),
     reviews: getReviewsSelector(state),
-    neighborhood: getOffersNearbySelector(state),
+    neighborhoods: getOffersNearbySelector(state),
     authorizationStatus: getAuthorizationStatusSelector(state),
     reviewsCount: getReviewsCountSelector(state)
   });

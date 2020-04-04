@@ -47,7 +47,7 @@ const state = {
           "name": `Max`
         }
       }],
-      neighborhood: [],
+      neighborhoods: [],
       isFavorite: false}
   },
   offersNearbyIds: [1],
@@ -103,7 +103,7 @@ const offersMock = [
         "name": `Max`
       }
     }],
-    neighborhood: [],
+    neighborhoods: [],
     isFavorite: false}
 ];
 
@@ -134,7 +134,7 @@ const offerMock = {id: 1,
       "name": `Max`
     }
   }],
-  neighborhood: [],
+  neighborhoods: [],
   isFavorite: false};
 
 const cityMock = {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}};

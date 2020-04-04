@@ -31,7 +31,7 @@ it(`Should Favorites render correctly`, () => {
         type: `house`,
         coordinates: [50.932361, 6.937974],
         reviews: [],
-        neighborhood: [],
+        neighborhoods: [],
         isFavorite: false}
     },
     offersNearbyIds: [],
@@ -64,7 +64,7 @@ it(`Should Favorites render correctly`, () => {
     type: `house`,
     coordinates: [50.932361, 6.937974],
     reviews: [],
-    neighborhood: [],
+    neighborhoods: [],
     isFavorite: false};
 
   const favoritesCities = [{name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}}];

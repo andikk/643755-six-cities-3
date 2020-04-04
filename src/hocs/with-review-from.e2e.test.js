@@ -50,13 +50,13 @@ describe(`withReviewForm`, () => {
 
   it(`should set submitting prop by onSubmit handler`, () => {
     const handlePromise = (resolve) => setTimeout(() => resolve(), 100);
-    const handleSubmit = jest.fn(() => {
+    const handleFormSubmit = jest.fn(() => {
       return new Promise(handlePromise);
     });
     const WrappedMockComponent = withReviewForm(MockComponent);
     const wrapper = mount(
         <WrappedMockComponent
-          onSubmit={handleSubmit}/>
+          onSubmit={handleFormSubmit}/>
     );
 
     let component = wrapper.find(MockComponent);

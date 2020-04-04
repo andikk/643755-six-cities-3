@@ -4,13 +4,13 @@ import withReviewForm from "../../hocs/with-review-form.js";
 
 const MAX_RATING = 5;
 
-const toIndex = (it, index) => MAX_RATING - index;
+const toIndex = (item, index) => MAX_RATING - index;
 const ReviewForm = (props) => {
   const {rating, comment, invalid, submitting, onRatingChange, onCommentChange, offerId, onSubmit} = props;
   const ratings = Array.from({length: MAX_RATING}, toIndex);
   const disabled = invalid || submitting;
 
-  const handleSubmit = (evt) => {
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
     return onSubmit({
@@ -21,14 +21,14 @@ const ReviewForm = (props) => {
   };
 
   return (
-    <form className="reviews__form form" onSubmit={handleSubmit} action="" method="post">
+    <form className="reviews__form form" onSubmit={handleFormSubmit} action="" method="post">
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {ratings.map((it) => (
-          <React.Fragment key={it}>
-            <input className="form__rating-input visually-hidden" name="rating" value={it} id={`${it}-star`}
-              type="radio" checked={it === rating} onChange={() => onRatingChange(it)}/>
-            <label htmlFor={`${it}-star`} className="reviews__rating-label form__rating-label">
+        {ratings.map((item) => (
+          <React.Fragment key={item}>
+            <input className="form__rating-input visually-hidden" name="rating" value={item} id={`${item}-star`}
+              type="radio" checked={item === rating} onChange={() => onRatingChange(item)}/>
+            <label htmlFor={`${item}-star`} className="reviews__rating-label form__rating-label">
               <svg className="form__star-image" width="37" height="33">
                 <use xlinkHref="#icon-star"></use>
               </svg>
@@ -62,7 +62,7 @@ const ReviewForm = (props) => {
 
 ReviewForm.propTypes = {
   offerId: PropTypes.number,
-  handleSubmit: PropTypes.func,
+  handleFormSubmit: PropTypes.func,
   rating: PropTypes.number,
   comment: PropTypes.string,
   invalid: PropTypes.bool,

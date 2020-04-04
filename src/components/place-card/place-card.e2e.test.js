@@ -34,7 +34,7 @@ const card = {id: 1,
       "name": `Max`
     }
   }],
-  neighborhood: [],
+  neighborhoods: [],
   isFavorite: false};
 
 it(`Should mouse over PlaceCardMoved`, () => {

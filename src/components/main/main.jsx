@@ -72,7 +72,7 @@ const Main = (props) => {
                 <Map className="cities__map"
                   city={city}
                   coordinates={coordinates}
-                  activeMarker={(activeOffer) ? activeOffer.coordinates : null}/>
+                  activeMarkerCoordinates={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
           }

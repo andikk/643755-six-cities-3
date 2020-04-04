@@ -7,7 +7,7 @@ it(`Should ReviewForm render correctly`, () => {
   const tree = renderer
     .create(<ReviewForm
       offerId = {1}
-      handleSubmit = {() => {}}
+      handleFormSubmit = {() => {}}
       rating = {1}
       comment = {`PropTypes.string`}
       invalid = {true}

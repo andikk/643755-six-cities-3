@@ -12,7 +12,7 @@ class Signin extends PureComponent {
     this.loginRef = React.createRef();
     this.passwordRef = React.createRef();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -26,7 +26,7 @@ class Signin extends PureComponent {
     return true;
   }
 
-  handleSubmit(evt) {
+  handleFormSubmit(evt) {
     const {login} = this.props;
 
     evt.preventDefault();
@@ -70,7 +70,7 @@ class Signin extends PureComponent {
             <section className="login">
               <h1 className="login__title">Sign in</h1>
               <form action=""
-                onSubmit={this.handleSubmit} className="login__form form" method="post">
+                onSubmit={this.handleFormSubmit} className="login__form form" method="post">
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input className="login__input form__input" ref={this.loginRef} type="email" name="email" placeholder="Email" required=""/>
