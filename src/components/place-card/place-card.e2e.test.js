@@ -61,19 +61,19 @@ it(`Should mouse over PlaceCardMoved`, () => {
 
 it(`Should PlaceCard header link be pressed`, () => {
 
-  const onHeaderClickHandler = jest.fn();
+  const onBookmarkClickHandler = jest.fn();
   const onCardHoverHandler = jest.fn();
 
   const placeCard = shallow(
       <PlaceCard card={card}
         onCardHover={onCardHoverHandler}
-        onHeaderClick={onHeaderClickHandler}
+        onBookmarkClick={onBookmarkClickHandler}
         className={`PropTypes.string`}
         classNameForArticle={`PropTypes.string`}
         classNameForItems={`PropTypes.string`}
         imgSize={{width: 100, height: 100}}/>
   );
 
-  placeCard.find(`.place-card a`).simulate(`click`);
-  expect(onHeaderClickHandler).toHaveBeenCalledTimes(1);
+  placeCard.find(`.place-card button`).simulate(`click`);
+  expect(onBookmarkClickHandler).toHaveBeenCalledTimes(1);
 });
