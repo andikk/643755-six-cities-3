@@ -18,7 +18,7 @@ exports[`Should Property render correctly 1`] = `
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
           >
             <img
               alt="6 cities logo"
@@ -40,16 +40,17 @@ exports[`Should Property render correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favorites"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                />
+                >
+                   
+                </div>
                 <span
                   className="header__user-name user__name"
-                >
-                  Oliver.conner@gmail.com
-                </span>
+                />
               </a>
             </li>
           </ul>
@@ -73,54 +74,54 @@ exports[`Should Property render correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg"
             />
           </div>
           <div
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg"
             />
           </div>
           <div
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg"
             />
           </div>
           <div
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg"
             />
           </div>
           <div
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg"
             />
           </div>
           <div
             className="property__image-wrapper"
           >
             <img
-              alt="Name0"
+              alt="Wood and stone place"
               className="property__image"
-              src="img/apartment-01.jpg"
+              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg"
             />
           </div>
         </div>
@@ -132,26 +133,27 @@ exports[`Should Property render correctly 1`] = `
           className="property__wrapper"
         >
           <div
-            className="property__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
             className="property__name-wrapper"
           >
             <h1
               className="property__name"
             >
-              Name0
+              Wood and stone place
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="place-card__bookmark-button place-card__bookmark-button button"
+              onClick={[Function]}
+              style={
+                Object {
+                  "position": "absolute",
+                  "right": "93px",
+                  "top": "41px",
+                }
+              }
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="place-card__bookmark-icon"
                 height="33"
                 width="31"
               >
@@ -162,7 +164,7 @@ exports[`Should Property render correctly 1`] = `
               <span
                 className="visually-hidden"
               >
-                To bookmarks
+                In bookmarks
               </span>
             </button>
           </div>
@@ -175,7 +177,7 @@ exports[`Should Property render correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "20%",
+                    "width": "100%",
                   }
                 }
               />
@@ -188,7 +190,7 @@ exports[`Should Property render correctly 1`] = `
             <span
               className="property__rating-value rating__value"
             >
-              4.8
+              2.9
             </span>
           </div>
           <ul
@@ -197,19 +199,19 @@ exports[`Should Property render correctly 1`] = `
             <li
               className="property__feature property__feature--entire"
             >
-              Apartment
+              house
             </li>
             <li
               className="property__feature property__feature--bedrooms"
             >
-              3
+              5
                Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
               Max 
-              4
+              5
                adults
             </li>
           </ul>
@@ -220,7 +222,7 @@ exports[`Should Property render correctly 1`] = `
               className="property__price-value"
             >
               €
-              120
+              403
             </b>
             <span
               className="property__price-text"
@@ -242,17 +244,27 @@ exports[`Should Property render correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Wifi
+                Breakfast
               </li>
               <li
                 className="property__inside-item"
               >
-                Cable TV
+                Washer
               </li>
               <li
                 className="property__inside-item"
               >
-                Kitchen
+                Air conditioning
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Laptop friendly workspace
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Baby seat
               </li>
             </ul>
           </div>
@@ -271,17 +283,17 @@ exports[`Should Property render correctly 1`] = `
                 className="property__avatar-wrapper  property__avatar-wrapper--pro user__avatar-wrapper"
               >
                 <img
-                  alt="Jon"
+                  alt="Angelina"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-max.jpg"
+                  src="img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Jon
+                Angelina
               </span>
             </div>
             <div
@@ -290,7 +302,7 @@ exports[`Should Property render correctly 1`] = `
               <p
                 className="property__text"
               >
-                Super description
+                Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.
               </p>
             </div>
           </div>
@@ -303,351 +315,11 @@ exports[`Should Property render correctly 1`] = `
               Reviews · 
               <span
                 className="reviews__amount"
-              >
-                3
-              </span>
+              />
             </h2>
             <ul
               className="reviews__list"
-            >
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "20%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Review1 object1
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2017-01-26"
-                  >
-                    2017-01-26
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "20%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Review2 object1
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2018-01-26"
-                  >
-                    2018-01-26
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "20%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    Review3 object1
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-01-26"
-                  >
-                    2019-01-26
-                  </time>
-                </div>
-              </li>
-            </ul>
-            <form
-              action="#"
-              className="reviews__form form"
-              method="post"
-            >
-              <label
-                className="reviews__label form__label"
-                htmlFor="review"
-              >
-                Your review
-              </label>
-              <div
-                className="reviews__rating-form form__rating"
-              >
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="5-stars"
-                  name="rating"
-                  type="radio"
-                  value="5"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="5-stars"
-                  title="perfect"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="4-stars"
-                  name="rating"
-                  type="radio"
-                  value="4"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="4-stars"
-                  title="good"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="3-stars"
-                  name="rating"
-                  type="radio"
-                  value="3"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="3-stars"
-                  title="not bad"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="2-stars"
-                  name="rating"
-                  type="radio"
-                  value="2"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="2-stars"
-                  title="badly"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-                <input
-                  className="form__rating-input visually-hidden"
-                  id="1-star"
-                  name="rating"
-                  type="radio"
-                  value="1"
-                />
-                <label
-                  className="reviews__rating-label form__rating-label"
-                  htmlFor="1-star"
-                  title="terribly"
-                >
-                  <svg
-                    className="form__star-image"
-                    height="33"
-                    width="37"
-                  >
-                    <use
-                      xlinkHref="#icon-star"
-                    />
-                  </svg>
-                </label>
-              </div>
-              <textarea
-                className="reviews__textarea form__textarea"
-                id="review"
-                name="review"
-                placeholder="Tell how was your stay, what you like and what can be improved"
-              />
-              <div
-                className="reviews__button-wrapper"
-              >
-                <p
-                  className="reviews__help"
-                >
-                  To submit review please make sure to set 
-                  <span
-                    className="reviews__star"
-                  >
-                    rating
-                  </span>
-                   and describe your stay with at least 
-                  <b
-                    className="reviews__text-amount"
-                  >
-                    50 characters
-                  </b>
-                  .
-                </p>
-                <button
-                  className="reviews__submit form__submit button"
-                  disabled=""
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
+            />
           </section>
         </div>
       </div>
@@ -667,324 +339,8 @@ exports[`Should Property render correctly 1`] = `
           Other places in the neighbourhood
         </h2>
         <div
-          className="near-places__list  places__list"
-        >
-          <article
-            className="cities__place-card place-card"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Some name"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    100
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "46%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Some name
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Appartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="cities__place-card place-card"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Some name"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    100
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "46%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Some name
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Appartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="cities__place-card place-card"
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Some name"
-                  className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    100
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "46%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Some name
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Appartment
-              </p>
-            </div>
-          </article>
-        </div>
+          className="near-places__list places__list"
+        />
       </section>
     </div>
   </main>

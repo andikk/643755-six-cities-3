@@ -1,10 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Favorites from "./favorites.jsx";
+import createAPI from "../../api";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
-const mockStore = configureStore([]);
+import thunk from "redux-thunk";
+
+const api = createAPI();
+const mockStore = configureStore([thunk.withExtraArgument(api)]);
 
 it(`Should Favorites render correctly`, () => {
   const store = mockStore({
@@ -67,6 +71,7 @@ it(`Should Favorites render correctly`, () => {
 
   const tree = renderer
     .create(<Provider store={store}><MemoryRouter><Favorites
+      match={{params: 1}}
       favoritesOffers={favoritesOffers}
       favoritesCities={favoritesCities}
       loadFavorites={() => {}}

@@ -1,11 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Property from "./property.jsx";
+import {Property} from "./property.jsx";
+import createAPI from '../../api';
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
+import thunk from "redux-thunk";
 
-const mockStore = configureStore([]);
+const api = createAPI();
+const mockStore = configureStore([thunk.withExtraArgument(api)]);
 
 it(`Should Property render correctly`, () => {
   const store = mockStore({
@@ -65,19 +68,24 @@ it(`Should Property render correctly`, () => {
     isFavorite: false};
 
   const tree = renderer
-    .create(<Provider store={store}><MemoryRouter><Property
-      card={card}
-      loadReviews={()=>{}}
-      loadNearby={()=>{}}
-      offerId={1}
-      reviews={[]}
-      neighborhood={[]}
-      onCardHover={()=>{}}
-      addToFavorite={()=>{}}
-      authorizationStatus={`PropTypes.string`}
-      addComment={()=>{}}
-    /></MemoryRouter></Provider>)
-    .toJSON();
+    .create(
+        <Provider store={store}>
+          <MemoryRouter>
+            <Property
+              match={{params: 1}}
+              card={card}
+              loadReviews={()=>{}}
+              loadNearby={()=>{}}
+              offerId={1}
+              reviews={[]}
+              neighborhood={[]}
+              onCardHover={()=>{}}
+              addToFavorite={()=>{}}
+              authorizationStatus={`PropTypes.string`}
+              addComment={()=>{}}/>
+          </MemoryRouter>
+        </Provider>
+    ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

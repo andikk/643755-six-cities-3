@@ -190,6 +190,10 @@ class Property extends PureComponent {
   }
 }
 
+Property.defaultProps = {
+  location: {}
+};
+
 Property.propTypes = {
   card: PropTypes.shape({
     photos: PropTypes.array,

@@ -91,6 +91,10 @@ class Favorites extends PureComponent {
   }
 }
 
+Favorites.defaultProps = {
+  location: {}
+};
+
 Favorites.propTypes = {
   favoritesOffers: PropTypes.array,
   favoritesCities: PropTypes.array,
