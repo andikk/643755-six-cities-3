@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list.jsx";
 import PlacesSorting from "../places-sorting/places-sorting.jsx";
@@ -16,42 +16,51 @@ import {getCitiesListSelector,
   getActiveOfferSelector} from "../../selectors.js";
 import {ActionCreator} from "../../reducer";
 
+
 const PlacesSortingWrapped = withSelectedFilter(PlacesSorting);
 // главная страница
-const Main = (props) => {
-  const {offers,
-    city,
-    citiesList,
-    onCityClick,
-    coordinates,
-    onFilterClick,
-    activeFilter,
-    onCardHover,
-    activeOffer,
-    history} = props;
+class Main extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  const offersCount = offers.length;
+  componentDidMount() {
+    this.props.onCardHover(null);
+  }
 
-  return (
-    <div className="page page--gray page--main">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+  render() {
+    const {offers,
+      city,
+      citiesList,
+      onCityClick,
+      coordinates,
+      onFilterClick,
+      activeFilter,
+      onCardHover,
+      activeOffer,
+      history} = this.props;
+
+    const offersCount = offers.length;
+    return (
+      <div className="page page--gray page--main">
+        <header className="header">
+          <div className="container">
+            <div className="header__wrapper">
+              <div className="header__left">
+                <a className="header__logo-link header__logo-link--active">
+                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                </a>
+              </div>
+              <UserNav/>
             </div>
-            <UserNav/>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className={`page__main page__main--index ${(offersCount === 0) ? ` page__main--index-empty` : ``}`}>
-        <h1 className="visually-hidden">Cities</h1>
-        <CitiesList citiesList={citiesList} city={city} onCityClick={onCityClick}/>
-        <div className="cities">
-          {(offersCount > 1) &&
+        <main className={`page__main page__main--index ${(offersCount === 0) ? ` page__main--index-empty` : ``}`}>
+          <h1 className="visually-hidden">Cities</h1>
+          <CitiesList citiesList={citiesList} city={city} onCityClick={onCityClick}/>
+          <div className="cities">
+            {(offersCount > 1) &&
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
@@ -60,32 +69,33 @@ const Main = (props) => {
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content places__list"
-                  classNameForArticle="cities__place-card"
-                  classNameForItems="cities"
-                  offers={offers}
-                  history={history}
-                  imgSize={{width: 260, height: 200}}
-                  onCardHover={(card) => onCardHover(card && card.id)}/>
+                            classNameForArticle="cities__place-card"
+                            classNameForItems="cities"
+                            offers={offers}
+                            history={history}
+                            imgSize={{width: 260, height: 200}}
+                            onCardHover={(card) => onCardHover(card && card.id)}/>
 
               </section>
               <div className="cities__right-section">
                 <Map className="cities__map"
-                  city={city}
-                  coordinates={coordinates}
-                  activeMarkerCoordinates={(activeOffer) ? activeOffer.coordinates : null}/>
+                     city={city}
+                     coordinates={coordinates}
+                     activeMarkerCoordinates={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
-          }
+            }
 
-          {(offersCount === 0) &&
+            {(offersCount === 0) &&
             <MainEmpty/>
-          }
+            }
 
-        </div>
-      </main>
-    </div>
-  );
-};
+          </div>
+        </main>
+      </div>
+    );
+  }
+}
 
 Main.propTypes = {
   offers: PropTypes.array.isRequired,
