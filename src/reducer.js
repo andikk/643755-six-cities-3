@@ -101,7 +101,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_OFFERS:
       return Object.assign({}, state, {
         offersIds: action.payload.offersIds,
-        offersMap: action.payload.offersMap
+        offersMap: Object.assign({}, state.offersMap, action.payload.offersMap)
       });
 
     // case ActionType.SET_OFFERS_NEARBY:
@@ -118,13 +118,13 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_OFFERS_NEARBY:
       return Object.assign({}, state, {
         offersNearbyIds: action.payload.offersNearbyIds,
-        offersMap: action.payload.offersMap
+        offersMap: Object.assign({}, state.offersMap, action.payload.offersMap)
       });
 
     case ActionType.SET_OFFERS_FAVORITES:
       return Object.assign({}, state, {
         offersFavoritesIds: action.payload.offersFavoritesIds,
-        offersMap: action.payload.offersMap
+        offersMap: Object.assign({}, state.offersMap, action.payload.offersMap)
       });
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
@@ -139,24 +139,24 @@ const reducer = (state = initialState, action) => {
         activeOfferId: action.payload,
       });
 
+    // case ActionType.SET_FAVORITE_OFFER:
+    //   return Object.assign({}, state, {
+    //     offersFavoritesIds: action.payload
+    //       ? state.offersFavoritesIds.concat(action.meta.id)
+    //       : state.offersFavoritesIds.filter((id) => id !== action.meta.id),
+    //     offersMap: Object.assign({}, state.offersMap, {
+    //       [action.meta.id]: Object.assign({},
+    //           state.offersMap[action.meta.id],
+    //           {isFavorite: action.payload}
+    //       ),
+    //     })
+    //   });
+    // не помнимаю как переделать
     case ActionType.SET_FAVORITE_OFFER:
       return Object.assign({}, state, {
-        offersFavoritesIds: action.payload
-          ? state.offersFavoritesIds.concat(action.meta.id)
-          : state.offersFavoritesIds.filter((id) => id !== action.meta.id),
-        offersMap: Object.assign({}, state.offersMap, {
-          [action.meta.id]: Object.assign({},
-              state.offersMap[action.meta.id],
-              {isFavorite: action.payload}
-          ),
-        })
+        offersFavoritesIds: action.payload.offersFavoritesIds,
+        offersMap: Object.assign({}, state.offersMap, action.payload.offersMap)
       });
-    // не помнимаю как переделать
-      // case ActionType.SET_FAVORITE_OFFER:
-    //   return Object.assign({}, state, {
-    //     offersFavoritesIds: action.payload.offersFavoritesIds,
-    //     offersMap: action.payload.offersMap
-    //   });
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
@@ -185,14 +185,6 @@ const Operation = {
       });
   },
 
-  // loadNearby: (id) => (dispatch, getState, api) => {
-  //   return api.get(`/hotels/${id}/nearby`)
-  //     .then((response) => {
-  //       const mappedOffers = response.data.map((item) => new Offer(item));
-  //       dispatch(ActionCreator.setOffersNearby(mappedOffers));
-  //     });
-  // },
-  // не работает
   loadNearby: (id) => (dispatch, getState, api) => {
     return api.get(`/hotels/${id}/nearby`)
       .then((response) => {
@@ -204,7 +196,6 @@ const Operation = {
         }, {});
 
         dispatch(ActionCreator.setOffersNearby({offersNearbyIds, offersMap}));
-
       });
   },
 
@@ -261,17 +252,6 @@ const Operation = {
       });
   },
 
-  addToFavorite: (id) => (dispatch, getState, api) => {
-    const state = getState();
-    const offer = getOfferByIdSelector(state)(id);
-    const status = offer.isFavorite ? 0 : 1;
-
-    return api.post(`favorite/${id}/${status}`)
-      .then(() => {
-        dispatch(ActionCreator.setFavoriteOffer(id, !!status));
-      });
-  }
-  // не понимаю как переделать
   // addToFavorite: (id) => (dispatch, getState, api) => {
   //   const state = getState();
   //   const offer = getOfferByIdSelector(state)(id);
@@ -279,19 +259,31 @@ const Operation = {
   //
   //   return api.post(`favorite/${id}/${status}`)
   //     .then(() => {
-  //       //     offersFavoritesIds: action.payload
-  //       //       ? state.offersFavoritesIds.concat(action.meta.id)
-  //       //       : state.offersFavoritesIds.filter((id) => id !== action.meta.id),
-  //       //     offersMap: Object.assign({}, state.offersMap, {
-  //       //       [action.meta.id]: Object.assign({},
-  //       //           state.offersMap[action.meta.id],
-  //       //           {isFavorite: action.payload}
-  //       //       ),
-  //       //     })
   //       dispatch(ActionCreator.setFavoriteOffer(id, !!status));
   //     });
   // }
+  // не понимаю как переделать
+  addToFavorite: (id) => (dispatch, getState, api) => {
+    const state = getState();
+    const offer = getOfferByIdSelector(state)(id);
+    const status = offer.isFavorite ? 0 : 1;
 
+    return api.post(`favorite/${id}/${status}`)
+      .then(() => {
+        const offersFavoritesIds = status
+          ? state.offersFavoritesIds.concat(id)
+          : state.offersFavoritesIds.filter((curId) => curId !== id);
+
+        const offersMap = Object.assign({}, state.offersMap, {
+          [id]: Object.assign({},
+              state.offersMap[id],
+              {isFavorite: !!status}
+          ),
+        });
+
+        dispatch(ActionCreator.setFavoriteOffer({offersFavoritesIds, offersMap}));
+      });
+  }
 
 };
 
