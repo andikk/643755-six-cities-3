@@ -50,7 +50,7 @@ const withReviewForm = (Component) => {
     }
 
     _resetFormValues() {
-      this.setState({comment: ``, rating: 0});
+      this.setState({comment: ``, rating: 0, invalid: true});
     }
 
     _handleFormSubmit() {

@@ -97,14 +97,13 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         city: action.payload,
       });
+
     case ActionType.SET_OFFERS:
       return Object.assign({}, state, {
-        offersIds: action.payload.map((offer) => offer.id),
-        offersMap: action.payload.reduce((out, offer) => {
-          out[offer.id] = offer;
-          return out;
-        }, {})
+        offersIds: action.payload.offersIds,
+        offersMap: action.payload.offersMap
       });
+
     case ActionType.SET_OFFERS_NEARBY:
       return Object.assign({}, state, {
         offersNearbyIds: action.payload.map((offer) => offer.id),
@@ -115,15 +114,11 @@ const reducer = (state = initialState, action) => {
               return out;
             }, {})),
       });
+
     case ActionType.SET_OFFERS_FAVORITES:
       return Object.assign({}, state, {
-        offersFavoritesIds: action.payload.map((offer) => offer.id),
-        offersMap: Object.assign({},
-            state.offersMap,
-            action.payload.reduce((out, offer) => {
-              out[offer.id] = offer;
-              return out;
-            }, {})),
+        offersFavoritesIds: action.payload.offersFavoritesIds,
+        offersMap: action.payload.offersMap
       });
     case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
@@ -166,8 +161,14 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         const mappedOffers = response.data.map((item) => new Offer(item));
+        const offersIds = mappedOffers.map((offer) => offer.id);
+        const offersMap = mappedOffers.reduce((out, offer) => {
+          out[offer.id] = offer;
+          return out;
+        }, {});
+
         dispatch(ActionCreator.setCity(mappedOffers[0].city));
-        dispatch(ActionCreator.setOffers(mappedOffers));
+        dispatch(ActionCreator.setOffers({offersIds, offersMap}));
       });
   },
 
@@ -180,11 +181,16 @@ const Operation = {
   },
 
   loadFavorites: () => (dispatch, getState, api) => {
-
     return api.get(`/favorite`)
       .then((response) => {
         const mappedOffers = response.data.map((item) => new Offer(item));
-        dispatch(ActionCreator.setOffersFavorites(mappedOffers));
+        const offersFavoritesIds = mappedOffers.map((offer) => offer.id);
+        const offersMap = mappedOffers.reduce((out, offer) => {
+          out[offer.id] = offer;
+          return out;
+        }, {});
+
+        dispatch(ActionCreator.setOffersFavorites({offersFavoritesIds, offersMap}));
       });
   },
 
