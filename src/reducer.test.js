@@ -20,6 +20,27 @@ const offers = [{id: 1,
   neighborhoods: [],
   isFavorite: false}];
 
+const offersMap = {
+  1: {id: 1,
+    city: {name: `Cologne`, location: {"latitude": 50.938361, "longitude": 6.959974, "zoom": 13}},
+    src: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+    photos: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/6.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/20.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/7.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/18.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`],
+    description: `Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.`,
+    premium: false,
+    bedrooms: 5,
+    guests: 5,
+    features: [`Breakfast`, `Washer`, `Air conditioning`, `Laptop friendly workspace`, `Baby seat`],
+    owner: {id: 25, name: `Angelina`, super: true, src: `img/avatar-angelina.jpg`},
+    price: 403,
+    rating: 2.9,
+    name: `Wood and stone place`,
+    type: `house`,
+    coordinates: [50.932361, 6.937974],
+    reviews: [],
+    neighborhoods: [],
+    isFavorite: false}
+};
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -101,7 +122,7 @@ describe(`setOffersList action`, () => {
 it(`sets offers correctly`, () => {
   const mockAction = {
     type: ActionType.SET_OFFERS,
-    payload: offers,
+    payload: {offersIds: [1], offersMap},
   };
   const mockResult = {
     city: {},
@@ -224,7 +245,7 @@ it(`sets OffersNearby correctly`, () => {
 
   const mockAction = {
     type: ActionType.SET_OFFERS_NEARBY,
-    payload: offers,
+    payload: {offersNearbyIds: [1], offersMap},
   };
   const mockResult = {
     city: {},
@@ -277,7 +298,7 @@ describe(`setOffersFavorites action`, () => {
 it(`sets OffersFavorites correctly`, () => {
   const mockAction = {
     type: ActionType.SET_OFFERS_FAVORITES,
-    payload: offers,
+    payload: {offersFavoritesIds: [1], offersMap},
   };
   const mockResult = {
     city: {},
@@ -389,7 +410,8 @@ describe(`setFavoriteOffer action`, () => {
 it(`sets OffersFavorites correctly`, () => {
   const mockAction = {
     "type": ActionType.SET_FAVORITE_OFFER,
-    "meta": {"id": 1}
+    "meta": {"id": 1},
+    "payload": {offersFavoritesIds: [1], offersMap}
   };
   const mockResult = {
     "activeFilter": {
@@ -399,14 +421,72 @@ it(`sets OffersFavorites correctly`, () => {
     "activeOfferId": null,
     "authorizationStatus": `NO_AUTH`,
     "city": {},
-    "offersFavoritesIds": [],
+    "offersFavoritesIds": [
+      1
+    ],
     "offersIds": [],
     "offersMap": {
-      "1": {}
+      "1": {
+        "bedrooms": 5,
+        "city": {
+          "location": {
+            "latitude": 50.938361,
+            "longitude": 6.959974,
+            "zoom": 13
+          },
+          "name": `Cologne`
+        },
+        "coordinates": [
+          50.932361,
+          6.937974
+        ],
+        "description": `Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.`,
+        "features": [
+          `Breakfast`,
+          `Washer`,
+          `Air conditioning`,
+          `Laptop friendly workspace`,
+          `Baby seat`
+        ],
+        "guests": 5,
+        "id": 1,
+        "isFavorite": false,
+        "name": `Wood and stone place`,
+        "neighborhoods": [],
+        "owner": {
+          "id": 25,
+          "name": `Angelina`,
+          "src": `img/avatar-angelina.jpg`,
+          "super": true
+        },
+        "photos": [
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/13.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/1.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/6.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/20.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/7.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/18.jpg`,
+          `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/14.jpg`
+        ],
+        "premium": false,
+        "price": 403,
+        "rating": 2.9,
+        "reviews": [],
+        "src": `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+        "type": `house`
+      }
     },
     "offersNearbyIds": [],
     "reviews": [],
     "user": null
+
   };
 
   expect(reducer(initialState, mockAction)).toEqual(mockResult);

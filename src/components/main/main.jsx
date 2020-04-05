@@ -69,19 +69,19 @@ class Main extends PureComponent {
                 <PlacesSortingWrapped onFilterClick={onFilterClick} activeFilter={activeFilter}/>
 
                 <PlacesList className="cities__places-list tabs__content places__list"
-                            classNameForArticle="cities__place-card"
-                            classNameForItems="cities"
-                            offers={offers}
-                            history={history}
-                            imgSize={{width: 260, height: 200}}
-                            onCardHover={(card) => onCardHover(card && card.id)}/>
+                  classNameForArticle="cities__place-card"
+                  classNameForItems="cities"
+                  offers={offers}
+                  history={history}
+                  imgSize={{width: 260, height: 200}}
+                  onCardHover={(card) => onCardHover(card && card.id)}/>
 
               </section>
               <div className="cities__right-section">
                 <Map className="cities__map"
-                     city={city}
-                     coordinates={coordinates}
-                     activeMarkerCoordinates={(activeOffer) ? activeOffer.coordinates : null}/>
+                  city={city}
+                  coordinates={coordinates}
+                  activeMarkerCoordinates={(activeOffer) ? activeOffer.coordinates : null}/>
               </div>
             </div>
             }
