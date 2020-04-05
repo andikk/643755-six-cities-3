@@ -104,22 +104,22 @@ const reducer = (state = initialState, action) => {
         offersMap: action.payload.offersMap
       });
 
+    // case ActionType.SET_OFFERS_NEARBY:
+    //   return Object.assign({}, state, {
+    //     offersNearbyIds: action.payload.map((offer) => offer.id),
+    //     offersMap: Object.assign({},
+    //         state.offersMap,
+    //         action.payload.reduce((out, offer) => {
+    //           out[offer.id] = offer;
+    //           return out;
+    //         }, {})),
+    //   });
+      // не работает
     case ActionType.SET_OFFERS_NEARBY:
       return Object.assign({}, state, {
-        offersNearbyIds: action.payload.map((offer) => offer.id),
-        offersMap: Object.assign({},
-            state.offersMap,
-            action.payload.reduce((out, offer) => {
-              out[offer.id] = offer;
-              return out;
-            }, {})),
+        offersNearbyIds: action.payload.offersNearbyIds,
+        offersMap: action.payload.offersMap
       });
-      // не работает
-      // case ActionType.SET_OFFERS_NEARBY:
-      //   return Object.assign({}, state, {
-      //     offersNearbyIds: action.payload.offersNearbyIds,
-      //     offersMap: action.payload.offersMap
-      //   });
 
     case ActionType.SET_OFFERS_FAVORITES:
       return Object.assign({}, state, {
@@ -185,28 +185,28 @@ const Operation = {
       });
   },
 
-  loadNearby: (id) => (dispatch, getState, api) => {
-    return api.get(`/hotels/${id}/nearby`)
-      .then((response) => {
-        const mappedOffers = response.data.map((item) => new Offer(item));
-        dispatch(ActionCreator.setOffersNearby(mappedOffers));
-      });
-  },
-  // не работает
   // loadNearby: (id) => (dispatch, getState, api) => {
   //   return api.get(`/hotels/${id}/nearby`)
   //     .then((response) => {
   //       const mappedOffers = response.data.map((item) => new Offer(item));
-  //       const offersNearbyIds = mappedOffers.map((offer) => offer.id);
-  //       const offersMap = mappedOffers.reduce((out, offer) => {
-  //         out[offer.id] = offer;
-  //         return out;
-  //       }, {});
-  //
-  //       dispatch(ActionCreator.setOffersNearby({offersNearbyIds, offersMap}));
-  //
+  //       dispatch(ActionCreator.setOffersNearby(mappedOffers));
   //     });
   // },
+  // не работает
+  loadNearby: (id) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${id}/nearby`)
+      .then((response) => {
+        const mappedOffers = response.data.map((item) => new Offer(item));
+        const offersNearbyIds = mappedOffers.map((offer) => offer.id);
+        const offersMap = mappedOffers.reduce((out, offer) => {
+          out[offer.id] = offer;
+          return out;
+        }, {});
+
+        dispatch(ActionCreator.setOffersNearby({offersNearbyIds, offersMap}));
+
+      });
+  },
 
   loadFavorites: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
@@ -291,7 +291,6 @@ const Operation = {
   //       dispatch(ActionCreator.setFavoriteOffer(id, !!status));
   //     });
   // }
-
 
 
 };
